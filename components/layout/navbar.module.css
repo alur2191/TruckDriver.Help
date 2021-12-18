@@ -1,0 +1,45 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-bg);
+    border-bottom: var(--primary-border);
+    padding: 0 40px;
+    margin-bottom: 25px;
+    height: 70px;
+}
+
+.navbar > ul {
+    display: flex;
+    align-items: center;
+}
+
+.navbar > ul {   
+    gap: 40px;
+}
+
+.account {
+    position:absolute;
+    top: 30px;
+    background-color: white;
+    width: 180px;
+    min-width: 100%;
+    padding: 15px;
+    border: var(--primary-border);
+    z-index: 1;
+}
+
+.account > ul{
+    display: flex;
+
+    flex-direction: column;
+    gap: 10px;
+}
+
+.account > ul > li {
+    cursor: pointer
+}
+
+.account > ul > li:hover {
+    background-color: rgb(247, 247, 247);
+}

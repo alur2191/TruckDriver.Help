@@ -1,0 +1,85 @@
+.truckRow {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+    
+}
+
+.truckRow > div:first-child {
+    display: grid;
+    grid-template-columns: 130px 60px 100px 180px;
+    justify-content: space-between;
+}
+
+.truckRow >div:first-child> div {
+    display: flex;
+    flex-direction: column;
+    gap:var(--small-gap);
+}
+
+.truckRow > div:last-child {
+    display: flex;
+    justify-content: center;
+}
+
+
+#truckAmount {
+    width: 30px;
+}
+
+
+.trailerRow {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.trailerRow > div:first-child {
+    display: grid;
+    grid-template-columns: 130px 60px 100px;
+    gap: 70px
+}
+
+.trailerRow >div:first-child> div {
+    display: flex;
+    flex-direction: column;
+    gap:var(--small-gap);
+}
+
+.trailerRow > div:last-child {
+    display: flex;
+    justify-content: center;
+}
+
+
+#trailer-amount {
+    width: 30px;
+}
+
+.additionalInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.additionalInfo > div > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+
+.additionalInfo > div > div > div{
+    display: flex;
+    align-items: center;    
+    height: 30px;
+}
+
+.transmission {
+    display: flex;
+    gap: var(--small-gap);
+}
+
+.transmission > div {
+    display: flex;
+    align-items: center;
+}

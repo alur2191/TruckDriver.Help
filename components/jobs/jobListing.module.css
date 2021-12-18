@@ -1,0 +1,70 @@
+
+.left {
+    grid-area: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.left > h3 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    text-decoration: underline;
+    margin:0 0 5px 0;
+}
+
+.left > span:nth-child(2) {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.left > span:nth-child(3) {
+    font-size: 0.8rem;
+}
+
+.right {
+    grid-area: right;
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+}
+
+.right > div:first-child   {
+    display: flex;
+    flex-direction: column;
+}
+
+.right > div   {
+    justify-content: center;
+    align-items: center;
+}
+
+.right > span {
+    border-left: var(--primary-border)
+}
+
+
+.right > div:first-child {
+    gap: 3px;
+}
+
+
+.right > div:first-child > span > span {
+    font-weight: 700;
+}
+
+.right > div:last-child   {
+    display: flex;
+    flex-direction: column;
+}
+
+.right > div:last-child > span:nth-child(2) {
+    font-size: 1.6rem;
+    line-height: 1;
+    
+    font-weight: 600;
+}
+
+.right > div:last-child > span:nth-child(3) {
+    font-size: 0.9rem;
+}
+

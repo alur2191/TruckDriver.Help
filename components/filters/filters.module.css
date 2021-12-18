@@ -1,0 +1,33 @@
+.main {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap: 20px;
+    padding: 15px 25px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.main > div {
+    display:flex; 
+    align-items:center;
+    gap: 10px;
+}
+
+.main input {
+    width: 60px;
+}
+
+.main select {
+    width: 130px
+}
+
+.payment  > div{
+    display: flex;
+    align-items: center;
+}
+
+
+.payment > div > input{
+    width: 40px;
+}

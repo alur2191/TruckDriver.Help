@@ -1,0 +1,49 @@
+.auth {
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.auth h1 {
+    text-align: center;
+}
+
+.control {
+    margin-bottom: 0.5rem;
+}
+
+.control label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.control input {
+    font: inherit;
+
+    width: 100%;
+    text-align: left;
+    padding: 0.25rem;
+}
+
+.actions {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.actions .toggle {
+    background-color: transparent;
+    border: none;
+    color: black;
+    padding: 0;
+    text-decoration: underline;
+}
+
+.actions .toggle:hover {
+    background-color: transparent;
+}

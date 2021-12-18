@@ -1,0 +1,38 @@
+.main {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 20px;
+    margin: 0 150px;
+}
+
+.listings {
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+.sidebar {
+    display:flex;
+    flex-direction:column;
+    gap: 20px;
+}
+
+
+
+.sidebar > div {
+    justify-content:space-between;
+    align-items:center;
+    gap: 20px;
+    padding: 15px 25px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.sidebar > :first-child {
+    height: 63px;
+    display:flex;
+    align-items:center;
+    color: grey;
+    text-decoration:underline;
+    background-color: transparent;
+}

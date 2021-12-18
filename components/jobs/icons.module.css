@@ -1,0 +1,22 @@
+.icons {
+    position: absolute;
+    right: 25px;
+    top: 3px;
+    display: flex;
+    gap: 20px;
+}
+
+.icons > span {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.8rem;
+    opacity: 0.3;
+}
+.icons > span:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+.icons > span > i {
+    font-size: 1rem;
+}
