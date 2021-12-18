@@ -1,7 +1,6 @@
-import {PrismaClient } from "@prisma/client"
+import prisma from '../../../lib/prisma'
 
 async function handler(req, res) {
-    const prisma = new PrismaClient({log: ["query"]})
     const salaryMile = req.body.salaryMile?parseInt(req.body.salaryMile):undefined
     const salaryGross = req.body.salaryGross?parseInt(req.body.salaryGross):undefined
     const ownerGross = req.body.ownerGross?parseInt(req.body.ownerGross):undefined

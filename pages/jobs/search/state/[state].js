@@ -1,5 +1,5 @@
 import {useRouter} from 'next/router';
-import { PrismaClient } from "@prisma/client";
+import prisma from '../../../../lib/prisma'
 import classes from "./state.module.css"
 import JobListing from "../../../../components/jobs/jobListing";
 
@@ -18,7 +18,6 @@ function JobsByState(props) {
 
 export async function getStaticProps(context){
     const { state } = context.params;
-    const prisma = new PrismaClient();
     const jobs = await prisma.job.findMany({
         where :{
             company: {

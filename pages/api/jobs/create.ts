@@ -1,9 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import {PrismaClient,Prisma  } from "@prisma/client"
-
+import prisma from '../../../lib/prisma'
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-    const prisma = new PrismaClient({log: ["query"]})
     
     try {
         const job = await prisma.job.create({

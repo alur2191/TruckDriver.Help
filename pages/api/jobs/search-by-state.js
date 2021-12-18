@@ -1,17 +1,18 @@
-import { NextApiRequest, NextApiResponse } from "next"
 import prisma from '../../../lib/prisma'
-export default async function (req: NextApiRequest, res: NextApiResponse) {
 
+async function handler(req, res) {
+    console.log('1!!!!!!!!!!!!!!!!!!!1111',req.body.state);
     try {
+        const prisma = new PrismaClient();
+        
         const jobs = await prisma.job.findMany({
-            
-            include:{
+            where :{
                 company: {
-                    include: {
-                        trucks: true,
-                        trailers:true
-                    }
+                    state:req.body.state
                 }
+            },
+            include:{
+                company: true
             }
         })
         res.status(200)
@@ -24,3 +25,5 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     }
 
 }
+
+export default handler

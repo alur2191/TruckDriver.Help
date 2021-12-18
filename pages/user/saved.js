@@ -15,24 +15,7 @@ function Saved() {
     if(!activeUser){
         return <div>no account</div>
     }else{
-        async ()=> {
-            console.log('running');
-            try {
-                console.log('running');
-                const body = {ids}
-                const response = await fetch("/api/jobs/saved", {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(body),
-                });
-                const { jobs } = await response.json();
-                console.log(jobs);
-                return jobs;
-            }catch(err){
-                console.log('fail');
-            }
-            
-        }
+        
         return (
             
             <div className={classes.main}>

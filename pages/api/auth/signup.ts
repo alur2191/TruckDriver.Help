@@ -1,12 +1,11 @@
 
 
 import { NextApiRequest, NextApiResponse } from "next"
-import {PrismaClient } from "@prisma/client"
+import prisma from '../../../lib/prisma'
 import {hashPassword} from '../../../lib/auth'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-    const prisma = new PrismaClient({log: ["query"]})
     const {email, password} = req.body
 
     if (!email || !email.includes('@') || !password || password.trim().length < 7){

@@ -1,11 +1,10 @@
 
 
-import {PrismaClient } from "@prisma/client"
+import prisma from '../../../lib/prisma'
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 import { verifyPassword } from '../../../lib/auth';
 
-const prisma = new PrismaClient({log: ["query"]})
 
 
 

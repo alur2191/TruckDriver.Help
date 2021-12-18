@@ -1,11 +1,8 @@
 import { getSession } from 'next-auth/client';
-import {PrismaClient } from "@prisma/client"
-
+import prisma from '../../../lib/prisma'
 import { hashPassword, verifyPassword } from '../../../lib/auth';
 
 async function handler(req, res) {
-    const prisma = new PrismaClient({log: ["query"]})
-
 
     if (req.method !== 'PATCH') {
         return;
