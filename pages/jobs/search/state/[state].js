@@ -4,21 +4,16 @@ import classes from "./state.module.css"
 import JobListing from "../../../../components/jobs/jobListing";
 
 function JobsByState(props) {
-    const router = useRouter()
-    if (router.isFallback) {
-        return 'fallback'
-    }else{
-        
-        const jobs = props.jobs
-        return(
-            <div className={classes.main}>
-                {jobs
-                    ? jobs.map((job) => <div key={job.id} className="listing"><JobListing  job={job} /></div>)
-                    : "loading"}
-            </div>
-        )
-    }
-    
+    const jobs = props.jobs
+
+    console.log(jobs);
+    return(
+        <div className={classes.main}>
+            {jobs
+                ? jobs.map((job) => <div key={job.id} className="listing"><JobListing  job={job} /></div>)
+                : "loading"}
+        </div>
+    )
 }
 
 export async function getStaticProps(context){
@@ -34,6 +29,9 @@ export async function getStaticProps(context){
         }
     })
     const processedJobs = JSON.parse(JSON.stringify(jobs))
+    if(!processedJobs){
+        return{notFound:true}
+    }
     return {
         props:{
             jobs: processedJobs
