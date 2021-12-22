@@ -48,6 +48,7 @@ function Comingsoon() {
                         <input type="number" placeholder="Должность" id="position" onChange={(e) => setDeposit(e.target.value)} required/>
                     </div>
                 </div>
+                
             </form>
         </div>
     );
