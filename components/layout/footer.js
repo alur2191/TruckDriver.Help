@@ -7,11 +7,11 @@ function Navbar () {
     <footer className={classes.footer}>
         <span>© {new Date().getFullYear()} TruckDriver.life</span>
         <ul>
-            <li>
+            {/* <li>
                 <Link href="/">
                     <a><i className="bi bi-question-circle-fill"></i>Помощь</a>
                 </Link>
-            </li>
+            </li> */}
         </ul>
     </footer>
     )
