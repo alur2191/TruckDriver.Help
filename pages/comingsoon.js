@@ -6,8 +6,8 @@ function Comingsoon() {
         <div className={classes.main}>
             <div className={classes.description}>
                 <p>Truckdriver.life Платформа для поиска работы в траковых компаниях, на условиях,при которых выбор делаете вы, и, так же где Траковые компании могут найти водителей.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae quidem debitis doloribus fugiat consequatur beatae optio dolore, in assumenda iste maxime accusamus ullam delectus maiores ab perferendis aspernatur totam rerum sit blanditiis iure soluta? Dolores, neque animi. Cumque, quam error.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos corporis repellendus reprehenderit reiciendis a praesentium vitae recusandae quasi minus? Magnam, eveniet commodi impedit non consectetur nulla. Quibusdam aliquid possimus explicabo, nisi vitae exercitationem sequi veniam quisquam tempore quae, autem aut, corporis mollitia maiores ea nihil officia quia! Fugiat voluptatem nihil numquam animi quam quas harum!</p>
+                <p>Мы проводим отбор компаний интересующихся принять участие в бета тестировании.  На протяжении всего периода бета тестирования сервис будет предоставлен бесплатно. Компании которые будут одобрены до запуска получат бесплатный сервис на месяц после окончания периода бета тестирования.</p>
+                <p>Компания желающая принять участия должна заполнить форму с информацией о компании. Наша команда рассмотрит заявление для одобрения. Мы свяжемся с вами до запуска веб-приложения, зарегистрируем аккаунт на платформе и отправим инструкцию по размещению объявлений.</p>
             </div>
             <form className={classes.form}>
                 <h3>Компания</h3>
@@ -45,6 +45,7 @@ function Comingsoon() {
                     </div>
                 </div>
                 
+                <input type="submit" value="Разместить"/>
             </form>
         </div>
     );
