@@ -45,7 +45,7 @@ function Comingsoon() {
                     </div>
                 </div>
                 
-                <input type="submit" value="Разместить"/>
+                <input type="submit" value="Отправить"/>
             </form>
         </div>
     );
