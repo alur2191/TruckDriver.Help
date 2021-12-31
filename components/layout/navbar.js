@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { useContext, useState } from "react";
 import Link from 'next/link'
 import classes from './navbar.module.css'
-import {useSession, signOut} from 'next-auth/client'
+import { signOut} from 'next-auth/client'
 import UserContext from '../../store/user-context'
 
 

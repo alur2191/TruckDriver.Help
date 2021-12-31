@@ -1,7 +1,33 @@
+import { useState } from 'react'
 import classes from './comingsoon.module.css'
 
 function Comingsoon() {
+    const [company, setCompany] = useState('')
+    const [mcnumber, setMcnumber] = useState('')
+    const [usdot, setUsdot] = useState('')
+    const [phone, setPhone] = useState('')
+    const [email, setEmail] = useState('')
+    const [name, setName] = useState('')
+    const [position, setPosition] = useState('')
 
+    const submitData = async (e) => {
+        
+        e.preventDefault();
+        try {
+            const body = { company,mcnumber,usdot,phone,email,name,position};
+            await fetch("/api/user/beta", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body),
+            })
+            
+            
+            Router.push('/')
+            
+        } catch (error) {
+            console.error(error);
+        }
+    };
     return (
         <div className={classes.main}>
             <div className={classes.description}>
@@ -9,12 +35,12 @@ function Comingsoon() {
                 <p>Запуск бета версии сервиса планируется на конце Января, и на данный момент проводится отбор компаний, которые желают принять участие на нашей платформе в тестовый период. Во время бета тестирования сервис будет предоставлен на бесплатной основе. Компании зарегистрированные до запуска бета версии, получат дополнительный месяц бесплатных услуг после окончания бета тестирования.</p>
                 <p>Компания желающая принять участия должна заполнить форму с информацией о себе.. Наша команда рассмотрит заявление для одобрения. Мы свяжемся с вами до запуска веб-приложения, зарегистрируем аккаунт на платформе и отправим инструкцию по размещению объявлений.</p>
             </div>
-            <form className={classes.form}>
+            <form className={classes.form} onSubmit={submitData}>
                 <h3>Компания</h3>
                 <div className="form-row">
                     <div>
                         <label htmlFor="name"><span className="required">*</span>Название Компании</label>
-                        <input className="input-md" type="text" placeholder="Название Компании" id="name" onChange={(e) =>setName(e.target.value)}   required/>
+                        <input className="input-md" type="text" placeholder="Название Компании" id="name" onChange={(e) =>setCompany(e.target.value)}   required/>
                     </div>
                     <div>
                         <label htmlFor="mc-number"><span className="required">*</span>MC Номер</label>
@@ -33,15 +59,15 @@ function Comingsoon() {
                     </div>
                     <div>
                         <label htmlFor="email"><span className="required">*</span>Email</label>
-                        <input type="text" placeholder="Email" id="email" onChange={(e) =>setPhone(e.target.value)}   required/>
+                        <input type="email" placeholder="Email" id="email" onChange={(e) =>setEmail(e.target.value)}   required/>
                     </div>
                     <div>
                         <label htmlFor="fullname"><span className="required">*</span>Полное Имя</label>
-                        <input type="text" placeholder="Имя" id="fullname" onChange={(e) => setSite(e.target.value)} required/>
+                        <input type="text" placeholder="Имя" id="fullname" onChange={(e) => setName(e.target.value)} required/>
                     </div>
                     <div>
                         <label htmlFor="position"><span className="required">*</span>Должность</label>
-                        <input type="number" placeholder="Должность" id="position" onChange={(e) => setDeposit(e.target.value)} required/>
+                        <input type="text" placeholder="Должность" id="position" onChange={(e) => setPosition(e.target.value)} required/>
                     </div>
                 </div>
                 

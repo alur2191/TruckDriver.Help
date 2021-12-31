@@ -23,6 +23,17 @@ model User {
   @@map(name: "user")
 }
 
+model Beta {
+  id       Int    @id @default(autoincrement())
+  company  String
+  mcnumber Int
+  usdot    Int
+  phone    Int
+  email    String
+  name     String
+  position String
+}
+
 // model Driver {
 //   id             Int      @id @default(autoincrement())
 //   firstname      String   @db.VarChar(200)
