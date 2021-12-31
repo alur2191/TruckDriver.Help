@@ -5,7 +5,7 @@ function Navbar () {
 
     return(
     <footer className={classes.footer}>
-        <span>© {new Date().getFullYear()} TruckDriver.life</span>
+        <span>© {new Date().getFullYear()} TruckDriver.Help</span>
         <ul>
             {/* <li>
                 <Link href="/">

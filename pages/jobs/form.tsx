@@ -12,12 +12,11 @@ function JobForm() {
 
     const userCtx = useContext(UserContext)
     const activeUser =  userCtx.user;
-
-    console.log('>>>>>>>>>>>>>>>>>>>',activeUser.user)
+    const companyId = activeUser.user.company.id
+    
     const submitData = async (e: React.SyntheticEvent) => {
         e.preventDefault();
         try {
-            const companyId = activeUser.user.company.id
             const body = { truck,type,pay,companyId,driverGross,ownerGross};
             await fetch("/api/jobs/create", {
             method: 'POST',
