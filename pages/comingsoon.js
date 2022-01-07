@@ -77,7 +77,7 @@ function Comingsoon() {
                 <ReCAPTCHA
                     ref={recaptchaRef}
                     size="invisible"
-                    sitekey={process.env.RECAPTCHA_SITE_KEY}
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
                     onChange={onReCAPTCHAChange}
                 />
                 <h3>Компания</h3>
