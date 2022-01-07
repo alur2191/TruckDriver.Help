@@ -28,7 +28,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
             }
         );
         const captchaValidation = await response.json();
-        if (captchaValidation) {
+        if (captchaValidation.success) {
             try {
                 const beta = await prisma.beta.create({
                     data: {
@@ -56,7 +56,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
             message: "Unproccesable request, Invalid captcha code",
         });
         } catch (error) {
-            console.log(">>>",error);
+            console.log(error);
             return res.status(422).json({ message: "Something went wrong" });
         }
     }
