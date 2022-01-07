@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import prisma from '../../../lib/prisma'
-import fetch from "node-fetch";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async function (req: NextApiRequest, res: NextApiResponse) {
@@ -29,16 +28,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
             }
         );
         const captchaValidation = await response.json();
-        /**
-         * The structure of response from the veirfy API is
-         * {
-         *  "success": true|false,
-         *  "challenge_ts": timestamp,  // timestamp of the challenge load (ISO format yyyy-MM-dd'T'HH:mm:ssZZ)
-         *  "hostname": string,         // the hostname of the site where the reCAPTCHA was solved
-         *  "error-codes": [...]        // optional
-            }
-            */
-        if (captchaValidation.success) {
+        if (captchaValidation) {
             try {
                 const beta = await prisma.beta.create({
                     data: {
@@ -67,7 +57,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
             message: "Unproccesable request, Invalid captcha code",
         });
         } catch (error) {
-        console.log(error);
+        console.log(">>>",error);
         return res.status(422).json({ message: "Something went wrong" });
         }
     }
