@@ -106,6 +106,10 @@ footer {
   margin: 0 150px;
 }
 
+.grecaptcha-badge{
+  bottom: 80px!important;
+}
+
 .bg-primary{
   background-color: white;
   border-radius: 6px;
