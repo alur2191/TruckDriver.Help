@@ -1,24 +1,20 @@
 import React, {useState,useContext} from 'react'
 import Router from 'next/router';
-import classes from "./form.module.css"
-import UserContext from '../../store/user-context'
+import classes from "./id.module.css"
 
-function JobForm() {
+function Edit({jobId}) {
     const [truck, setTruck] = useState(false)
     const [type, setType] = useState('')
     const [pay, setPay] = useState('')
     const [driverGross, setDriverGross] = useState('')
     const [ownerGross, setOwnerGross] = useState('')
 
-    const userCtx = useContext(UserContext)
-    const activeUser =  userCtx.user;
 
     const submitData = async (e: React.SyntheticEvent) => {
         e.preventDefault();
         try {
-            const companyId = activeUser.user.company.id
-            const body = { truck,type,pay,companyId,driverGross,ownerGross};
-            await fetch("/api/jobs/create", {
+            const body = { truck,type,pay,driverGross,ownerGross,jobId};
+            await fetch("/api/jobs/edit", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body),
@@ -35,7 +31,7 @@ function JobForm() {
     return(
         <div className="container form">
         <form onSubmit={submitData}>
-            <h3>Разместить Объявление</h3>
+            <h3>Редактировать Объявление</h3>
             <div className="form-row">
                 <div>
                     <label>Тип Водителя</label>
@@ -85,4 +81,16 @@ function JobForm() {
     )
 }
 
-export default JobForm;
+
+export async function getServerSideProps(context){
+    const {params} = context;
+
+    return {
+        props:{
+            jobId: params.id
+        }
+    }
+}
+
+
+export default Edit;

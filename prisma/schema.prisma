@@ -11,16 +11,26 @@ datasource db {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
-  email      String   @unique
+  id         Int        @id @default(autoincrement())
+  email      String     @unique
   password   String
-  activated  Boolean  @default(false)
+  activated  Boolean    @default(false)
   company    Company?
-  saved_jobs Int[]
-  createdAt  DateTime @default(now())
-  updated_at DateTime @updatedAt
+  savedJobs  UserJobs[]
+  createdAt  DateTime   @default(now())
+  updated_at DateTime   @updatedAt
 
   @@map(name: "user")
+}
+
+model UserJobs {
+  id     Int  @default(autoincrement())
+  user   User @relation(fields: [userId], references: [id])
+  job    Job  @relation(fields: [jobId], references: [id])
+  userId Int
+  jobId  Int
+
+  @@id([userId, jobId])
 }
 
 model Beta {
@@ -127,5 +137,6 @@ model Job {
   createdAt    DateTime @default(now())
   updated_at   DateTime @updatedAt
 
+  UserJobs UserJobs[]
   @@map(name: "job")
 }

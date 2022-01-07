@@ -17,7 +17,6 @@ function Home() {
   
   const { data: jobs } = useQuery("jobs", fetchJobs);
   
-  
 
   return (
     <div className={classes.main}>

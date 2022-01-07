@@ -11,6 +11,7 @@ function Layout(props) {
     const [session, loading] = useSession()
     const userCtx = useContext(UserContext)
     const activeUser =  userCtx.user;
+    console.log(">>>>>>>>",activeUser);
     const loadUser = async() => {
         const user = await fetch(`/api/user/${session.user.email}`, {
             method: 'POST',

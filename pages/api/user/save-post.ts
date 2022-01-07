@@ -11,8 +11,16 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
                     email: req.body.email,
                 },
                 data: {
-                    saved_jobs:{
-                        push:[req.body.job]
+                    savedJobs:{
+                        create: [
+                            {
+                                job: {
+                                    connect:{
+                                        id:parseInt(req.body.job)
+                                    }
+                                }
+                            }
+                        ]
                     }
                 },
                 

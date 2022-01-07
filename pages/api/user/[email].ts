@@ -10,15 +10,14 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
                 activated:true,
                 id:true,
                 email:true,
-                company:true,
-                saved_jobs:true
+                company:true
             }
         })
         res.status(200)
         res.json({user})
     } catch (e) {
         res.status(500)
-        res.json({error: "Ошибка при запросе спика пользователя."})
+        res.json({error: "Ошибка при запросе пользователя."})
     } finally {
         await prisma.$disconnect()
     }

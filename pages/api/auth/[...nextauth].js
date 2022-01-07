@@ -38,10 +38,12 @@ const createOptions = (req) => ({
                 return user.company ? {
                     email: user.email,
                     activated: user.activated,
-                    companyId: user.company.id
+                    companyId: user.company.id,
+                    id: user.id
                 } : {
                     email: user.email,
-                    activated: user.activated
+                    activated: user.activated,
+                    id: user.id
                 }
             }
         })
@@ -50,6 +52,7 @@ const createOptions = (req) => ({
             
             if(user){
                 token.activated = user.activated
+                token.id = user.id
                 if(user.companyId){
                     token.companyId = user.companyId
                 }
@@ -60,7 +63,7 @@ const createOptions = (req) => ({
         session: async (session, user) => {
             if(user){
                 session.user.companyId = user.companyId
-                
+                session.user.id = user.id
                 if(session.user.activated){
                     session.user.activated = user.activated
                 }

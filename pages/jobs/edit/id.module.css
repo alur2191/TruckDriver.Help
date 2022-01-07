@@ -1,0 +1,15 @@
+.driver {
+    display: flex;
+    flex-direction: column;
+}
+
+.driver > div {
+    display: flex;
+    align-items: center;
+    height: 25px;
+}
+
+.trailer > select,
+.pay > div  {
+    margin-top: var(--small-gap);
+}

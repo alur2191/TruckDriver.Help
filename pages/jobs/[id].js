@@ -1,4 +1,3 @@
-import {useRouter} from 'next/router';
 import { PrismaClient } from "@prisma/client";
 import classes from "./id.module.css"
 import JobListing from "../../components/jobs/jobListing";
