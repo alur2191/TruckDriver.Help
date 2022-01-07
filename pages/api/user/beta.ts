@@ -6,7 +6,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     const { body, method } = req;
 
     // Extract the email and captcha code from the request body
-    const { email, captcha, company, mcnumber, usdot, phone, name, position } = body;
+    const { email, captcha, company, name, position } = body;
 
     if (method === "POST") {
         // If email or captcha are missing return an error
@@ -41,9 +41,8 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
                         position,
                     }
                 })
-        
-                res.status(201)
-                res.json({beta})
+                console.log('db part works')
+                return res.json({beta})
             } catch (e) {
                 console.log(e)
                 res.status(500)
@@ -57,8 +56,8 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
             message: "Unproccesable request, Invalid captcha code",
         });
         } catch (error) {
-        console.log(">>>",error);
-        return res.status(422).json({ message: "Something went wrong" });
+            console.log(">>>",error);
+            return res.status(422).json({ message: "Something went wrong" });
         }
     }
     // Return 404 if someone pings the API with a method other than
