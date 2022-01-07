@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import React from "react";
+import { useState, createRef } from 'react'
 import classes from './comingsoon.module.css'
+import ReCAPTCHA from "react-google-recaptcha";
 
 function Comingsoon() {
     const [company, setCompany] = useState('')
@@ -9,25 +11,61 @@ function Comingsoon() {
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
     const [position, setPosition] = useState('')
+    const recaptchaRef = createRef();
 
-    const submitData = async (e) => {
-        
-        e.preventDefault();
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // Execute the reCAPTCHA when the form is submitted
+        recaptchaRef.current.execute();
+    };
+    // const submitData = async (e) => {
+    //     e.preventDefault();
+    //     try {
+            
+            
+            
+    //         Router.push('/')
+            
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // };
+
+
+    const onReCAPTCHAChange = async (captchaCode) => {
+        // If the reCAPTCHA code is null or undefined indicating that
+        // the reCAPTCHA was expired then return early
+        if (!captchaCode) {
+            return;
+        }
         try {
-            const body = { company,mcnumber,usdot,phone,email,name,position};
-            await fetch("/api/user/beta", {
+            const body = { company,mcnumber,usdot,phone,email,name,position,captcha: captchaCode  };
+            
+            const response = await fetch("/api/user/beta", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(body),
             })
-            
-            
-            Router.push('/')
-            
+            if (response.ok) {
+                // If the response is ok than show the success alert
+                alert("Submitted!");
+            } else {
+                // Else throw an error with the message returned
+                // from the API
+                const error = await response.json();
+                throw new Error(error.message)
+            }
         } catch (error) {
-            console.error(error);
+            alert(error?.message || "Something went wrong");
+        } finally {
+            // Reset the reCAPTCHA when the request has failed or succeeeded
+            // so that it can be executed again if user submits another email.
+            recaptchaRef.current.reset();
+            setEmail("");
         }
     };
+
+
     return (
         <div className={classes.main}>
             <div className={classes.description}>
@@ -35,7 +73,13 @@ function Comingsoon() {
                 <p>Запуск бета версии сервиса планируется на конце Января, и на данный момент проводится отбор компаний, которые желают принять участие на нашей платформе в тестовый период. Во время бета тестирования сервис будет предоставлен на бесплатной основе. Компании зарегистрированные до запуска бета версии, получат дополнительный месяц бесплатных услуг после окончания бета тестирования.</p>
                 <p>Компания желающая принять участия должна заполнить форму с информацией о себе.. Наша команда рассмотрит заявление для одобрения. Мы свяжемся с вами до запуска веб-приложения, зарегистрируем аккаунт на платформе и отправим инструкцию по размещению объявлений.</p>
             </div>
-            <form className={classes.form} onSubmit={submitData}>
+            <form className={classes.form} onSubmit={handleSubmit}>
+                <ReCAPTCHA
+                    ref={recaptchaRef}
+                    size="invisible"
+                    sitekey={process.env.RECAPTCHA_SITE_KEY}
+                    onChange={onReCAPTCHAChange}
+                />
                 <h3>Компания</h3>
                 <div className="form-row">
                     <div>
