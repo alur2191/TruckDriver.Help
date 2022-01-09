@@ -11,9 +11,9 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     if (method === "POST") {
         // If email or captcha are missing return an error
         if (!email || !captcha) {
-        return res.status(422).json({
-            message: "Unproccesable request, please provide the required fields",
-        });
+            return res.status(422).json({
+                message: "Unproccesable request, please provide the required fields",
+            });
         }
 
         try {
