@@ -2,27 +2,10 @@ import { NextApiRequest, NextApiResponse } from "next"
 import prisma from '../../../lib/prisma'
 import Cors from 'cors'
 
-const cors = Cors({
-    methods: ['GET', 'HEAD'],
-})
 
-// Helper method to wait for a middleware to execute before continuing
-// And to throw an error when an error happens in a middleware
-function runMiddleware(req, res, fn) {
-    return new Promise((resolve, reject) => {
-        fn(req, res, (result) => {
-        if (result instanceof Error) {
-            return reject(result)
-        }
-
-        return resolve(result)
-        })
-    })
-}
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-    await runMiddleware(req, res, cors)
     const { body, method } = req;
 
     // Extract the email and captcha code from the request body
