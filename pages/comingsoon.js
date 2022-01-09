@@ -56,7 +56,7 @@ function Comingsoon() {
                 throw new Error(error.message)
             }
         } catch (error) {
-            alert(error?.message || "Something went wrong");
+            alert(error || "Something went wrong");
         } finally {
             // Reset the reCAPTCHA when the request has failed or succeeeded
             // so that it can be executed again if user submits another email.
