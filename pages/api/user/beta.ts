@@ -33,29 +33,29 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
             const captchaValidation = await response.json();
 
-            if (captchaValidation.success) {
-                try {
-                    const beta = await prisma.beta.create({
-                        data: {
-                            company,
-                            mcnumber:parseInt(req.body.mcnumber),
-                            usdot:parseInt(req.body.usdot),
-                            phone:parseInt(req.body.phone),
-                            email,
-                            name,
-                            position,
-                        }
-                    })
-                    console.log('db part works')
-                    return res.json({beta})
-                } catch (e) {
-                    console.log(e)
-                    res.status(500)
-                    res.json({error: "Ошибка при отправки заявки."})
-                } finally {
-                    await prisma.$disconnect()
-                }
-            }
+            // if (captchaValidation.success) {
+            //     try {
+            //         const beta = await prisma.beta.create({
+            //             data: {
+            //                 company,
+            //                 mcnumber:parseInt(req.body.mcnumber),
+            //                 usdot:parseInt(req.body.usdot),
+            //                 phone:parseInt(req.body.phone),
+            //                 email,
+            //                 name,
+            //                 position,
+            //             }
+            //         })
+            //         console.log('db part works')
+            //         return res.json({beta})
+            //     } catch (e) {
+            //         console.log(e)
+            //         res.status(500)
+            //         res.json({error: "Ошибка при отправки заявки."})
+            //     } finally {
+            //         await prisma.$disconnect()
+            //     }
+            // }
 
             return res.status(422).json({
                 message: "Unproccesable request, Invalid captcha code",
