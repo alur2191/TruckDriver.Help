@@ -12,12 +12,15 @@ function Comingsoon() {
     const [name, setName] = useState('')
     const [position, setPosition] = useState('')
 
-    // 
-    
     const submitData = async (e) => {
-        e.preventDefault();
+        
+        e.preventDefault()
+        if (grecaptcha.getResponse() === '') {
+            alert("Please click <I'm not a robot> before sending the job")
+        }
+        console.log('submitting data');
         try {
-            const body = { company,mcnumber,usdot,phone,email,name,position,captcha: captchaCode  };
+            const body = { company,mcnumber,usdot,phone,email,name,position };
             const response = await fetch("/api/user/beta", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -37,16 +40,10 @@ function Comingsoon() {
                 <p>Запуск бета версии сервиса планируется на конце Января, и на данный момент проводится отбор компаний, которые желают принять участие на нашей платформе в тестовый период. Во время бета тестирования сервис будет предоставлен на бесплатной основе. Компании зарегистрированные до запуска бета версии, получат дополнительный месяц бесплатных услуг после окончания бета тестирования.</p>
                 <p>Компания желающая принять участия должна заполнить форму с информацией о себе.. Наша команда рассмотрит заявление для одобрения. Мы свяжемся с вами до запуска веб-приложения, зарегистрируем аккаунт на платформе и отправим инструкцию по размещению объявлений.</p>
             </div>
-            <form className={classes.form} onSubmit={event => {
-                if (grecaptcha.getResponse() === '') {
-                event.preventDefault()
-                alert("Please click <I'm not a robot> before sending the job")
-                }
-            }}>
+            <form className={classes.form} onSubmit={submitData}>
                 <ReCAPTCHA
                     size="normal"
                     sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-                    onChange={submitData}
                 />
                 <h3>Компания</h3>
                 <div className="form-row">

@@ -9,13 +9,15 @@ import UserContext from '../../store/user-context'
 function Navbar () {
     const [dropdown,setDropdown]= useState(false)
     const userCtx = useContext(UserContext)
-    const activeUser =  userCtx.user;
+    const activeUser = null;
+    if(process.env.MAINTENANCE_MODE===0){
+        activeUser =  userCtx.user;
+        
+    }
     function logoutHandler() {
         signOut()
     }
-    console.log(activeUser);
     const toggleDropdown = () =>setDropdown(!dropdown)
-
     return(
     <nav className={classes.navbar}>
         <Link href="/">

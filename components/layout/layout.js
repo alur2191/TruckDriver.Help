@@ -10,19 +10,24 @@ import {useSession, signOut} from 'next-auth/client'
 function Layout(props) {
     const [session, loading] = useSession()
     const userCtx = useContext(UserContext)
-    const activeUser =  userCtx.user;
-    const loadUser = async() => {
-        const user = await fetch(`/api/user/${session.user.email}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(session.user.email),
-        })
-        user.json().then(body => userCtx.setUser({
-            ...body
-        }));
+    if(process.env.MAINTENANCE_MODE===0){
+        
+        const activeUser =  userCtx.user;
+        const loadUser = async() => {
+            const user = await fetch(`/api/user/${session.user.email}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(session.user.email),
+            })
+            user.json().then(body => userCtx.setUser({
+                ...body
+            }));
+        }
+        
+        session&&!activeUser&&loadUser()
+    }else{
+        const activeUser = null
     }
-    
-    session&&!activeUser&&loadUser()
     return (
         <Fragment>
             <Navbar />

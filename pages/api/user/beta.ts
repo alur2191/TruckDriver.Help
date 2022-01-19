@@ -1,6 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next"
-import prisma from '../../../lib/prisma'
-// eslint-disable-next-line import/no-anonymous-default-export
+
 
 const validateCaptcha = (response_key) => {
     return new Promise((resolve, reject) => {
@@ -26,12 +24,20 @@ const validateCaptcha = (response_key) => {
     })
 }
 
+
+
+import { NextApiRequest, NextApiResponse } from "next"
+import prisma from '../../../lib/prisma'
+// eslint-disable-next-line import/no-anonymous-default-export
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-    const { email, company, name, position } = req.body;
     if (!(await validateCaptcha(req.body['g-recaptcha-response']))) {
         return res.redirect(`/captcha`)
     }
     delete req.body['g-recaptcha-response']
+    const { email, company, name, position } = req.body;
+    
+    console.log('API running');
+    
     try {
         const beta = await prisma.beta.create({
             data: {
@@ -44,11 +50,13 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
                 position,
             }
         })
-        return res.status(200).send("OK");
+
+        res.status(201)
+        res.json({beta})
     } catch (e) {
         console.log(e)
         res.status(500)
-        res.json({error: "Ошибка при отправки заявки."})
+        res.json({error: "Ошибка при создании заявки."})
     } finally {
         await prisma.$disconnect()
     }
