@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, createRef } from 'react'
+import { useState } from 'react'
 import classes from './comingsoon.module.css'
 import ReCAPTCHA from "react-google-recaptcha";
 
@@ -11,7 +11,6 @@ function Comingsoon() {
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
     const [position, setPosition] = useState('')
-    const recaptchaRef = createRef();
 
     // 
     
@@ -45,8 +44,7 @@ function Comingsoon() {
                 }
             }}>
                 <ReCAPTCHA
-                    ref={recaptchaRef}
-                    size="invisible"
+                    size="normal"
                     sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
                     onChange={submitData}
                 />
