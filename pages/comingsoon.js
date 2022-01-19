@@ -52,7 +52,7 @@ function Comingsoon() {
             } else {
                 // Else throw an error with the message returned
                 // from the API
-                console.log('error!');
+                console.log(error);
                 const error = await response.json();
                 throw new Error(error.message)
             }
@@ -63,7 +63,6 @@ function Comingsoon() {
             // Reset the reCAPTCHA when the request has failed or succeeeded
             // so that it can be executed again if user submits another email.
             recaptchaRef.current.reset();
-            setEmail("");
         }
     };
 
