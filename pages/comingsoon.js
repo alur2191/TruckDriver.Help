@@ -52,7 +52,7 @@ function Comingsoon() {
             } else {
                 // Else throw an error with the message returned
                 // from the API
-                console.log(error);
+                console.log(response);
                 const error = await response.json();
                 throw new Error(error.message)
             }
