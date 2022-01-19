@@ -18,45 +18,52 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
             });
         }
 
+
         try {
             // Ping the google recaptcha verify API to verify the captcha code you received
             const response = await fetch(
-                `https://www.google.com/recaptcha/api/siteverify`,
+                `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captcha}`,
                 {
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded",
-                    },
-                    body:`secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captcha}`,
-                    method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+                },
+                method: "POST",
                 }
             );
-
             const captchaValidation = await response.json();
-
-            // if (captchaValidation.success) {
-            //     try {
-            //         const beta = await prisma.beta.create({
-            //             data: {
-            //                 company,
-            //                 mcnumber:parseInt(req.body.mcnumber),
-            //                 usdot:parseInt(req.body.usdot),
-            //                 phone:parseInt(req.body.phone),
-            //                 email,
-            //                 name,
-            //                 position,
-            //             }
-            //         })
-            //         console.log('db part works')
-            //         return res.json({beta})
-            //     } catch (e) {
-            //         console.log(e)
-            //         res.status(500)
-            //         res.json({error: "Ошибка при отправки заявки."})
-            //     } finally {
-            //         await prisma.$disconnect()
-            //     }
-            // }
-
+            /**
+             * The structure of response from the veirfy API is
+             * {
+             *  "success": true|false,
+             *  "challenge_ts": timestamp,  // timestamp of the challenge load (ISO format yyyy-MM-dd'T'HH:mm:ssZZ)
+             *  "hostname": string,         // the hostname of the site where the reCAPTCHA was solved
+             *  "error-codes": [...]        // optional
+                }
+                */
+            if (captchaValidation.success) {
+                try {
+                    const beta = await prisma.beta.create({
+                        data: {
+                            company,
+                            mcnumber:parseInt(req.body.mcnumber),
+                            usdot:parseInt(req.body.usdot),
+                            phone:parseInt(req.body.phone),
+                            email,
+                            name,
+                            position,
+                        }
+                    })
+                    return res.status(200).send("OK");
+                } catch (e) {
+                    console.log(e)
+                    res.status(500)
+                    res.json({error: "Ошибка при отправки заявки."})
+                } finally {
+                    await prisma.$disconnect()
+                }
+                return res.status(200).send("OK");
+            }
+        
             return res.status(422).json({
                 message: "Unproccesable request, Invalid captcha code",
             });
@@ -69,3 +76,18 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     // POST
     return res.status(404).send("Not found");
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
