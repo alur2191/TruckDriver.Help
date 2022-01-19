@@ -100,7 +100,7 @@ function Comingsoon() {
                 <div className="form-row">
                     <div>
                         <label htmlFor="phone"><span className="required">*</span>Телефон</label>
-                        <input type="text" placeholder="Телефон" id="phone" onChange={(e) =>setPhone(e.target.value)}   required/>
+                        <input type="number" placeholder="Телефон" id="phone" onChange={(e) =>setPhone(e.target.value)}   required/>
                     </div>
                     <div>
                         <label htmlFor="email"><span className="required">*</span>Email</label>

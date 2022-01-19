@@ -61,7 +61,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
                 } finally {
                     await prisma.$disconnect()
                 }
-                return res.status(200).send("OK");
             }
         
             return res.status(422).json({
