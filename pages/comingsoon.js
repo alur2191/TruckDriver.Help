@@ -18,15 +18,16 @@ function Comingsoon() {
         if (grecaptcha.getResponse() === '') {
             alert("Please click <I'm not a robot> before sending the job")
         }
-        console.log('submitting data');
+        
         try {
             const body = { company,mcnumber,usdot,phone,email,name,position };
-            const response = await fetch("/api/user/beta", {
+            const response = await fetch("/api/user/beta/", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(body),
             })
             
+            console.log('submitting data');
             console.log(response);
         
         }catch(error) {
