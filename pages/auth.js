@@ -10,11 +10,11 @@ function AuthPage() {
 
     useEffect(() => {
         getSession().then((session) => {
-        if (session) {
-            router.replace('/');
-        } else {
-            setIsLoading(false);
-        }
+            if (session) {
+                router.replace('/');
+            } else {
+                setIsLoading(false);
+            }
         });
     }, [router]);
 
@@ -22,7 +22,10 @@ function AuthPage() {
         return <p>Loading...</p>;
     }
 
-    return <AuthForm />;
+    return
+    <div>
+        <AuthForm />
+    </div>
 }
 
 export default AuthPage;
