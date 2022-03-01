@@ -68,7 +68,7 @@ const createOptions = (req) => ({
                         }
 
                     } else {
-                        throw new Error(JSON.stringify({ errors: "Нужно верифицировать аккаунт", status: false }))
+                        throw new Error("Необходимо верифицировать аккаунт")
                     }
 
                 }

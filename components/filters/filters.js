@@ -86,7 +86,6 @@ const Filters = () => {
                         <option value='Reefer'>Reefer</option>
                         <option value='Flatbed'>Flatbed</option>
                         <option value='Step Deck'>Step Deck</option>
-                        <option value='Step Deck (Conestoga)'>Step Deck (Conestoga)</option>
                         <option value='Lowboy'>Lowboy</option>
                         <option value='Car Hauler'>Car Hauler</option>
                     </select>
