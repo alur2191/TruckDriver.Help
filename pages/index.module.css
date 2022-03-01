@@ -44,7 +44,7 @@
 }
 
 .beta > p {
-    margin: 5px 0;
+    margin: 5px;
 }
 
 @media (max-width: 1440px) {

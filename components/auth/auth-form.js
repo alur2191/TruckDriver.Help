@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import classes from './auth-form.module.css';
 import { useContext } from "react";
 import UserContext from '../../store/user-context'
+import Link from 'next/link'
 
 async function createUser(email, password) {
     const response = await fetch('/api/auth/signup', {
@@ -34,6 +35,7 @@ function AuthForm({ token }) {
     const [confirmMessage, setConfirmMessage] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
     const [message, setMessage] = useState('')
+    const [checkedAgreement, setCheckedAgreement] = useState(false);
     const router = useRouter()
 
     { error && console.log(error) }
@@ -85,7 +87,13 @@ function AuthForm({ token }) {
                 }, 10000)
             }
         } else {
+            if (!checkedAgreement) {
+                setErrorMessage("Вы должны согласится с условиями пользовательского соглашения.")
+                setTimeout(() => { setErrorMessage('') }, 10000)
+                return
+            }
             try {
+
                 const res = await createUser(enteredEmail, enteredPassword)
                 console.log(res.error);
                 if (!res.error) {
@@ -132,7 +140,7 @@ function AuthForm({ token }) {
                 {token && <p style={{ color: 'red' }}>Войдите в аккаунт для завершения подтверждения!</p>}
                 <form onSubmit={submitHandler}>
                     <div className={classes.control}>
-                        <label htmlFor='email'>Почта</label>
+                        <label htmlFor='email'>Email</label>
                         <input type='email' id='email' required ref={emailInputRef} />
                     </div>
                     <div className={classes.control}>
@@ -141,6 +149,11 @@ function AuthForm({ token }) {
                     </div>
                     {errorMessage && <span style={{ color: 'red' }}>{errorMessage}</span>}
                     {confirmMessage && <span style={{ color: 'green' }}>{confirmMessage}</span>}
+                    {!isLogin &&
+                        <div >
+                            <input type="checkbox" id="agreement" name="agreement" onChange={e => setCheckedAgreement(e.target.checked)}></input>
+                            <label htmlFor="agreement">Cогласен с условиями пользовательского <Link href={{ pathname: `/help/terms` }}><a style={{ color: '#3C3C77', textDecoration: 'underline' }} target="_blank">соглашения</a></Link>.</label>
+                        </div>}
                     <div className={classes.actions}>
                         <button>{isLogin ? 'Войти' : 'Регистрация'}</button>
                         <button
@@ -159,7 +172,7 @@ function AuthForm({ token }) {
                     <form onSubmit={sendEmail}>
                         <h3>Востановить Пароль</h3>
                         <div className={classes.control}>
-                            <label htmlFor='resetEmail'>Почта</label>
+                            <label htmlFor='resetEmail'>Email</label>
                             <input type='email' id='resetEmail' required ref={resetEmailInputRef} />
                         </div>
                         {message && <span style={{ color: 'green' }}>{message}</span>}
