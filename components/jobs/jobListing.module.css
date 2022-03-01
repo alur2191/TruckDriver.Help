@@ -15,6 +15,7 @@
 .left > span:nth-child(2) {
     font-size: 1.4rem;
     font-weight: 700;
+    
 }
 
 .left > span:nth-child(3) {
@@ -28,10 +29,24 @@
     gap: 10px;
 }
 
-.right > div:first-child   {
+.right > div  {
     display: flex;
     flex-direction: column;
 }
+
+.teamDriver {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+
+.teamDriver >:nth-child(2),
+.teamDriver >:nth-child(3) {
+    font-weight: bold;
+}
+
+
 
 .right > div   {
     justify-content: center;
@@ -43,28 +58,38 @@
 }
 
 
-.right > div:first-child {
+.right > div{
     gap: 3px;
 }
 
 
-.right > div:first-child > span > span {
+.right > div> span > span {
     font-weight: 700;
 }
 
-.right > div:last-child   {
+.owner   {
     display: flex;
     flex-direction: column;
 }
 
-.right > div:last-child > span:nth-child(2) {
+.owner > span:nth-child(2) {
     font-size: 1.6rem;
     line-height: 1;
-    
     font-weight: 600;
 }
 
-.right > div:last-child > span:nth-child(3) {
+.owner > span:nth-child(3) {
     font-size: 0.9rem;
 }
 
+
+@media screen and (max-width: 768px) {
+
+    .left {
+        justify-content: center;
+        text-align: center;
+    }
+    .right {
+        justify-content: center;
+    }
+}

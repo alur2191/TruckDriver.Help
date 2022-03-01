@@ -1,0 +1,10 @@
+.main {
+    margin: 0 auto;
+    max-width: 1150px;
+}
+
+.listings {
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+}

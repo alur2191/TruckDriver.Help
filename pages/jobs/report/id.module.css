@@ -1,0 +1,21 @@
+.main {
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.main > form {
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.main > form > h3 {
+    text-align: center;
+}
+
+.main > form button{
+    width: 150px;
+}

@@ -5,12 +5,10 @@ import classes from './auth-form.module.css';
 import { useContext } from "react";
 import UserContext from '../../store/user-context'
 
-async function createUser(email,password) {
-    
-
-    const response = await fetch('/api/auth/signup',{
+async function createUser(email, password) {
+    const response = await fetch('/api/auth/signup', {
         method: 'POST',
-        body: JSON.stringify({email,password}),
+        body: JSON.stringify({ email, password }),
         headers: {
             'Content-Type': 'application/json'
         }
@@ -18,28 +16,33 @@ async function createUser(email,password) {
 
     const data = await response.json()
 
-    if(!response.ok) {
+    if (!response.ok) {
         throw new Error(data.message || 'Something went wrong!')
     }
 
     return data;
 }
 
-function AuthForm() {
+function AuthForm({ token }) {
     const userCtx = useContext(UserContext)
     const emailInputRef = useRef()
+    const resetEmailInputRef = useRef()
     const passwordInputRef = useRef()
-
+    const { error } = useRouter().query;
     const [isLogin, setIsLogin] = useState(true);
+    const [forgot, setForgot] = useState(false);
+    const [confirmMessage, setConfirmMessage] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
+    const [message, setMessage] = useState('')
     const router = useRouter()
 
-
+    { error && console.log(error) }
     function switchAuthModeHandler() {
         setIsLogin((prevState) => !prevState);
     }
 
-    function submitHandler() {
-        setIsLogin((prevState) => !prevState)
+    function switchForgotModeHandler() {
+        setForgot((prevState) => !prevState);
     }
 
     async function submitHandler(event) {
@@ -50,58 +53,129 @@ function AuthForm() {
 
         // optional: Add validation
 
-        if(isLogin) {
+        if (isLogin) {
             const res = await signIn('credentials', {
-                redirect:false,
+                redirect: false,
                 email: enteredEmail,
-                password: enteredPassword    
+                password: enteredPassword,
+                token: token ? token : null
             })
-            
-            if (!res.error){
+
+            if (!res.error) {
                 const user = await fetch(`/api/user/${enteredEmail}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(enteredEmail),
                 })
-                
+
                 user.json().then(body => userCtx.setUser({
                     ...body
                 }));
-    
+
+                // const notification = await fetch(`/api/notification/add`, {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({ message: "Спасибо за регистрацию!" }),
+                // })
                 router.replace('/')
+            } else {
+                setErrorMessage(res.error);
+                setTimeout(() => {
+                    setErrorMessage('')
+                }, 10000)
             }
         } else {
-            try{
-                const res =  await createUser(enteredEmail, enteredPassword)
-            }catch(e){
+            try {
+                const res = await createUser(enteredEmail, enteredPassword)
+                console.log(res.error);
+                if (!res.error) {
+                    setConfirmMessage('Письмо с подтверждением отправлено на почту')
+                    setTimeout(() => {
+                        setConfirmMessage('')
+                    }, 10000);
+                }
+            } catch (e) {
                 console.log(e);
             }
         }
     }
 
+    const sendEmail = async (event) => {
+        event.preventDefault()
+
+        const resetEmail = resetEmailInputRef.current.value
+
+        try {
+            let body = {
+                email: resetEmail
+            };
+            await fetch(`/api/auth/sendReset`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body),
+            });
+            setMessage('Ссылка на востановление аккаунта отправлена на указанную почту.')
+            setTimeout(() => {
+                setMessage('')
+            }, 10000)
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+
     return (
         <div className={classes.auth}>
-            <h3>{isLogin ? 'Авторизация' : 'Регистрация'}</h3>
-            <form onSubmit={submitHandler}>
-                <div className={classes.control}>
-                    <label htmlFor='email'>Почта</label>
-                    <input type='email' id='email' required  ref={emailInputRef}/>
-                </div>
-                <div className={classes.control}>
-                    <label htmlFor='password'>Пароль</label>
-                    <input type='password' id='password' required ref={passwordInputRef}/>
-                </div>
-                <div className={classes.actions}>
-                    <button>{isLogin ? 'Войти' : 'Регистрация'}</button>
-                    <button
-                        type='button'
-                        className={classes.toggle}
-                        onClick={switchAuthModeHandler}
-                    >
-                        {isLogin ? 'Регистрация' : 'Войти'}
-                    </button>
-                </div>
-            </form>
+            {!forgot ? <>
+
+                <h3>{isLogin ? 'Авторизация' : 'Регистрация'}</h3>
+                {token && <p style={{ color: 'red' }}>Войдите в аккаунт для завершения подтверждения!</p>}
+                <form onSubmit={submitHandler}>
+                    <div className={classes.control}>
+                        <label htmlFor='email'>Почта</label>
+                        <input type='email' id='email' required ref={emailInputRef} />
+                    </div>
+                    <div className={classes.control}>
+                        <label htmlFor='password'>Пароль</label>
+                        <input type='password' id='password' required ref={passwordInputRef} />
+                    </div>
+                    {errorMessage && <span style={{ color: 'red' }}>{errorMessage}</span>}
+                    {confirmMessage && <span style={{ color: 'green' }}>{confirmMessage}</span>}
+                    <div className={classes.actions}>
+                        <button>{isLogin ? 'Войти' : 'Регистрация'}</button>
+                        <button
+                            type='button'
+                            className={classes.buttonText}
+                            onClick={switchAuthModeHandler}
+                        >
+                            {isLogin ? 'Регистрация' : 'Войти'}
+                        </button>
+                    </div>
+
+                </form>
+
+            </> :
+                <div className={classes.auth}>
+                    <form onSubmit={sendEmail}>
+                        <h3>Востановить Пароль</h3>
+                        <div className={classes.control}>
+                            <label htmlFor='resetEmail'>Почта</label>
+                            <input type='resetEmail' id='resetEmail' required ref={resetEmailInputRef} />
+                        </div>
+                        {message && <span style={{ color: 'green' }}>{message}</span>}
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            <button>Отправить</button>
+
+                        </div>
+                    </form>
+                </div>}
+            <div>
+                <button
+                    className={classes.buttonText}
+                    onClick={switchForgotModeHandler}
+                    type='button'>{!forgot ? 'Забыли пароль?' : 'Войти в аккаунт'}</button>
+
+            </div>
         </div>
     );
 }

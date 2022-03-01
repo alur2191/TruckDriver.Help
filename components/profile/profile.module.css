@@ -1,0 +1,10 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile h3 {
+    margin: 0;
+    text-align: center;
+}

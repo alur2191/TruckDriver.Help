@@ -1,0 +1,53 @@
+.main {
+    background-color: white;
+    border-radius: 6px;
+    padding: 25px;
+}
+
+.main h3 {
+    margin-bottom: 10px
+}
+
+.main ul {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.main li {
+    list-style: none;
+}
+
+
+
+@media screen  and (max-width: 1024px) {
+    .main {
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .main h3 {
+        margin: 0px;
+        margin-right: 10px;
+    }
+    
+    .main ul {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        margin: 0;
+        align-items: center;
+    }
+    
+    .main li {
+        list-style: none;
+    }
+    
+}
+
+@media screen and (max-width: 768px) {
+    .main h3 {
+        display: none;
+    }
+}

@@ -2,7 +2,8 @@
     display: grid;
     grid-template-columns: 1fr 300px;
     gap: 20px;
-    margin: 0 150px;
+    margin: 0 auto;
+    max-width: 1150px;
 }
 
 .listings {
@@ -35,4 +36,33 @@
     color: grey;
     text-decoration:underline;
     background-color: transparent;
+}
+
+
+@media (max-width: 1440px) {
+    .main {
+        display: grid;
+        grid-template-columns: 1fr 230px;
+        gap: 20px;
+    }
+    .sidebar > div {
+        padding: 15px 10px;
+    }
+}
+
+@media screen and  (max-width: 1024px) {
+    .main {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        display:none;
+    }
+
+    .listings {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin: 0 10px;
+    }
 }

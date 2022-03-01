@@ -1,9 +1,19 @@
 import { getSession } from 'next-auth/client';
+import classes from "./account.module.css";
+import ProfilePassword from '../../components/profile/profile';
+import Sidebar from '../../components/profile/sidebar';
 
-import UserProfile from '../../components/profile/user-profile';
+function Account() {
+    return (
+        <div className={classes.main}>
+            {/* <ProfilePassword /> */}
+            <div>
+                <ProfilePassword />
+            </div>
 
-function ProfilePage() {
-    return <UserProfile />
+            <Sidebar />
+        </div>
+    )
 }
 
 export async function getServerSideProps(context) {
@@ -12,7 +22,7 @@ export async function getServerSideProps(context) {
     if (!session) {
         return {
             redirect: {
-                destination: '/auth',
+                destination: '/',
                 permanent: false,
             },
         };
@@ -20,7 +30,12 @@ export async function getServerSideProps(context) {
 
     return {
         props: { session },
+
     };
+
+
+
 }
 
-export default ProfilePage;
+export default Account;
+

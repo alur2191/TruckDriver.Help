@@ -1,40 +1,78 @@
-
-
 import prisma from '../../../lib/prisma'
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 import { verifyPassword } from '../../../lib/auth';
-
-
-
+import jwt from 'jsonwebtoken';
 
 const createOptions = (req) => ({
-    session:{
+    session: {
         jwt: true
     },
     providers: [
         Providers.Credentials({
             async authorize(credentials) {
-                
                 const user = await prisma.user.findUnique({
                     where: {
                         email: credentials.email
                     },
-                    include:{
-                        company:true
+                    include: {
+                        company: true
                     }
                 })
 
                 if (!user) {
-                    throw new Error('Email is invalid!')
+                    throw new Error('Email не существует')
                 }
+
                 const isValid = await verifyPassword(credentials.password, user.password)
 
+                console.log(credentials);
                 if (!isValid) {
-                    throw new Error('Could not log you in')
+                    throw new Error('Не удалось войти')
+                } else if (!user.activated) {
+                    const emailTokenValid = await new Promise((resolve) => {
+                        jwt.verify(credentials.token, process.env.SECRET + credentials.email, (err) => {
+                            if (err) resolve(false)
+                            if (!err) resolve(true)
+                        })
+                    })
+                    if (emailTokenValid) {
+                        try {
+                            await prisma.user.update({
+                                where: {
+                                    email: credentials.email
+                                },
+                                data: {
+                                    activated: true
+                                }
+                            })
+
+                        } catch (err) {
+                            console.log("Unable to update activation");
+                        }
+
+                        try {
+                            const user = await prisma.user.findUnique({
+                                where: {
+                                    email: credentials.email
+                                }
+                            })
+                            return {
+                                email: user.email,
+                                activated: user.activated,
+                                id: user.id
+                            }
+                        } catch (err) {
+
+                            console.log("Unable to fetch user");
+                        }
+
+                    } else {
+                        throw new Error(JSON.stringify({ errors: "Нужно верифицировать аккаунт", status: false }))
+                    }
+
                 }
-                console.log('authuser: ',user);
-                
+
                 return user.company ? {
                     email: user.email,
                     activated: user.activated,
@@ -43,28 +81,40 @@ const createOptions = (req) => ({
                 } : {
                     email: user.email,
                     activated: user.activated,
-                    id: user.id
+                    id: user.id,
                 }
             }
         })
-    ],callbacks: {
+    ], callbacks: {
         jwt: async (token, user) => {
-            
-            if(user){
+            if (req.url === "/api/auth/session?update") {
+                const userRes = await prisma.user.findUnique({
+                    where: {
+                        email: token.email
+                    },
+                    include: {
+                        company: true
+                    }
+                })
+                console.log('session updated');
+                userRes.company && (token.companyId = userRes.company.id)
+            }
+            if (user) {
                 token.activated = user.activated
+                console.log(token);
                 token.id = user.id
-                if(user.companyId){
+                if (user.companyId) {
                     token.companyId = user.companyId
                 }
             }
-            
+
             return token;
         },
         session: async (session, user) => {
-            if(user){
+            if (user) {
                 session.user.companyId = user.companyId
                 session.user.id = user.id
-                if(session.user.activated){
+                if (session.user.activated) {
                     session.user.activated = user.activated
                 }
                 console.log(session);

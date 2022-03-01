@@ -1,0 +1,72 @@
+.main  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.main  > div {
+    width: 100%;
+}
+
+.truckRow {
+    display: flex;
+    flex-direction: column;
+    align-items:  center;
+    
+}
+
+.truckRow > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.truckRow >div:first-child> div {
+    display: flex;
+    flex-direction: column;
+    gap:var(--small-gap);
+}
+
+
+.truckRow >div:first-child> :nth-child(2)>div {
+    display: flex;
+    gap: 20px;
+}
+
+.truckRow >div:first-child> :nth-child(2)>div>div {
+    display: flex;
+    align-items: center;
+}
+
+.truckRow > button {
+    width: 200px;
+    
+    margin-top: 10px;
+}
+
+#truckAmount {
+    width: 30px;
+}
+
+.transmission {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.transmission > div {
+    display: flex;
+    align-items: center;
+    
+}
+
+
+@media screen and (max-width: 768px) {
+    .truckRow > div {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        align-items: center;
+    }
+}

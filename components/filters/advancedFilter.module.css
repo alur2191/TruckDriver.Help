@@ -1,0 +1,29 @@
+.main {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+    justify-items: center;
+}
+
+.payment{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.payment  > div{
+    display: flex;
+    align-items: center;
+}
+
+.payment > div > input{
+    width: 40px;
+}
+@media screen and (max-width: 768px) {
+    .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+}

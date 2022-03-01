@@ -4,7 +4,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
     try {
         const jobs = await prisma.job.findMany({
-            
             include:{
                 company: {
                     include: {

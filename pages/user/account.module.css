@@ -1,0 +1,44 @@
+.main {
+    display: grid;
+    grid-template-columns: 1fr 250px;
+    gap: 20px;
+    margin: 0 auto;
+    width: 1150px;
+}
+
+.main > :first-child {
+    background-color: white;
+    padding: 65px;
+    border-radius: 5px;
+}
+
+@media (max-width: 1440px) {
+    .main {
+        display: grid;
+        grid-template-columns: 1fr 250px;
+        gap: 20px;
+        width: auto;
+        max-width: 1150px;
+    }
+
+    .main > :first-child {
+        background-color:white;
+        padding:25px 25px;
+    }
+}
+
+@media screen  and (max-width: 1024px) {
+    .main {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 20px;
+    }
+
+    .main > :first-child {
+        padding:25px 25px;
+    }
+
+    .main > :nth-child(2) {
+        display: flex;
+    }
+}

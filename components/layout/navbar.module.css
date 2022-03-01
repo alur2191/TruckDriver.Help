@@ -7,6 +7,8 @@
     padding: 0 40px;
     margin-bottom: 25px;
     height: 70px;
+    position: sticky;
+    z-index: 10;
 }
 
 .navbar > ul {
@@ -26,20 +28,79 @@
     min-width: 100%;
     padding: 15px;
     border: var(--primary-border);
-    z-index: 1;
 }
 
 .account > ul{
     display: flex;
-
     flex-direction: column;
     gap: 10px;
 }
 
 .account > ul > li {
-    cursor: pointer
+    cursor: pointer;
 }
+
 
 .account > ul > li:hover {
     background-color: rgb(247, 247, 247);
+}
+
+.notification {
+    position:absolute;
+    top: 30px;
+    left:-120px;
+    background-color: white;
+    height: 250px;
+    width: 280px;
+    min-width: 100%;
+    padding: 15px;
+    border: var(--primary-border);
+    z-index: 1;
+    user-select: none;
+    overflow-y: scroll;
+}
+
+.notification span {
+    font-size: 0.9rem;
+}
+
+
+.notification > div > div {
+    display: flex;
+    gap: 5px;
+}
+
+.notification > div > span {
+    hyphens: auto;
+}
+
+.notification > div {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+@media only screen and (max-width: 768px) {
+    .navbar{
+        position: sticky;
+        top:0px;
+        padding: 0 15px;
+        z-index: 98;
+        height: 50px;
+    }
+
+    .navbar > ul {
+        display: none;
+        
+    }
+
+    .account {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        width: 170px;
+        min-width: 100px;
+    }
 }

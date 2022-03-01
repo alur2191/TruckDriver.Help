@@ -1,0 +1,65 @@
+
+
+.category{
+    gap: 200px;
+    background-color: #EEEEF5;
+    border-radius: 6px;
+    padding: 10px 25px;
+    width: 300px;
+    height: 100%;
+    box-shadow: 0; 
+    transition: all 1s;
+}
+.category > h3 {
+    text-align: center;
+}
+
+.category > h3 > input[type=checkbox] {
+    height:15px;
+    width:15px;
+}
+
+.forms {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.pay {
+    
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.pay > div{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+}
+
+
+
+.driver {
+    display: flex;
+    flex-direction: column;
+}
+
+.driver > div {
+    display: flex;
+    align-items: center;
+    height: 25px;
+}
+
+.type > select,
+.pay > div  {
+    margin-top: var(--small-gap);
+}
+
+@media screen and (max-width: 768px) {
+    .forms {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
