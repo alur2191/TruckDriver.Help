@@ -144,39 +144,39 @@ function Navbar() {
                             </div>}
                     </li>)}
             </ul>
-            {activeUser && <i onClick={() => setMobile(!mobile)} className="bi bi-list bu-m-menu"></i>}
-            {
-                mobile && <dir className="mobile-nav">
-                    <ul>
-                        {activeUser && activeUser.user.company &&
+            <i onClick={() => setMobile(!mobile)} className="bi bi-list bu-m-menu"></i>
+            {mobile && <dir className="mobile-nav">
+                <ul>
+                    {!activeUser && <Link href={{ pathname: "/auth" }}><li><a style={{ cursor: 'pointer' }}><i className="bi bi-person-plus-fill"></i>Регистрация</a></li></Link>}
+                    {activeUser && activeUser.user.company &&
+                        <Link href={{ pathname: "/jobs/form" }}>
                             <li>
-                                <Link href={{ pathname: "/jobs/form" }}>
-                                    <a><i className="bi bi-plus-circle-fill"></i>Добавить Объявление</a>
-                                </Link>
-                            </li>}
-                        {activeUser && !activeUser.user.company && !activeUser.user.activated &&
+                                <a><i className="bi bi-plus-circle-fill"></i>Добавить Объявление</a>
+                            </li>
+                        </Link>}
+                    {activeUser && !activeUser.user.company && !activeUser.user.activated &&
+                        <Link href={{ pathname: "/company/form" }}>
                             <li>
-                                <Link href={{ pathname: "/company/form" }}>
-                                    <a><i className="bi bi-briefcase-fill"></i>Зарегистрировать Компанию</a>
-                                </Link>
-                            </li>}
-                        {activeUser && (
-                            <li style={{ position: 'relative' }}>
-                                <a style={{ cursor: 'pointer' }} onClick={() => toggleUserDropdown()}><i className="bi bi-person-fill"></i>{activeUser.user.email}</a>
-                                {userDropdown &&
-                                    <div ref={userRef} className={classes.account}>
-                                        <ul>
-                                            {activeUser.user.company && <li><Link href={{ pathname: `/company/${activeUser.user.company.id}` }}><a onClick={toggleUserDropdown}><i className="bi bi-stickies"></i>Объявления</a></Link></li>}
-                                            <li><Link href={{ pathname: `/user/saved` }}><a onClick={toggleUserDropdown}><i className="bi bi-card-checklist"></i>Сохраненные</a></Link></li>
-                                            <li><Link href={{ pathname: `/user/account` }}><a onClick={toggleUserDropdown}><i className="bi bi-gear"></i>Аккаунт</a></Link></li>
-                                            <li>
-                                                <a style={{ cursor: 'pointer' }} onClick={logoutHandler}><i className="bi bi-box-arrow-right"></i>Выйти</a>
-                                            </li>
-                                        </ul>
-                                    </div>}
-                            </li>)}
-                    </ul>
-                </dir>
+                                <a><i className="bi bi-briefcase-fill"></i>Зарегистрировать Компанию</a>
+                            </li>
+                        </Link>}
+                    {activeUser && (
+                        <li style={{ position: 'relative' }}>
+                            <a style={{ cursor: 'pointer' }} onClick={() => toggleUserDropdown()}><i className="bi bi-person-fill"></i>{activeUser.user.email}</a>
+                            {userDropdown &&
+                                <div ref={userRef} className={classes.account}>
+                                    <ul>
+                                        {activeUser.user.company && <Link href={{ pathname: `/company/${activeUser.user.company.id}` }}><li><a onClick={toggleUserDropdown}><i className="bi bi-stickies"></i>Объявления</a></li></Link>}
+                                        <Link href={{ pathname: `/user/saved` }}><li><a onClick={toggleUserDropdown}><i className="bi bi-card-checklist"></i>Сохраненные</a></li></Link>
+                                        <Link href={{ pathname: `/user/account` }}><li><a onClick={toggleUserDropdown}><i className="bi bi-gear"></i>Аккаунт</a></li></Link>
+                                        <li onClick={logoutHandler}>
+                                            <a style={{ cursor: 'pointer' }} ><i className="bi bi-box-arrow-right"></i>Выйти</a>
+                                        </li>
+                                    </ul>
+                                </div>}
+                        </li>)}
+                </ul>
+            </dir>
             }
         </nav >
     )

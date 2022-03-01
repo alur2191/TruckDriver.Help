@@ -1,6 +1,5 @@
 
 import classes from "./index.module.css";
-import { useQuery } from "react-query";
 import JobListing from "../components/jobs/jobListing";
 import Filters from "../components/filters/filters";
 import AuthForm from "../components/auth/auth-form";
@@ -31,6 +30,11 @@ function Home({ jobs }) {
         {!session && <div>
           <AuthForm />
         </div>}
+        <div className={classes.beta}>
+          <h3>Бета Тест</h3>
+          <p>Сайт находится в стадии бета тестирования. Сообщения о неполадках и по другим вопросам обращайтесь по электронной почте:  </p>
+          <p><em>contact{'<'}собака{'>'}truckdriver.help</em></p>
+        </div>
       </aside>
     </div>
   );

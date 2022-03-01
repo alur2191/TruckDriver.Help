@@ -160,7 +160,7 @@ function AuthForm({ token }) {
                         <h3>Востановить Пароль</h3>
                         <div className={classes.control}>
                             <label htmlFor='resetEmail'>Почта</label>
-                            <input type='resetEmail' id='resetEmail' required ref={resetEmailInputRef} />
+                            <input type='email' id='resetEmail' required ref={resetEmailInputRef} />
                         </div>
                         {message && <span style={{ color: 'green' }}>{message}</span>}
                         <div style={{ display: 'flex', justifyContent: 'center' }}>

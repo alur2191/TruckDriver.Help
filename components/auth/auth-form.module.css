@@ -5,6 +5,7 @@
     margin-right: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 20px;
 }
 
@@ -16,6 +17,8 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 300px;
+    
 }
 
 
@@ -49,4 +52,12 @@
 
 .buttonText:hover {
     background-color: transparent;
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+    .auth {
+        align-items: center;
+    }
+    
 }

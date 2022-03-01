@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { getSession } from 'next-auth/client';
 import { useEffect, useState } from 'react';
-
+import classes from './auth.module.css'
 import AuthForm from '../components/auth/auth-form';
 
 function AuthPage() {
@@ -22,10 +22,11 @@ function AuthPage() {
         return <p>Loading...</p>;
     }
 
-    return
-    <div>
-        <AuthForm />
-    </div>
+    return (
+        <div className={classes.main}>
+            <AuthForm />
+        </div>
+    )
 }
 
 export default AuthPage;

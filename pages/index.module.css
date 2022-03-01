@@ -39,11 +39,18 @@
     background-color: transparent;
 }
 
+.beta > h3{
+    text-align: center;
+}
+
+.beta > p {
+    margin: 5px 0;
+}
 
 @media (max-width: 1440px) {
     .main {
         display: grid;
-        grid-template-columns: 1fr 230px;
+        grid-template-columns: 1fr 270px;
         gap: 20px;
     }
     .sidebar > div {
