@@ -45,7 +45,7 @@ export default async function (req, res) {
     try {
         await sendgrid.send({
             // to: email,
-            to: "akmalu21@gmail.com",
+            to: email,
             from: "noreply@truckdriver.help",
             subject: `Письмо с подтверждением.`,
             html: `<div>
