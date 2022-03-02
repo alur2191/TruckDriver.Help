@@ -14,6 +14,7 @@ function Home({ jobs }) {
 
 
   return (
+
     <div className={classes.main}>
 
       <div className={classes.listings} >
