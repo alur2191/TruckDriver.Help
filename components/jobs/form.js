@@ -127,10 +127,7 @@ function Form() {
                 className='form-row'
             >
                 <div>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse
-                    repellat corporis quasi quae molestias iste rerum culpa earum vitae
-                    quaerat veniam ea, nam adipisci, incidunt eius. Laboriosam numquam
-                    quaerat perspiciatis?
+                    На период бета-тестирования размещение объявлений бесплатно. Администрация сайта регульярно рассматривает новые объявления. Просим указывать корректные данные, а так-же не размещать похожие объявления более чем один раз.
                 </div>
 
                 <div className={classes.type}>

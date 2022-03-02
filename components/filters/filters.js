@@ -4,6 +4,7 @@ import Router from "next/router";
 import SearchContext from "../../store/search-context";
 import FilterContext from "../../store/filter-context";
 import AdvancedFilters from "./advancedFilters";
+import Tooltip from "../ui/tooltip"
 
 const Filters = () => {
     const [type, setType] = useState('');
@@ -154,7 +155,12 @@ const Filters = () => {
                     </select>
                 </div>
                 <div className={classes.payment}>
-                    Driver:
+                    <div>
+                        <Tooltip content="Укажите минимальную оплату в долларах и центах, либо в процентах (gross) для поиска." direction="top">
+                            <i style={{ fontSize: 12, top: -12, left: -13, position: 'absolute' }} className="bi bi-question-circle-fill tooltip-icon"></i>
+                        </Tooltip>
+                        Driver:
+                    </div>
                     <div>
                         $
                         <input
@@ -174,7 +180,13 @@ const Filters = () => {
                     </div>
                 </div>
                 <div className={classes.payment}>
-                    Owner:{" "}
+
+                    <div>
+                        <Tooltip content="Укажите минимальную оплату в процентах (gross) для поиска работы Owner Operator." direction="top">
+                            <i style={{ fontSize: 12, top: -12, left: -13, position: 'absolute' }} className="bi bi-question-circle-fill tooltip-icon"></i>
+                        </Tooltip>
+                        Owner:
+                    </div>
                     <div>
                         <input
                             type='text'

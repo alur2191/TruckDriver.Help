@@ -62,7 +62,7 @@ function About() {
     }
     return (
         <div className={classes.main}>
-
+            <p style={{ margin: "0 0 15px 0" }}>Поля помеченные красной звездой (<span style={{ color: 'red' }}>*</span>) обязательны для заполнения.</p>
             <div className='form-row'>
                 <div>
                     <label htmlFor='name'>
@@ -81,7 +81,12 @@ function About() {
                     {validation.name && showError("name")}
                 </div>
                 <div>
-                    <label htmlFor='mcnumber'>MC Номер</label>
+                    <div style={{ display: 'flex', alignItems: 'center', position: 'relative', width: '100%', gap: 3 }}>
+                        <Tooltip content="Номер MC (Motor Carrier number) является уникальным идентификатором выдающимся компаниям гос. органом FMCSA." direction="top">
+                            <i className="bi bi-question-circle-fill tooltip-icon"></i>
+                        </Tooltip>
+                        <label htmlFor='mcnumber'>MC Номер</label>
+                    </div>
                     <input
                         className='input-md'
                         type='number'
@@ -95,7 +100,7 @@ function About() {
                 </div>
                 <div>
                     <div style={{ display: 'flex', alignItems: 'center', position: 'relative', width: '100%', gap: 3 }}>
-                        <Tooltip content="Hello, I'm a tooltipfd gghgfhhg gghgfhhg gghgfhhg gghgfhhg gghgfhhg gghgfhhg gghgfhhggg hgfhhggghg fhhg gghgfhhg hsdhfgdhfdgh fghfghfgh fghfghfgh fhg" direction="top">
+                        <Tooltip content="Номер USDOT служит уникальным идентификатором при сборе и мониторинге информации о безопасности компании, полученной в ходе аудитов, проверок соответствия, расследований аварий и проверок." direction="top">
                             <i className="bi bi-question-circle-fill tooltip-icon"></i>
                         </Tooltip>
                         <label htmlFor='usdot'>USDOT</label>

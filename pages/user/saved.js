@@ -3,7 +3,6 @@ import classes from "./saved.module.css";
 import { useQuery } from "react-query";
 import JobListing from "../../components/jobs/jobListing";
 import Filters from "../../components/filters/filters";
-import UserContext from '../../store/user-context'
 import { getSession } from 'next-auth/client';
 import { PrismaClient } from "@prisma/client";
 
@@ -11,34 +10,31 @@ import { PrismaClient } from "@prisma/client";
 
 
 function Saved({ jobs }) {
-    const userCtx = useContext(UserContext)
-    const activeUser = userCtx.user;
+
 
 
     console.log(jobs);
-    if (!activeUser) {
-        return <div>no account</div>
-    } else {
-        return (
 
-            <div className={classes.main}>
+    return (
 
-                <div className={classes.listings} >
-                    <Filters />
-                    {jobs
-                        ? jobs.map((job) => <div key={job.id} className="listing">
-                            <JobListing job={job} />
+        <div className={classes.main}>
 
-                        </div>)
-                        : "loading"}
-                </div>
-                <div className={classes.sidebar}>
+            <div className={classes.listings} >
+                <Filters />
+                {jobs
+                    ? jobs.length === 0 ? <div style={{ display: 'flex', justifyContent: 'center' }}>У вас нет сохраненных объявлений.</div> : jobs.map((job) => <div key={job.id} className="listing">
+                        <JobListing job={job} />
 
-                </div>
+                    </div>)
+                    : "loading"}
             </div>
-        );
-    }
+            <div className={classes.sidebar}>
+
+            </div>
+        </div>
+    );
 }
+
 
 export async function getServerSideProps(context) {
     const session = await getSession({ req: context.req })

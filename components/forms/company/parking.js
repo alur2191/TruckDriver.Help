@@ -35,6 +35,7 @@ function Parking() {
 
     return (
         <div className={classes.main}>
+            <p style={{ textAlign: 'center', margin: "0 0 15px 0" }}>Укажите штаты в которых ваша компания имеет парковки.</p>
             <span style={{ cursor: 'pointer', color: '#773C44' }} onClick={() => { setParkingWarning('') }}>{parkingWarning}</span>
             <div className="parking" >
                 <div>

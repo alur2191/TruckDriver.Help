@@ -38,6 +38,7 @@ function TrucksForm() {
             {truck.map((x, i) => {
                 return (
                     <div key={i} className={classes.truckRow} >
+                        <p style={{ margin: 0, marginBottom: 5 }}>Укажите траки имеющиеся в компании. Если в вашей компании имеются траки одинакового года, достаточно лишь один раз добавить модель и год трака. Например: Если в вашей компании 8 траков Volvo, 2021 года, вы должны указать это всего лишь один раз. </p>
                         <div style={{ backgroundColor: i % 2 !== 0 ? "#f7f7fc" : null }}>
                             <div>
                                 <label htmlFor={"manufacturer" + i}>Производитель</label>

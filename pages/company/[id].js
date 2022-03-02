@@ -2,13 +2,15 @@ import { PrismaClient } from "@prisma/client";
 import JobListing from "../../components/jobs/jobListing";
 import { getSession } from 'next-auth/client'
 import classes from "./id.module.css"
+import Filters from "../../components/filters/filters";
 
 function JobDetails({ jobs }) {
 
     return (
         <div className={classes.main}>
+            <Filters />
             {jobs
-                ? jobs.map((job) => <div key={job.id} className="listing">
+                ? jobs.length === 0 ? <div style={{ display: 'flex', justifyContent: 'center' }}>Нет размещенных объявлений.</div> : jobs.map((job) => <div key={job.id} className="listing">
                     <JobListing job={job} />
 
                 </div>)

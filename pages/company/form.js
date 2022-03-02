@@ -129,11 +129,13 @@ const Form = () => {
     const nextPage = () => page === 0 ? stepOne() : setPage((currPage) => currPage + 1)
     return (
         <div className="container form">
+
             <form className={classes.form} onSubmit={submitData}>
                 <div className={classes.progressbar}>
                     <div style={{ width: page === 0 ? "20%" : page === 1 ? "40%" : page === 2 ? "60%" : page === 3 ? "80%" : page === 4 ? "100%" : "100%" }}></div>
                 </div>
                 <h3>{titles[page]}</h3>
+
                 {pageDisplay()}
                 <div className={classes.nav} style={{ display: 'flex', justifyContent: page !== 0 ? 'space-between' : 'flex-end' }}>
                     {page !== 0 ? <button type="button"
