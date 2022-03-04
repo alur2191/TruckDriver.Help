@@ -99,13 +99,13 @@ function Navbar() {
                 </a>
             </Link>
             <ul>
-                {activeUser && activeUser.user.company &&
+                {activeUser && activeUser.user && activeUser.user.company &&
                     <li>
                         <Link href={{ pathname: "/jobs/form" }}>
                             <a><i className="bi bi-plus-circle-fill"></i>Добавить Объявление</a>
                         </Link>
                     </li>}
-                {activeUser && !activeUser.user.company && activeUser.user.activated &&
+                {activeUser && activeUser.user && !activeUser.user.company && activeUser.user.activated &&
                     <li>
                         <Link href={{ pathname: "/company/form" }}>
                             <a><i className="bi bi-briefcase-fill"></i>Зарегистрировать Компанию</a>
