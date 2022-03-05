@@ -27,12 +27,12 @@ async function handler(req, res) {
     const options = () => {
         return req.body.insurance ? {
             company: {
-                insurance: req.body.insurance
+                insurance: true
             }
         } : null,
             req.body.dispatch24 ? {
                 company: {
-                    dispatch24: req.body.dispatch24
+                    dispatch24: true
                 }
             } : null
     }
@@ -107,7 +107,6 @@ async function handler(req, res) {
                 company: true,
             }
         })
-        console.log("xxxx", jobs);
         res.status(200)
         res.json({ jobs })
     } catch (e) {

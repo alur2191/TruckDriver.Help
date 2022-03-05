@@ -21,9 +21,7 @@ function Home() {
                 {activeSearch && activeSearch.jobs && activeSearch.jobs.map(job => <div key={job.id} className="listing"><JobListing job={job} /></div>)}
             </div>
             <div className={classes.sidebar}>
-                <div>
-                    Расширенный поиск
-                </div>
+
                 {!session && <div>
                     <AuthForm />
                 </div>}
