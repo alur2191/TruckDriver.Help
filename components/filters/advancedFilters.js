@@ -49,7 +49,7 @@ function AdvancedFilters() {
                 <label htmlFor='insurance'>Мед. Страховка</label>
             </div>
 
-            <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+            <div className={classes.transmission}>
                 <span>Трансмиссия:</span>
                 <div>
                     <input

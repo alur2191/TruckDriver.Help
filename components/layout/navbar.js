@@ -4,7 +4,6 @@ import Link from 'next/link'
 import classes from './navbar.module.css'
 import { signOut } from 'next-auth/client'
 import UserContext from '../../store/user-context'
-import NotificationContext from '../../store/notification-context'
 // import { parseISO, formatDistanceToNowStrict } from "date-fns";
 // import locale from 'date-fns/locale/en-US'
 
@@ -16,7 +15,6 @@ function Navbar() {
     // const notificationRef = useRef()
     const userCtx = useContext(UserContext)
     const activeUser = userCtx.user;
-    const notificationCtx = useContext(NotificationContext)
     // const activeNotification = notificationCtx.notification;
     useEffect(() => {
         const checkIfClickedOutside = e => {

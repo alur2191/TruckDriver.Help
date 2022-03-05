@@ -20,7 +20,7 @@ function About() {
 
         switch (name) {
             case "mcnumber":
-                if (value.length > 6) {
+                if (value.length > 8) {
                     return null
                 } else {
                     handle()
