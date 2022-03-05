@@ -28,7 +28,7 @@ function Layout(props) {
     return (
         <Fragment>
             <Head>
-                <title>My new cool app</title>
+                <title>Работа в траковых компаниях для водителей с CDL.</title>
             </Head>
             <Navbar />
             <main style={{ paddingBottom: 100 }}>
