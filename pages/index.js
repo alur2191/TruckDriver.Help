@@ -28,6 +28,7 @@ function Home({ jobs }) {
       </div>
       <aside className={classes.sidebar}>
         {/* <AdvancedSearch /> */}
+        <div></div>
         {!session && <div>
           <AuthForm />
         </div>}
