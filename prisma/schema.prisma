@@ -89,7 +89,7 @@ model Company {
   name       String    @db.VarChar(200)
   mcnumber   Int
   usdot      Int
-  phone      Int
+  phone      String
   website    String?   @db.VarChar(250)
   city       String    @db.VarChar(200)
   state      String    @db.VarChar(30)

@@ -3,7 +3,8 @@ import classes from "./id.module.css"
 import JobListing from "../../components/jobs/jobListing";
 
 function JobDetails({ job }) {
-    console.log(job.company.parking.length);
+    var formattedNumber = "(" + job.company.phone.slice(0, 3) + ") " + job.company.phone.slice(3, 6) + "-" + job.company.phone.slice(6, 10);
+
     return (
         <div className={classes.main}>
             <div className="bg-primary">
@@ -11,7 +12,7 @@ function JobDetails({ job }) {
                     <JobListing key={job.id} job={job} />
                 </div>
                 <div>
-                    <div><strong>Телефон: </strong>{job.company.phone}</div>
+                    <div><strong>Телефон: </strong>{formattedNumber}</div>
                     {job.company.website && <div><strong>Сайт: </strong><span style={{ cursor: 'pointer' }} onClick={() => { window.open(`http://${job.company.website}`, '_blank').focus(); }}>{job.company.website}</span></div>}
                 </div>
                 <hr />
