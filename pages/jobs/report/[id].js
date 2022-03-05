@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { useRef, useState } from "react";
 import { useSession, getSession } from 'next-auth/client';
 import classes from './id.module.css'
+import Head from 'next/head'
 
 function JobDetails({ job }) {
     const reasonRef = useRef()
@@ -36,6 +37,9 @@ function JobDetails({ job }) {
     }
     return (
         <div className={classes.main}>
+            <Head>
+                <title>Пожаловаться На Пост</title>
+            </Head>
             <form onSubmit={sendReport}>
 
                 <h3>Пожаловаться На Пост</h3>

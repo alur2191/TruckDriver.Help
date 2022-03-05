@@ -6,6 +6,7 @@ import JobContext from "../../../store/job-context";
 import Form from "../../../components/jobs/form";
 import Submit from "../../../components/jobs/submit";
 import { getSession } from "next-auth/client"
+import Head from 'next/head'
 
 function Edit({ dbJob }) {
     const [confirm, setConfirm] = useState(false);
@@ -79,6 +80,9 @@ function Edit({ dbJob }) {
 
     return (
         <div className='container form'>
+            <Head>
+                <title>Редактировать Объявление</title>
+            </Head>
             <form className={classes.main} >
                 <h3>Редактировать Объявление</h3>
                 <Form />

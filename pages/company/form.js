@@ -18,7 +18,6 @@ const Form = () => {
     const { page, setPage, about, additional, setValidation, validation } = companyCtx
 
     const titles = ["О Компании", "Данные о Траках", "Данные о Трейлерах", "Парковочные Места", "Дополнительная Информация"]
-    const buttonTitle = ["Компания", "Траки", "Трейлеры", "Парковка", "Информация"]
 
     about && console.log("xxxxxxx", about)
     const submitData = async (e) => {

@@ -1,12 +1,16 @@
 import { PrismaClient } from "@prisma/client";
 import classes from "./id.module.css"
 import JobListing from "../../components/jobs/jobListing";
+import Head from 'next/head'
 
 function JobDetails({ job }) {
     var formattedNumber = "(" + job.company.phone.slice(0, 3) + ") " + job.company.phone.slice(3, 6) + "-" + job.company.phone.slice(6, 10);
 
     return (
         <div className={classes.main}>
+            <Head>
+                <title>{job.company.name} - TruckDriver.Help</title>
+            </Head>
             <div className="bg-primary">
                 <div className="listing">
                     <JobListing key={job.id} job={job} />

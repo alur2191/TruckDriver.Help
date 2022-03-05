@@ -91,7 +91,7 @@ function Navbar() {
 
     return (
         <nav className={classes.navbar} >
-            <Link href="/">
+            <Link href="/" passHref>
                 <a>
                     <Image src="/images/logo.png" alt="" width={109} height={40} />
                 </a>
@@ -99,13 +99,13 @@ function Navbar() {
             <ul>
                 {activeUser && activeUser.user && activeUser.user.company &&
                     <li>
-                        <Link href={{ pathname: "/jobs/form" }}>
+                        <Link href={{ pathname: "/jobs/form" }} passHref>
                             <a><i className="bi bi-plus-circle-fill"></i>Добавить Объявление</a>
                         </Link>
                     </li>}
                 {activeUser && activeUser.user && !activeUser.user.company && activeUser.user.activated &&
                     <li>
-                        <Link href={{ pathname: "/company/form" }}>
+                        <Link href={{ pathname: "/company/form" }} passHref>
                             <a><i className="bi bi-briefcase-fill"></i>Зарегистрировать Компанию</a>
                         </Link>
                     </li>}
@@ -133,8 +133,8 @@ function Navbar() {
                             <div ref={userRef} className={classes.account}>
                                 <ul>
                                     {activeUser.user.company && <Link href={{ pathname: `/company/${activeUser.user.company.id}` }}><li><a onClick={toggleUserDropdown}><i className="bi bi-stickies"></i>Объявления</a></li></Link>}
-                                    <Link href={{ pathname: `/user/saved` }}><li><a onClick={toggleUserDropdown}><i className="bi bi-card-checklist"></i>Сохраненные</a></li></Link>
-                                    <Link href={{ pathname: `/user/account` }}><li><a onClick={toggleUserDropdown}><i className="bi bi-gear"></i>Аккаунт</a></li></Link>
+                                    <Link href={{ pathname: `/user/saved` }} passHref><li><a onClick={toggleUserDropdown}><i className="bi bi-card-checklist"></i>Сохраненные</a></li></Link>
+                                    <Link href={{ pathname: `/user/account` }} passHref><li><a onClick={toggleUserDropdown}><i className="bi bi-gear"></i>Аккаунт</a></li></Link>
                                     <li onClick={logoutHandler}>
                                         <a style={{ cursor: 'pointer' }}><i className="bi bi-box-arrow-right"></i>Выйти</a>
                                     </li>
@@ -145,15 +145,15 @@ function Navbar() {
             <i onClick={() => setMobile(!mobile)} className="bi bi-list bu-m-menu"></i>
             {mobile && <dir className="mobile-nav">
                 <ul>
-                    {!activeUser && <Link href={{ pathname: "/auth" }}><li><a style={{ cursor: 'pointer' }}><i className="bi bi-person-plus-fill"></i>Регистрация</a></li></Link>}
+                    {!activeUser && <Link href={{ pathname: "/auth" }} passHref><li><a style={{ cursor: 'pointer' }}><i className="bi bi-person-plus-fill"></i>Регистрация</a></li></Link>}
                     {activeUser && activeUser.user.company &&
-                        <Link href={{ pathname: "/jobs/form" }}>
+                        <Link href={{ pathname: "/jobs/form" }} passHref>
                             <li>
                                 <a><i className="bi bi-plus-circle-fill"></i>Добавить Объявление</a>
                             </li>
                         </Link>}
                     {activeUser && !activeUser.user.company && !activeUser.user.activated &&
-                        <Link href={{ pathname: "/company/form" }}>
+                        <Link href={{ pathname: "/company/form" }} passHref>
                             <li>
                                 <a><i className="bi bi-briefcase-fill"></i>Зарегистрировать Компанию</a>
                             </li>
@@ -165,8 +165,8 @@ function Navbar() {
                                 <div ref={userRef} className={classes.account}>
                                     <ul>
                                         {activeUser.user.company && <Link href={{ pathname: `/company/${activeUser.user.company.id}` }}><li><a onClick={toggleUserDropdown}><i className="bi bi-stickies"></i>Объявления</a></li></Link>}
-                                        <Link href={{ pathname: `/user/saved` }}><li><a onClick={toggleUserDropdown}><i className="bi bi-card-checklist"></i>Сохраненные</a></li></Link>
-                                        <Link href={{ pathname: `/user/account` }}><li><a onClick={toggleUserDropdown}><i className="bi bi-gear"></i>Аккаунт</a></li></Link>
+                                        <Link href={{ pathname: `/user/saved` }} passHref><li><a onClick={toggleUserDropdown}><i className="bi bi-card-checklist"></i>Сохраненные</a></li></Link>
+                                        <Link href={{ pathname: `/user/account` }} passHref><li><a onClick={toggleUserDropdown}><i className="bi bi-gear"></i>Аккаунт</a></li></Link>
                                         <li onClick={logoutHandler}>
                                             <a style={{ cursor: 'pointer' }} ><i className="bi bi-box-arrow-right"></i>Выйти</a>
                                         </li>

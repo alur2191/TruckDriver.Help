@@ -3,6 +3,7 @@ import JobListing from "../../components/jobs/jobListing";
 import { getSession } from 'next-auth/client'
 import classes from "./id.module.css"
 import Filters from "../../components/filters/filters";
+import Head from 'next/head'
 
 function JobDetails({ jobs }) {
 
