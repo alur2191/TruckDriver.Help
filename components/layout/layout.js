@@ -1,18 +1,18 @@
 import { Fragment } from 'react';
-
+import Head from 'next/head'
 import Navbar from './navbar'
 import Footer from './footer'
 import { useContext } from "react";
 import UserContext from '../../store/user-context'
-import {useSession, signOut} from 'next-auth/client'
+import { useSession, signOut } from 'next-auth/client'
 
 
 function Layout(props) {
     const [session, loading] = useSession()
     const userCtx = useContext(UserContext)
 
-    const activeUser =  userCtx.user;
-    const loadUser = async() => {
+    const activeUser = userCtx.user;
+    const loadUser = async () => {
         const user = await fetch(`/api/user/${session.user.email}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -22,13 +22,16 @@ function Layout(props) {
             ...body
         }));
     }
-    
-    session&&!activeUser&&loadUser()
+
+    session && !activeUser && loadUser()
 
     return (
         <Fragment>
+            <Head>
+                <title>My new cool app</title>
+            </Head>
             <Navbar />
-            <main style={{paddingBottom: 100}}>
+            <main style={{ paddingBottom: 100 }}>
                 {props.children}
             </main>
             {/* {notification.status && (
@@ -38,7 +41,7 @@ function Layout(props) {
                     status={notification.status}
                 />
             )} */}
-            <Footer/>
+            <Footer />
         </Fragment>
     )
 }
