@@ -31,7 +31,7 @@ const createOptions = (req) => ({
                 // If password verification fails
                 if (!isValid) {
                     throw new Error('Не удалось войти')
-                } else if (!user.activated && credentials.token) {
+                } else if (!user.activated) {
                     // Else if users account isn't activated, but token is passed
                     const emailTokenValid = await new Promise((resolve) => {
                         // Token verification with JWT
@@ -43,6 +43,7 @@ const createOptions = (req) => ({
                     if (emailTokenValid) {
                         // If token verification passes, activate user
                         try {
+                            console.log('test')
                             await prisma.user.update({
                                 where: {
                                     email: credentials.email
@@ -94,6 +95,7 @@ const createOptions = (req) => ({
         jwt: async (token, user) => {
             // If the URL path ends with "?update", update session object with company ID
             if (req.url === "/api/auth/session?update") {
+                console.log('Testing url');
                 const userRes = await prisma.user.findUnique({
                     where: {
                         email: token.email

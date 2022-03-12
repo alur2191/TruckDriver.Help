@@ -109,23 +109,6 @@ function Navbar() {
                             <a><i className="bi bi-briefcase-fill"></i>Зарегистрировать Компанию</a>
                         </Link>
                     </li>}
-                {/* {activeUser && activeUser.user &&
-                    <li style={{ position: 'relative' }}>
-                        <a style={{ cursor: 'pointer' }} onClick={() => toggleNotificationDropdown()}><i className="bi bi-bell-fill"></i><span style={{ width: 6, height: 6, backgroundColor: 'red', position: 'absolute', right: 1, top: 3, borderRadius: 50 }}></span></a>
-                        {notificationDropdown &&
-                            <div ref={notificationRef} className={classes.notification}>
-                                {activeNotification.notifications ? activeNotification.notifications.map((notification, i) => {
-
-                                    return (
-                                        <div key={i}>
-                                            <div><span><strong>{notification.title}</strong></span><span>{formatDistanceToNowStrict(new Date(parseISO(notification.createdAt)), { locale: { ...locale, formatDistance } })}</span></div>
-                                            <span>{notification.message.length >= 50 ? notification.message.substring(0, 50) + "..." : notification.message}</span><span style={{ color: 'rgb(60,60,119)', textDecoration: 'underline' }}>{notification.message.length >= 50 && `Читать дальше`}</span>
-                                            <hr style={{ width: '100%' }} />
-                                        </div>)
-                                }) : 'loading'}
-                            </div>}
-                    </li>
-                } */}
                 {activeUser && (
                     <li style={{ position: 'relative' }}>
                         <a style={{ cursor: 'pointer' }} onClick={() => toggleUserDropdown()}><i className="bi bi-person-fill"></i>{activeUser.user.email}</a>

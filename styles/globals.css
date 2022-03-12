@@ -392,7 +392,10 @@ footer {
     display: block;
     color:#232323;
   }
-      
+  .bu-m-menu {
+    display: block;
+    font-size: 24px;
+  }
   .form {
     margin: 50px;
   }
@@ -410,10 +413,7 @@ footer {
     gap: 10px;
   }
 
-  .bu-m-menu {
-    display: block;
-    font-size: 24px;
-  }
+
 
 
   .mobile-nav {

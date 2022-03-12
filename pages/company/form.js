@@ -64,11 +64,13 @@ const Form = () => {
             }));
 
             // Update session object with users new company
-            await fetch('/api/auth/session?update', {
+            const sessionUpdate = await fetch('/api/auth/session?update', {
                 method: "GET",
                 credentials: "include"
             })
-            await Router.push('/')
+            console.log(sessionUpdate);
+            console.log(sessionUpdate.ok);
+            if (sessionUpdate.ok) { Router.push('/') }
 
         } catch (error) {
             console.error(error);
