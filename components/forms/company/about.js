@@ -20,6 +20,7 @@ function About() {
             setAbout(list);
         }
 
+        // input fields length validation
         switch (name) {
             case "mcnumber":
                 if (value.length > 8) {
