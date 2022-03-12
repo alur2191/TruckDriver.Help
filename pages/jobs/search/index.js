@@ -9,15 +9,14 @@ import { useSession } from 'next-auth/client'
 
 function Home() {
     const searchCtx = useContext(SearchContext)
-    const [session, loading] = useSession()
+    const [session] = useSession()
 
     const activeSearch = searchCtx.jobs;
-    console.log(activeSearch);
     return (
         <div className={classes.main}>
-
             <div className={classes.listings} >
                 <Filters />
+                {/* Display list of search results */}
                 {activeSearch && activeSearch.jobs && activeSearch.jobs.map(job => <div key={job.id} className="listing"><JobListing job={job} /></div>)}
             </div>
             <div className={classes.sidebar}>
