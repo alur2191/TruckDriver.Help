@@ -21,6 +21,7 @@ function MyApp({ Component, pageProps }) {
     const handleRouteChange = url => {
       window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
         page_path: url,
+        cookieFlags: 'SameSite=None; Secure'
       })
     }
     router.events.on('routeChangeComplete', handleRouteChange)

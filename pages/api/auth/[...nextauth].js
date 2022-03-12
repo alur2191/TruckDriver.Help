@@ -104,13 +104,14 @@ const createOptions = (req) => ({
                         company: true
                     }
                 })
+                // if user created a company, set the company ID
                 userRes.company && (token.companyId = userRes.company.id)
             }
 
             if (user) {
                 token.activated = user.activated
                 token.id = user.id
-                if (user.companyId) {
+                if (user.companyId && !token.companyId) {
                     token.companyId = user.companyId
                 }
             }
