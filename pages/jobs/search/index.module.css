@@ -28,16 +28,14 @@
     background-color: white;
     border-radius: 5px;
 }
-
-.sidebar > :first-child {
+/* .sidebar > :first-child {
     height: 63px;
     display:flex;
     align-items:center;
     color: grey;
     text-decoration:underline;
     background-color: transparent;
-}
-
+} */
 
 @media (max-width: 1440px) {
     .main {

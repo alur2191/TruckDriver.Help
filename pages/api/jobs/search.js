@@ -7,6 +7,7 @@ async function handler(req, res) {
     const ownerGross = req.body.ownerGross ? parseInt(req.body.ownerGross) : undefined
     const teamPay = req.body.teamPay ? parseInt(req.body.teamPay) : undefined
     const teamDriverGross = req.body.teamDriverGross ? parseInt(req.body.teamDriverGross) : undefined
+    const insurance = req.body.insurance
     // console.log('salaryGross: ', salaryGross, 'salaryMile: ', salaryMile, 'ownerGross: ', ownerGross);
     // const options = () => {
     //     return salaryGross ? {
@@ -24,18 +25,7 @@ async function handler(req, res) {
     //             }
     //         } : null
     // }
-    const options = () => {
-        return req.body.insurance ? {
-            company: {
-                insurance: true
-            }
-        } : null,
-            req.body.dispatch24 ? {
-                company: {
-                    dispatch24: true
-                }
-            } : null
-    }
+
     try {
 
         const jobs = await prisma.job.findMany({
@@ -48,9 +38,13 @@ async function handler(req, res) {
                     },
                     {
                         company: {
-                            state: {
-                                contains: req.body.state
-                            }
+                            AND: [
+                                {
+                                    state: {
+                                        contains: req.body.state
+                                    },
+                                },
+                            ]
                         }
                     },
                     {
@@ -77,7 +71,7 @@ async function handler(req, res) {
                         ownerGross: {
                             gte: ownerGross
                         }
-                    }, options
+                    }
 
                     // {
                     //     company: {
