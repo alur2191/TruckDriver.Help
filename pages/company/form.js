@@ -58,17 +58,21 @@ const Form = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(body),
             })
-            // Set the company state
-            newCompany.json().then(body => userCtx.setCompany({
-                ...body.company
-            }));
 
-            // Update session object with users new company
-            const sessionUpdate = await fetch('/api/auth/session?update', {
-                method: "GET",
-                credentials: "include"
-            })
-            if (sessionUpdate.ok) { Router.push('/') }
+            if (newCompany.ok) {
+                // Set the company state
+                newCompany.json().then(body => userCtx.setCompany({
+                    ...body.company
+                }));
+                // Update session object with users new company
+                const sessionUpdate = await fetch('/api/auth/session?update', {
+                    method: "GET",
+                    credentials: "include"
+                })
+                console.log(sessionUpdate);
+                console.log(sessionUpdate.ok);
+                if (sessionUpdate.ok) { Router.push('/') }
+            }
 
         } catch (error) {
             console.error(error);
