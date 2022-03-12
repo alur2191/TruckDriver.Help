@@ -64,12 +64,10 @@ const Form = () => {
             }));
 
             // Update session object with users new company
-            const sessionUpdate = await fetch('https://truckdriver.help/api/auth/session?update', {
+            const sessionUpdate = await fetch('/api/auth/session?update', {
                 method: "GET",
                 credentials: "include"
             })
-            console.log(sessionUpdate);
-            console.log(sessionUpdate.ok);
             if (sessionUpdate.ok) { Router.push('/') }
 
         } catch (error) {
