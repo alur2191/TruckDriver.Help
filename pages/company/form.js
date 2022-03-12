@@ -64,11 +64,11 @@ const Form = () => {
             }));
 
             // Update session object with users new company
-            fetch('/api/auth/session?update', {
+            await fetch('/api/auth/session?update', {
                 method: "GET",
                 credentials: "include"
             })
-            Router.push('/')
+            await Router.push('/')
 
         } catch (error) {
             console.error(error);
