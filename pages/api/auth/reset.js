@@ -13,15 +13,9 @@ export default async function (req, res) {
         })
     })
 
-    console.log(process.env.SECRET + email);
-    console.log(email)
-    console.log(token);
-    console.log(password);
 
-    console.log(emailTokenValid)
 
     if (emailTokenValid) {
-        console.log('valid');
         try {
             const updateUser = await prisma.user.update({
                 where: {
@@ -32,7 +26,6 @@ export default async function (req, res) {
                     token: null
                 }
             })
-            console.log(updateUser)
             res.status(201);
             res.json({ updateUser });
         } catch (e) {

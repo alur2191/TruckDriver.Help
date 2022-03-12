@@ -19,7 +19,6 @@ const Form = () => {
 
     const titles = ["О Компании", "Данные о Траках", "Данные о Трейлерах", "Парковочные Места", "Дополнительная Информация"]
 
-    about && console.log("xxxxxxx", about)
     const submitData = async (e) => {
 
         e.preventDefault();
@@ -44,7 +43,6 @@ const Form = () => {
             filterList(trailerList, filteredTrailerList)
 
             const body = { name, mcnumber, usdot, phone, website, city, state, zip, dispatch24, insurance, deposit, email, filteredTruckList, filteredTrailerList, parkingList }
-            console.log('body:', body);
             const newCompany = await fetch("/api/company/create", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -59,7 +57,6 @@ const Form = () => {
                 method: "GET",
                 credentials: "include"
             })
-            console.log(session);
             Router.push('/')
 
         } catch (error) {

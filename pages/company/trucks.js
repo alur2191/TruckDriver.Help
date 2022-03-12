@@ -14,8 +14,6 @@ function Trucks({ session, dbTrucks }) {
     }, [])
     const companyCtx = useContext(CompanyContext)
     const { setTruck, truck } = companyCtx
-    console.log(truck);
-    console.log("db", dbTrucks);
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -71,7 +69,6 @@ export async function getServerSideProps(context) {
                 },
             }
         } else {
-            console.log("xxxxxxxxxx")
             const dbTrucks = await prisma.truck.findMany({
                 where: {
                     company_id: session.user.companyId

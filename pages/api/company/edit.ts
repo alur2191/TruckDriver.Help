@@ -5,9 +5,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     const { about,additional,parking,id }= req.body
     try {
 
-        console.log(about)
-        console.log(additional)
-        console.log(parking)
         const updateCompany = await prisma.company.update({
             where:{
                 id
@@ -18,7 +15,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
                 parking:parking
             }
         })
-        console.log(updateCompany)
         res.status(201);
         res.json({updateCompany});
     } catch (e) {

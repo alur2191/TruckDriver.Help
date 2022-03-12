@@ -60,7 +60,6 @@ export default async function (req, res) {
             </div>`,
         });
     } catch (error) {
-        // console.log(error);
         return res.status(error.statusCode || 500).json({ error: error.message });
     }
 
@@ -72,22 +71,6 @@ export default async function (req, res) {
             }
         })
 
-        // try{
-        //     const notification = await prisma.notification.create({
-        //         data: {
-        //             title: "Добро пожаловать!",
-        //             message:'Вы успешно зарегистрировались!',
-        //             user: {
-        //                 connect: {
-        //                     id: user.id
-        //                 }
-        //             }
-        //         }
-        //     })
-        //     console.log(notification)
-        // }catch(e){
-        //     console.log("Не удалось отправить оповещание")
-        // }
         res.status(201)
         res.json({ user })
     } catch (e) {

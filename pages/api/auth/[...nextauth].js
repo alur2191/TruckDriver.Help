@@ -25,8 +25,6 @@ const createOptions = (req) => ({
                 }
 
                 const isValid = await verifyPassword(credentials.password, user.password)
-
-                console.log(credentials);
                 if (!isValid) {
                     throw new Error('Не удалось войти')
                 } else if (!user.activated) {
@@ -96,12 +94,10 @@ const createOptions = (req) => ({
                         company: true
                     }
                 })
-                console.log('session updated');
                 userRes.company && (token.companyId = userRes.company.id)
             }
             if (user) {
                 token.activated = user.activated
-                console.log(token);
                 token.id = user.id
                 if (user.companyId) {
                     token.companyId = user.companyId
@@ -117,7 +113,6 @@ const createOptions = (req) => ({
                 if (session.user.activated) {
                     session.user.activated = user.activated
                 }
-                console.log(session);
             }
 
             return session;

@@ -23,7 +23,6 @@ export default async function (req, res) {
 
         try {
             await sendgrid.send({
-                // to: email,
                 to: email,
                 from: "noreply@truckdriver.help",
                 subject: `Востановить пароль.`,
@@ -37,11 +36,9 @@ export default async function (req, res) {
                 </div>`,
             });
         } catch (error) {
-            // console.log(error);
             return res.status(error.statusCode || 500).json({ error: error.message });
         }
 
-        console.log(updateUser)
         res.status(201);
         res.json({ updateUser });
     } catch (e) {
