@@ -49,7 +49,6 @@ const Filters = () => {
                 teamPay,
                 teamDriverGross
             };
-            console.log("FE - type: ", type);
             const jobs = await fetch("/api/jobs/search", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

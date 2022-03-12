@@ -5,11 +5,13 @@ import jwt from 'jsonwebtoken';
 export default async function (req, res) {
     const { email } = req.body
     const { sign } = jwt
-
+    // Sign the token with JWT
     const token = sign({ email }, process.env.SECRET + email, {
         expiresIn: "1d"
     })
+
     try {
+        // Pass the token to the DB
         const updateUser = await prisma.user.update({
             where: {
                 email
@@ -37,11 +39,9 @@ export default async function (req, res) {
                 </div>`,
             });
         } catch (error) {
-            // console.log(error);
             return res.status(error.statusCode || 500).json({ error: error.message });
         }
 
-        console.log(updateUser)
         res.status(201);
         res.json({ updateUser });
     } catch (e) {

@@ -12,6 +12,7 @@ function Edit({ dbJob }) {
     const [confirm, setConfirm] = useState(false);
 
     useEffect(() => {
+        // Pass the values from the backend, to job state
         setJob({
             id: dbJob.id,
             driverGross: dbJob.driverGross,
@@ -23,44 +24,26 @@ function Edit({ dbJob }) {
             pay: dbJob.pay ? dbJob.pay.toFixed(2) : null,
 
         });
+        // If driver pay or gross pay is null, disable the driver checkbox
         dbJob.pay === null && dbJob.driverGross === null ? setDriver(false) : setDriver(true)
+        // If team driver pay or team gross pay is null, disable the team driver checkbox
         dbJob.teamPay === null && dbJob.teamDriverGross === null ? setTeamDriver(false) : setTeamDriver(true)
+        // If owner gross is null, disable the owner checkbox
         dbJob.ownerGross === null ? setOwner(false) : setOwner(true);
+        // If team owner gross is null, disable the team owner checkbox
         dbJob.teamOwnerGross === null ? setTeamOwner(false) : setTeamOwner(true);
     }, []);
-    // const submitData = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         const body = {
-    //             id,
-    //             type,
-    //             pay,
-    //             driverGross,
-    //             ownerGross,
-    //             teamPay,
-    //             teamDriverGross,
-    //             teamOwnerGross,
-    //         };
-    //         await fetch("/api/jobs/edit", {
-    //             method: "POST",
-    //             headers: { "Content-Type": "application/json" },
-    //             body: JSON.stringify(body),
-    //         });
-    //         await Router.push(`/jobs/${id}`);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
+
 
     const jobCtx = useContext(JobContext);
     const {
-        job,
         setJob,
         setDriver,
         setOwner,
         setTeamDriver,
         setTeamOwner,
     } = jobCtx;
+
     const deletePost = async (e) => {
         e.preventDefault();
         const body = {
@@ -88,8 +71,10 @@ function Edit({ dbJob }) {
                 <Form />
 
                 <Submit path="edit" />
+
                 {confirm ? (
                     <div>
+                        {/* Confirm that user wants to delete a job post */}
                         <p>Вы уверены что хотите удалить объявление?</p>
                         <input type='button' value='Да' onClick={deletePost} />{" "}
                         <input
@@ -116,6 +101,7 @@ export async function getServerSideProps(context) {
 
     const prisma = new PrismaClient();
     const session = await getSession({ req: context.req });
+    // Redirect if user isn't logged in
     if (!session) {
         return {
             redirect: {
@@ -124,6 +110,7 @@ export async function getServerSideProps(context) {
             },
         };
     } else {
+        // If user didn't create a company yet, redirect to company creation form
         if (!session.user.companyId) {
             return {
                 redirect: {
@@ -132,6 +119,7 @@ export async function getServerSideProps(context) {
                 },
             }
         } else {
+            // Find a job by ID, that was passed through params
             const job = await prisma.job.findUnique({
                 where: {
                     id: parseInt(params.id),

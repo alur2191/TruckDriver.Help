@@ -19,24 +19,28 @@ const createOptions = (req) => ({
                         company: true
                     }
                 })
-
+                // User doesn't exist
                 if (!user) {
                     throw new Error('Email не существует')
                 }
 
+                // Password verification
                 const isValid = await verifyPassword(credentials.password, user.password)
 
-                console.log(credentials);
+                // If password verification fails
                 if (!isValid) {
                     throw new Error('Не удалось войти')
-                } else if (!user.activated) {
+                } else if (!user.activated && credentials.token) {
+                    // Else if users account isn't activated, but token is passed
                     const emailTokenValid = await new Promise((resolve) => {
+                        // Token verification with JWT
                         jwt.verify(credentials.token, process.env.SECRET + credentials.email, (err) => {
                             if (err) resolve(false)
                             if (!err) resolve(true)
                         })
                     })
                     if (emailTokenValid) {
+                        // If token verification passes, activate user
                         try {
                             await prisma.user.update({
                                 where: {
@@ -72,7 +76,7 @@ const createOptions = (req) => ({
                     }
 
                 }
-
+                // If user has a company, pass the company ID
                 return user.company ? {
                     email: user.email,
                     activated: user.activated,
@@ -87,6 +91,7 @@ const createOptions = (req) => ({
         })
     ], callbacks: {
         jwt: async (token, user) => {
+            // If the URL path ends with "?update", update session object with company ID
             if (req.url === "/api/auth/session?update") {
                 const userRes = await prisma.user.findUnique({
                     where: {
@@ -96,12 +101,11 @@ const createOptions = (req) => ({
                         company: true
                     }
                 })
-                console.log('session updated');
                 userRes.company && (token.companyId = userRes.company.id)
             }
+
             if (user) {
                 token.activated = user.activated
-                console.log(token);
                 token.id = user.id
                 if (user.companyId) {
                     token.companyId = user.companyId
@@ -117,7 +121,6 @@ const createOptions = (req) => ({
                 if (session.user.activated) {
                     session.user.activated = user.activated
                 }
-                console.log(session);
             }
 
             return session;

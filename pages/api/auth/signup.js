@@ -9,7 +9,7 @@ import sendgrid from "@sendgrid/mail";
 export default async function (req, res) {
     const { email, password } = req.body
     const { sign } = jwt;
-
+    // email and password validation
     if (!email || !email.includes('@') || !password || password.trim().length < 7) {
         res
             .status(422)
@@ -24,18 +24,20 @@ export default async function (req, res) {
             email: email
         }
     })
-
+    // check if user exists
     if (existingUser) {
         if (existingUser.activated) {
+            // if activated, error: user exists
             res.status(422).json({ message: 'Пользователь с этой электронной почтой уже существует.' })
         } else {
+            // if not, error: activate account
             res.status(422).json({ message: 'Подтвердите свою электронную почту.' })
         }
         return
     }
 
     const hashedPassword = await hashPassword(password)
-
+    // sign token with JWT
     const token = sign({ email }, process.env.SECRET + email, {
         expiresIn: "1d"
     })
@@ -60,7 +62,6 @@ export default async function (req, res) {
             </div>`,
         });
     } catch (error) {
-        // console.log(error);
         return res.status(error.statusCode || 500).json({ error: error.message });
     }
 
@@ -72,22 +73,6 @@ export default async function (req, res) {
             }
         })
 
-        // try{
-        //     const notification = await prisma.notification.create({
-        //         data: {
-        //             title: "Добро пожаловать!",
-        //             message:'Вы успешно зарегистрировались!',
-        //             user: {
-        //                 connect: {
-        //                     id: user.id
-        //                 }
-        //             }
-        //         }
-        //     })
-        //     console.log(notification)
-        // }catch(e){
-        //     console.log("Не удалось отправить оповещание")
-        // }
         res.status(201)
         res.json({ user })
     } catch (e) {

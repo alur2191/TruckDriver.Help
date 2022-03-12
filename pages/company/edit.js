@@ -22,13 +22,8 @@ function Edit({ company }) {
             state,
             zip
         }
-        const additional = {
-            dispatch24,
-            insurance,
-            deposit
-        }
         setAbout(about)
-        setAdditional(additional)
+        // If parking values from the DB won't match the ones on state, update state with new values 
         if (company.parking !== parking) {
             setParking(company.parking)
         }
@@ -79,6 +74,7 @@ export async function getServerSideProps(context) {
     const prisma = new PrismaClient();
 
     if (!session) {
+        // redirect to homepage if user isn't signed in
         return {
             redirect: {
                 destination: '/',
@@ -86,6 +82,7 @@ export async function getServerSideProps(context) {
             },
         };
     } else {
+        // Fetch company by ID
         if (session.user.companyId) {
             const company = await prisma.company.findUnique({
                 where: {

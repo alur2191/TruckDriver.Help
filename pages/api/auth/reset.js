@@ -7,22 +7,16 @@ export default async function (req, res) {
     const hashedPassword = await hashPassword(password)
 
     const emailTokenValid = await new Promise((resolve) => {
+        // Token verification with the help of JWT
         jwt.verify(token, process.env.SECRET + email, (err) => {
             if (err) resolve(false)
             if (!err) resolve(true)
         })
     })
-
-    console.log(process.env.SECRET + email);
-    console.log(email)
-    console.log(token);
-    console.log(password);
-
-    console.log(emailTokenValid)
-
+    // if token is valid, update the user password
     if (emailTokenValid) {
-        console.log('valid');
         try {
+            // Fetch user by matching the token
             const updateUser = await prisma.user.update({
                 where: {
                     token
@@ -32,7 +26,6 @@ export default async function (req, res) {
                     token: null
                 }
             })
-            console.log(updateUser)
             res.status(201);
             res.json({ updateUser });
         } catch (e) {

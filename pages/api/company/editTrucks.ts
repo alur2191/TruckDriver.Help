@@ -15,7 +15,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
                 ...truck
             ]
         })
-        console.log(truck);
         res.status(201);
         res.json({addTrucks});
     } catch (e) {

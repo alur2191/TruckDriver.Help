@@ -14,7 +14,9 @@ function About() {
         const { name, value, type } = e.target;
         const handle = () => {
             const list = { ...about };
-            type === "number" ? (list[name] = parseInt(value)) : (list[name] = value);
+            type === "number" ?
+                (list[name] = parseInt(value)) :
+                (list[name] = value);
             setAbout(list);
         }
 

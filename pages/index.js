@@ -3,20 +3,17 @@ import classes from "./index.module.css";
 import JobListing from "../components/jobs/jobListing";
 import Filters from "../components/filters/filters";
 import AuthForm from "../components/auth/auth-form";
-import { useSession, signOut } from 'next-auth/client'
-import AdvancedSearch from "../components/filters/advancedSearch"
+import { useSession } from 'next-auth/client'
+// import AdvancedSearch from "../components/filters/advancedSearch"
 import { PrismaClient } from "@prisma/client";
 
 
 function Home({ jobs }) {
-  const [session, loading] = useSession()
-
-
+  const [session] = useSession()
 
   return (
-
     <div className={classes.main}>
-
+      {/* Display list of all available jobs */}
       <div className={classes.listings} >
         <Filters />
         {jobs
@@ -27,10 +24,14 @@ function Home({ jobs }) {
           : "loading"}
       </div>
       <aside className={classes.sidebar}>
+        {/* Temporarily disabled */}
         {/* <AdvancedSearch /> */}
+
+        {/* Auth Form */}
         {!session && <div>
           <AuthForm />
         </div>}
+        {/* Beta Announcement */}
         <div className={classes.beta}>
           <h3>Бета-Тест</h3>
           <p>Сайт находится в стадии бета-тестирования. Сообщения о неполадках, предложениях, а так-же по другим вопросам обращайтесь по электронной почте:  </p>
@@ -43,6 +44,7 @@ function Home({ jobs }) {
 
 export async function getServerSideProps() {
   const prisma = new PrismaClient();
+  // Fetch all posted jobs and include related items from Company table
   const jobs = await prisma.job.findMany({
     include: {
       company: {

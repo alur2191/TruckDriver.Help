@@ -11,13 +11,12 @@ function AdvancedFilters() {
         if (value === "") {
             list[name] = null;
         } else {
-            type === "checkbox" ? (list[name] = !list[name]) : (list[name] = value);
+            type === "checkbox" ?
+                (list[name] = !list[name]) : (list[name] = value);
         }
         setFilter(list);
-        console.log(filter);
     };
 
-    console.log(filterCtx);
     return (
 
         <div className={classes.main}>

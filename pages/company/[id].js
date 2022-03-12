@@ -25,6 +25,7 @@ export async function getServerSideProps(context) {
     const { id } = context.params;
     const prisma = new PrismaClient();
     if (!session) {
+        // Redirect to homepage is user isn't signed in
         return {
             redirect: {
                 destination: '/',
@@ -32,6 +33,7 @@ export async function getServerSideProps(context) {
             },
         };
     } else {
+        // If user doesn't have a company registered, redirect to company registration page
         if (!session.user.companyId) {
             return {
                 redirect: {
@@ -40,6 +42,7 @@ export async function getServerSideProps(context) {
                 },
             }
         } else {
+            // Find all jobs that were posted by a company
             const jobs = await prisma.job.findMany({
                 where: {
                     company_id: parseInt(id)

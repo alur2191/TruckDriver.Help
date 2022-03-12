@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react'
 import CompanyContext from '../../store/company-context'
-import Link from 'next/link';
 import Router from 'next/router';
 import { getSession } from 'next-auth/client';
 import classes from "./edit.module.css";
@@ -10,12 +9,12 @@ import Sidebar from '../../components/profile/sidebar';
 
 function Trucks({ session, dbTrucks }) {
     useEffect(() => {
+        // If user has trucks, pass them to state
         dbTrucks.length && setTruck(dbTrucks)
     }, [])
     const companyCtx = useContext(CompanyContext)
     const { setTruck, truck } = companyCtx
-    console.log(truck);
-    console.log("db", dbTrucks);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -54,7 +53,7 @@ function Trucks({ session, dbTrucks }) {
 export async function getServerSideProps(context) {
     const session = await getSession({ req: context.req });
     const prisma = new PrismaClient();
-
+    // Redirect user to homepage if not logged in
     if (!session) {
         return {
             redirect: {
@@ -63,6 +62,7 @@ export async function getServerSideProps(context) {
             },
         };
     } else {
+        // If user doesn't have a company registered, redirect to company registration page
         if (!session.user.companyId) {
             return {
                 redirect: {
@@ -71,7 +71,7 @@ export async function getServerSideProps(context) {
                 },
             }
         } else {
-            console.log("xxxxxxxxxx")
+            // Find all company trucks
             const dbTrucks = await prisma.truck.findMany({
                 where: {
                     company_id: session.user.companyId
