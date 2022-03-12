@@ -34,7 +34,7 @@ const createOptions = (req) => ({
                     // Else if users account isn't activated, but token is passed
                     const emailTokenValid = await new Promise((resolve) => {
                         // Token verification with JWT
-                        jwt.verify(credentials.token, process.env.SECRET + credentials.email, (err) => {
+                        jwt.verify(credentials.token, process.env.JWT_SECRET + credentials.email, (err) => {
                             if (err) resolve(false)
                             if (!err) resolve(true)
                         })

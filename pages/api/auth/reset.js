@@ -8,7 +8,7 @@ export default async function (req, res) {
 
     const emailTokenValid = await new Promise((resolve) => {
         // Token verification with the help of JWT
-        jwt.verify(token, process.env.SECRET + email, (err) => {
+        jwt.verify(token, process.env.JWT_SECRET + email, (err) => {
             if (err) resolve(false)
             if (!err) resolve(true)
         })

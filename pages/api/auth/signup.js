@@ -38,7 +38,7 @@ export default async function (req, res) {
 
     const hashedPassword = await hashPassword(password)
     // sign token with JWT
-    const token = sign({ email }, process.env.SECRET + email, {
+    const token = sign({ email }, process.env.JWT_SECRET + email, {
         expiresIn: "1d"
     })
 
