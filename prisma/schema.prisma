@@ -87,8 +87,8 @@ model Beta {
 model Company {
   id         Int       @id @default(autoincrement())
   name       String    @db.VarChar(200)
-  mcnumber   Int
-  usdot      Int
+  mcnumber   Int?
+  usdot      Int?
   phone      String
   website    String?   @db.VarChar(250)
   city       String    @db.VarChar(200)

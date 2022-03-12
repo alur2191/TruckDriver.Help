@@ -64,8 +64,6 @@ export default JobForm;
 export async function getServerSideProps(context) {
     const session = await getSession({ req: context.req });
 
-
-    ;
     // Redirect to homepage if the user isn't signed in
     if (!session) {
         return {

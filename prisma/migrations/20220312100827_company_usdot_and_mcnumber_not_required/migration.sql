@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "company" ALTER COLUMN "mcnumber" DROP NOT NULL,
+ALTER COLUMN "usdot" DROP NOT NULL;
