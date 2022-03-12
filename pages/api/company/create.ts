@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from '../../../lib/prisma'
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-    const { name,mcnumber,usdot,phone,website,city,state,zip,dispatch24,insurance,deposit,parkingList,filteredTruckList,filteredTrailerList,email}= req.body
+    const { name,mcnumber,usdot,website,city,state,zip,dispatch24,insurance,deposit,parkingList,filteredTruckList,filteredTrailerList,email}= req.body
 
     try {
         const company = await prisma.company.create({
@@ -9,7 +9,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
                 name,
                 mcnumber,
                 usdot,
-                phone,
+                phone:(req.body.phone).toString(),
                 website,
                 city,
                 state,
