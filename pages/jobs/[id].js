@@ -4,6 +4,7 @@ import JobListing from "../../components/jobs/jobListing";
 import Head from 'next/head'
 
 function JobDetails({ job }) {
+    // Reformating phone number field
     var formattedNumber = "(" + job.company.phone.slice(0, 3) + ") " + job.company.phone.slice(3, 6) + "-" + job.company.phone.slice(6, 10);
 
     return (
@@ -53,6 +54,7 @@ function JobDetails({ job }) {
                         </div>
                     </div>
                 </div>
+                {/* Fields are visible if a company has trucks */}
                 {job.company.trucks[0] && <hr />}
                 {job.company.trucks[0] && <h4>Траки</h4>}
                 {job.company.trucks[0] && job.company.trucks.map((truck, i) => {
@@ -74,6 +76,7 @@ function JobDetails({ job }) {
                         </div>
                     )
                 })}
+                {/* Fields are visible if a company has trailers */}
                 {job.company.trailers[0] && <hr />}
                 {job.company.trailers[0] && <h4>Трейлеры</h4>}
                 {job.company.trailers[0] && job.company.trailers.map((trailer, i) => {
@@ -102,6 +105,7 @@ function JobDetails({ job }) {
 export async function getServerSideProps(context) {
     const { id } = context.params;
     const prisma = new PrismaClient();
+    // Fetch a job post and include related items from Company table
     const job = await prisma.job.findUnique({
         where: {
             id: parseInt(id)

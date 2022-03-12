@@ -15,8 +15,8 @@ const Form = () => {
 
     const companyCtx = useContext(CompanyContext)
     const userCtx = useContext(UserContext)
-    const { page, setPage, about, additional, setValidation, validation } = companyCtx
-
+    const { page, setPage, about, additional, setValidation } = companyCtx
+    // Section titles
     const titles = ["О Компании", "Данные о Траках", "Данные о Трейлерах", "Парковочные Места", "Дополнительная Информация"]
 
     const submitData = async (e) => {
@@ -29,18 +29,28 @@ const Form = () => {
             const trailerList = companyCtx.trailer
             const parkingList = companyCtx.parking
             const { dispatch24, insurance, deposit } = additional
+
+
             let filteredTruckList = []
             let filteredTrailerList = []
 
+            // Function that is responsible for filtering through truck and trailer arrays
             const filterList = (list) => {
                 list.map(listItem => {
-                    if (listItem.manufacturer != null && listItem.year != null || listItem.type != null && listItem.year != null) {
-                        listItem.manufacturer ? filteredTruckList = [...filteredTruckList, { ...listItem }] : filteredTrailerList = [...filteredTrailerList, { ...listItem }]
+                    // if (for trucks) manufacturer & year isn't null
+                    // or (for trailers) if  type & year isn't null
+                    if (listItem.manufacturer != null && listItem.year != null ||
+                        listItem.type != null && listItem.year != null) {
+                        // if (truck) manufacturer is set, add list item to filtered truck array
+                        // else add list item to filtered trailer array
+                        listItem.manufacturer ?
+                            filteredTruckList = [...filteredTruckList, { ...listItem }]
+                            : filteredTrailerList = [...filteredTrailerList, { ...listItem }]
                     }
                 })
             }
-            filterList(truckList, filteredTruckList)
-            filterList(trailerList, filteredTrailerList)
+            filterList(truckList)
+            filterList(trailerList)
 
             const body = { name, mcnumber, usdot, phone, website, city, state, zip, dispatch24, insurance, deposit, email, filteredTruckList, filteredTrailerList, parkingList }
             const newCompany = await fetch("/api/company/create", {
@@ -48,11 +58,12 @@ const Form = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(body),
             })
-
-
+            // Set the company state
             newCompany.json().then(body => userCtx.setCompany({
                 ...body.company
             }));
+
+            // Update session object with users new company
             fetch('/api/auth/session?update', {
                 method: "GET",
                 credentials: "include"
@@ -162,6 +173,7 @@ export async function getServerSideProps(context) {
 
 
     if (!session) {
+        // redirect to homepage if user isn't signed in
         return {
             redirect: {
                 destination: '/',
@@ -169,6 +181,7 @@ export async function getServerSideProps(context) {
             },
         };
     }
+    // If user doesn't have a company registered, redirect to company registration page
     if (session.user.companyId) {
         return {
             redirect: {

@@ -26,6 +26,7 @@ function JobForm() {
     const activeUser = userCtx.user;
 
     useEffect(() => {
+        // Reset the job state
         driver && setDriver(false)
         owner && setOwner(false)
         teamDriver && setTeamDriver(false)
@@ -64,6 +65,8 @@ export async function getServerSideProps(context) {
     const session = await getSession({ req: context.req });
 
 
+    ;
+    // Redirect to homepage if the user isn't signed in
     if (!session) {
         return {
             redirect: {

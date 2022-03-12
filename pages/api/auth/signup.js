@@ -9,7 +9,7 @@ import sendgrid from "@sendgrid/mail";
 export default async function (req, res) {
     const { email, password } = req.body
     const { sign } = jwt;
-
+    // email and password validation
     if (!email || !email.includes('@') || !password || password.trim().length < 7) {
         res
             .status(422)
@@ -24,18 +24,20 @@ export default async function (req, res) {
             email: email
         }
     })
-
+    // check if user exists
     if (existingUser) {
         if (existingUser.activated) {
+            // if activated, error: user exists
             res.status(422).json({ message: 'Пользователь с этой электронной почтой уже существует.' })
         } else {
+            // if not, error: activate account
             res.status(422).json({ message: 'Подтвердите свою электронную почту.' })
         }
         return
     }
 
     const hashedPassword = await hashPassword(password)
-
+    // sign token with JWT
     const token = sign({ email }, process.env.SECRET + email, {
         expiresIn: "1d"
     })

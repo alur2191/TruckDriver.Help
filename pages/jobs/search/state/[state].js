@@ -1,12 +1,11 @@
-import { useRouter } from 'next/router';
 import prisma from '../../../../lib/prisma'
 import classes from "./state.module.css"
 import JobListing from "../../../../components/jobs/jobListing";
 
 function JobsByState({ jobs }) {
 
-    console.log(jobs);
     return (
+        // Display list of jobs
         <div className={classes.main}>
             {jobs
                 ? jobs.map((job) => <div key={job.id} className="listing"><JobListing job={job} /></div>)
@@ -17,6 +16,7 @@ function JobsByState({ jobs }) {
 
 export async function getServerSideProps(context) {
     const { state } = context.params;
+    // Find jobs that match the selected state, and include related company schema
     const jobs = await prisma.job.findMany({
         where: {
             company: {

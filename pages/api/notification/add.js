@@ -1,7 +1,6 @@
 import prisma from '../../../lib/prisma'
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async function (req, res) {
-    console.log('working');
     try {
         const notification = await prisma.notification.create({
             data: {

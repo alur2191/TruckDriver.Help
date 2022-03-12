@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { useRef, useState } from "react";
-import { useSession, getSession } from 'next-auth/client';
+import { useSession } from 'next-auth/client';
 import classes from './id.module.css'
 import Head from 'next/head'
 
@@ -9,10 +9,12 @@ function JobDetails({ job }) {
     const descriptionRef = useRef()
     const [message, setMessage] = useState({ status: '', message: '' })
     const [session] = useSession()
+
     const sendReport = async (e) => {
         e.preventDefault()
         const reason = reasonRef.current.value
         const description = descriptionRef.current.value
+        // Check if description field is empty
         !descriptionRef && setMessage({ status: 'error', message: 'Введите подробносоти о вашей жалобе.' })
         try {
             let body = {
@@ -83,6 +85,7 @@ function JobDetails({ job }) {
 export async function getServerSideProps(context) {
     const { id } = context.params;
     const prisma = new PrismaClient();
+    // Find a job by ID that was indicated through params. Include only ID, and company name (related schema)
     const job = await prisma.job.findUnique({
         where: {
             id: parseInt(id)

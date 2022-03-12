@@ -17,6 +17,7 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter()
 
   useEffect(() => {
+    // Google analytics related function that handles route changes
     const handleRouteChange = url => {
       window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
         page_path: url,
@@ -37,6 +38,7 @@ function MyApp({ Component, pageProps }) {
               <AuthProvider session={pageProps.session}>
                 <QueryClientProvider client={queryClient}>
                   <Layout>
+                    {/* Google analytics scripts */}
                     <script
                       async
                       src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}

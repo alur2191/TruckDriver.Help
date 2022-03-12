@@ -7,21 +7,22 @@ import ParkingList from "./parkingList"
 function Parking() {
     const stateRef = useRef()
     const companyCtx = useContext(CompanyContext)
-    console.log(companyCtx.parking);
     const { parking, setParking } = companyCtx
     const [parkingWarning, setParkingWarning] = useState('')
 
     const addParking = () => {
+        // Check if user indicated a state to add
         if (stateRef.current.value) {
             const list = parking
             const listItem = `${stateRef.current.value}`
             let match = false
+            // check if the state that is being added already exists in the list
             list.map(item => {
-                console.log(item === listItem)
                 if (item === listItem) {
                     match = true
                 }
             })
+            // if not, add the state
             if (!match) {
                 list.push(listItem)
                 setParking(list)

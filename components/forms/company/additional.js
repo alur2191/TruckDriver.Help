@@ -10,9 +10,15 @@ function Additional() {
     const handleInputChange = (e, bool) => {
         const { name, value, type } = e.target;
         const list = { ...additional }
-        type === "radio" ? !bool ? list[name] = false : list[name] = true : type === "number" ? list[name] = parseInt(value) : list[name] = value
-        console.log(value == "false");
-        console.log(">>>>>>>>>>", list);
+        // if type = radio, set true or false
+        // if type = number, parse as integer
+        // otherwise pass the value as is
+        type === "radio" ? !bool ?
+            list[name] = false :
+            list[name] = true :
+            type === "number" ?
+                list[name] = parseInt(value) :
+                list[name] = value
         setAdditional(list)
     };
     return (

@@ -10,10 +10,12 @@ import Sidebar from '../../components/profile/sidebar';
 
 function Trailers({ session, dBtrailers }) {
     useEffect(() => {
+        // If user has trailers, pass them to state
         dBtrailers.length !== 0 && setTrailer(dBtrailers)
     }, [])
     const companyCtx = useContext(CompanyContext)
     const { setTrailer, trailer } = companyCtx
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -51,6 +53,7 @@ export async function getServerSideProps(context) {
     const session = await getSession({ req: context.req });
     const prisma = new PrismaClient();
 
+    // Redirect user to homepage if not logged in
     if (!session) {
         return {
             redirect: {
@@ -59,6 +62,7 @@ export async function getServerSideProps(context) {
             },
         };
     } else {
+        // If user doesn't have a company registered, redirect to company registration page
         if (!session.user.companyId) {
             return {
                 redirect: {
@@ -67,6 +71,7 @@ export async function getServerSideProps(context) {
                 },
             }
         } else {
+            // Find all company trailers
             const trailers = await prisma.trailer.findMany({
                 where: {
                     company_id: session.user.companyId
