@@ -18,7 +18,7 @@ function Account() {
 
 export async function getServerSideProps(context) {
     const session = await getSession({ req: context.req });
-
+    // Redirect if user isn't logged in
     if (!session) {
         return {
             redirect: {
