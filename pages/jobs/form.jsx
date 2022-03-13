@@ -4,7 +4,7 @@ import JobContext from "../../store/job-context";
 import Form from "../../components/jobs/form"
 import Submit from "../../components/jobs/submit"
 import UserContext from "../../store/user-context";
-import { getSession } from "next-auth/client"
+import { getSession } from "next-auth/react"
 import Head from 'next/head'
 
 
@@ -47,7 +47,7 @@ function JobForm() {
     return (
         <div className='container form'>
             <Head>
-                <title>Разместить Объявление - TruckDriver.Help</title>
+                <title>Разместить Объявление - TruckDriver.help</title>
             </Head>
             <form className={classes.main}>
                 <h3>Разместить Объявление</h3>
