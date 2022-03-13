@@ -43,7 +43,6 @@ const createOptions = (req) => ({
                     if (emailTokenValid) {
                         // If token verification passes, activate user
                         try {
-                            console.log('test')
                             await prisma.user.update({
                                 where: {
                                     email: credentials.email

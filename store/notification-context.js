@@ -16,10 +16,7 @@ export function NotificationContextProvider(props) {
 
     function setReadHandler(i) {
         const notifications = activeNotification
-        console.log(i);
-        console.log(notifications.notifications[i].read);
         notifications.notifications[i].read = !notifications.notifications[i].read
-        console.log(notifications);
         setActiveNotification(notifications)
     }
 

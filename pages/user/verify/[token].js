@@ -2,7 +2,6 @@ import AuthForm from "../../../components/auth/auth-form";
 import classes from './verify.module.css'
 
 function Verify({ token }) {
-    console.log(token);
     return (
         <div className={classes.main}>
             <AuthForm token={token} />

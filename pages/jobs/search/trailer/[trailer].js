@@ -4,8 +4,6 @@ import classes from "./trailer.module.css"
 import JobListing from "../../../../components/jobs/jobListing";
 
 function JobsByTrailers({ jobs }) {
-
-    console.log(jobs);
     return (
         <div className={classes.main}>
             {jobs

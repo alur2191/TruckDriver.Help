@@ -17,7 +17,6 @@ function ProfilePassword() {
             }
         });
         const data = await response.json();
-        console.log(data);
     }
 
     async function changeEmailHandler(emailData) {
@@ -29,7 +28,6 @@ function ProfilePassword() {
             }
         });
         const data = await response.json().then(() => response.status === 200 && signOut())
-        console.log('data:', data);
     }
 
     if (loading) {

@@ -5,7 +5,6 @@ import classes from "./additional.module.css"
 function Additional() {
     const companyCtx = useContext(CompanyContext)
     const { additional, setAdditional } = companyCtx
-    console.log(additional);
     // handle input change
     const handleInputChange = (e, bool) => {
         const { name, value, type } = e.target;

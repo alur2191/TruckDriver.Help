@@ -32,7 +32,6 @@ function JobListing({ path, companyId }) {
                 return;
             } else {
                 if (!pay && !driverGross && !ownerGross) {
-                    console.log("pay err");
                     setWarning({ type: 'error', message: 'Необходимо указать минимум один метод оплаты.', highlight: 'inputs' })
                     return;
                 }

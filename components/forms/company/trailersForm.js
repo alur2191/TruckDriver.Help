@@ -4,7 +4,6 @@ import classes from "./trailers.module.css"
 
 function Trailers() {
     const companyCtx = useContext(CompanyContext)
-    console.log(companyCtx.trailer);
     const { trailer, setTrailer } = companyCtx
 
     // handle input change
@@ -17,7 +16,6 @@ function Trailers() {
             type === "checkbox" ? list[index][name] = !list[index][name] : type === "number" ? list[index][name] = parseInt(value) : list[index][name] = value
         }
         setTrailer(list);
-        console.log(trailer);
     };
 
     // handle click event of the Remove button

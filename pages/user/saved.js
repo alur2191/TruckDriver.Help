@@ -4,15 +4,17 @@ import Filters from "../../components/filters/filters";
 import { getSession } from 'next-auth/client';
 import { PrismaClient } from "@prisma/client";
 
-function Saved() {
+function Saved({ jobs }) {
     return (
         <div className={classes.main}>
             <div className={classes.listings} >
                 <Filters />
                 {jobs
-                    ? jobs.length === 0 ? <div style={{ display: 'flex', justifyContent: 'center' }}>У вас нет сохраненных объявлений.</div> : jobs.map((job) => <div key={job.id} className="listing">
-                        <JobListing job={job} />
-                    </div>)
+                    ? jobs.length === 0 ?
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>У вас нет сохраненных объявлений.</div> :
+                        jobs.map((job) => <div key={job.id} className="listing">
+                            <JobListing job={job} />
+                        </div>)
                     : "loading"}
             </div>
             <div className={classes.sidebar}>

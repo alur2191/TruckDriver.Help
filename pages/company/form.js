@@ -69,8 +69,6 @@ const Form = () => {
                     method: "GET",
                     credentials: "include"
                 })
-                console.log(sessionUpdate);
-                console.log(sessionUpdate.ok);
                 if (sessionUpdate.ok) { Router.push('/') }
             }
 
