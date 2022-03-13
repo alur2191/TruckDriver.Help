@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import classes from "./form.module.css";
 import JobContext from "../../store/job-context";
 import Form from "../../components/jobs/form"
 import Submit from "../../components/jobs/submit"
 import UserContext from "../../store/user-context";
-import { getSession } from "next-auth/react"
+import { getSession } from "next-auth/client"
 import Head from 'next/head'
 
 
