@@ -129,7 +129,7 @@ function Navbar() {
             <i onClick={() => setMobile(!mobile)} className="bi bi-list bu-m-menu"></i>
             {mobile && <dir className="mobile-nav">
                 <ul>
-                    {!activeUser && <Link href={{ pathname: "/auth" }} passHref><li><a style={{ cursor: 'pointer' }}><i className="bi bi-person-plus-fill"></i>Регистрация</a></li></Link>}
+                    {!activeUser && <Link href={{ pathname: "/auth" }} passHref><li><a style={{ cursor: 'pointer' }}><i className="bi bi-person-plus-fill"></i>Войти</a></li></Link>}
                     {activeUser && activeUser.user.company &&
                         <Link href={{ pathname: "/jobs/form" }} passHref>
                             <li>
