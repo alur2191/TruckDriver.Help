@@ -88,7 +88,7 @@ function AuthForm({ token }) {
             }
         } else {
             if (!checkedAgreement) {
-                setErrorMessage("Вы должны согласится с условиями пользовательского соглашения.")
+                setErrorMessage("Вы должны согласиться с условиями пользовательского соглашения.")
                 setTimeout(() => { setErrorMessage('') }, 10000)
                 return
             }
