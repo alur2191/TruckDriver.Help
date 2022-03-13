@@ -19,6 +19,8 @@ Logistics industry job posting full stack web application.
 
 # Environment variables
 
+**NEXTAUTH_URL** = URL to where the app is deployed
+
 **DATABASE_URL** = URL to PSQL DB
 
 **NEXT_PUBLIC_RECAPTCHA_SITE_KEY** = Recaptcha public site key here
