@@ -32,10 +32,10 @@ function Trailers() {
 
     return (
         <div className={classes.main}>
+            <p style={{ margin: 0, marginBottom: 5 }}>Укажите трейлеры, имеющиеся в компании. Если в вашей компании имеются трейлеры одинакового года, достаточно лишь один раз добавить тип и год трейлера.</p>
             {trailer.map((x, i) => {
                 return (
                     <div key={i} className={classes.trailerRow} >
-                        <p style={{ margin: 0, marginBottom: 5 }}>Укажите трейлеры имеющиеся в компании. Если в вашей компании имеются трейлеры одинакового года, достаточно лишь один раз добавить тип и год трейлера.</p>
                         <div style={{ backgroundColor: i % 2 !== 0 ? "#f7f7fc" : null }}>
                             <div>
                                 <label htmlFor={"trailer" + i}>Тип Трейлера</label>

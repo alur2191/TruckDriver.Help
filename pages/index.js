@@ -34,7 +34,7 @@ function Home({ jobs }) {
         {/* Beta Announcement */}
         <div className={classes.beta}>
           <h3>Бета-Тест</h3>
-          <p>Сайт находится в стадии бета-тестирования. Сообщения о неполадках, предложениях, а так-же по другим вопросам обращайтесь по электронной почте:  </p>
+          <p>Сайт находится в стадии бета-тестирования. Сообщения о неполадках, предложениях, а также по другим вопросам обращаться:  </p>
           <p><em>contact{'<'}собака{'>'}truckdriver.help</em></p>
         </div>
       </aside>
@@ -46,6 +46,11 @@ export async function getServerSideProps() {
   const prisma = new PrismaClient();
   // Fetch all posted jobs and include related items from Company table
   const jobs = await prisma.job.findMany({
+    orderBy: [
+      {
+        createdAt: 'desc',
+      },
+    ],
     include: {
       company: {
         include: {

@@ -65,7 +65,7 @@ function About() {
     }
     return (
         <div className={classes.main}>
-            <p style={{ margin: "0 0 15px 0" }}>Поля помеченные красной звездой (<span style={{ color: 'red' }}>*</span>) обязательны для заполнения.</p>
+            <p style={{ margin: "0 0 15px 0" }}>Поля, помеченные красной звездой (<span style={{ color: 'red' }}>*</span>) обязательны для заполнения.</p>
             <div className='form-row'>
                 <div>
                     <label htmlFor='name'>
@@ -103,7 +103,7 @@ function About() {
                 </div>
                 <div>
                     <div style={{ display: 'flex', alignItems: 'center', position: 'relative', width: '100%', gap: 3 }}>
-                        <Tooltip content="Номер USDOT служит уникальным идентификатором при сборе и мониторинге информации о безопасности компании, полученной в ходе аудитов, проверок соответствия, расследований аварий и проверок." direction="top">
+                        <Tooltip content="Номер USDOT служит уникальным идентификатором при сборе и мониторинге информации о безопасности компании, полученной в ходе аудитов, проверок соответствия, и расследований аварий." direction="top">
                             <i className="bi bi-question-circle-fill tooltip-icon"></i>
                         </Tooltip>
                         <label htmlFor='usdot'>USDOT</label>

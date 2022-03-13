@@ -45,7 +45,7 @@ function JobDetails({ job }) {
             <form onSubmit={sendReport}>
 
                 <h3>Пожаловаться На Пост</h3>
-                <p>Пожалуйтса подробнее опишите причину жалобы на пост компании <em>{'"'}{job.company.name}{'"'}</em>.</p>
+                <p>Пожалуйста, подробнее опишите причину жалобы на пост компании <em>{'"'}{job.company.name}{'"'}</em>.</p>
                 <div className='form-column'>
                     <label htmlFor='reason'>
                         <span className='required'>*</span>Причина:
