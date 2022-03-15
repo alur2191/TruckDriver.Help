@@ -5,7 +5,7 @@ import Footer from './footer'
 import { useContext } from "react";
 import UserContext from '../../store/user-context'
 import { useSession, signOut } from 'next-auth/client'
-
+import classes from './layout.module.css'
 
 function Layout(props) {
     const [session, loading] = useSession()
@@ -31,7 +31,7 @@ function Layout(props) {
                 <title>Работа в траковых компаниях для водителей с CDL.</title>
             </Head>
             <Navbar />
-            <main style={{ paddingBottom: 100 }}>
+            <main className={classes.main}>
                 {props.children}
             </main>
             {/* {notification.status && (
