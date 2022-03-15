@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import classes from "./form.module.css";
 import JobContext from "../../store/job-context";
 import Form from "../../components/jobs/form"
@@ -47,7 +47,7 @@ function JobForm() {
     return (
         <div className='container form'>
             <Head>
-                <title>Разместить Объявление - TruckDriver.Help</title>
+                <title>Разместить Объявление - TruckDriver.help</title>
             </Head>
             <form className={classes.main}>
                 <h3>Разместить Объявление</h3>

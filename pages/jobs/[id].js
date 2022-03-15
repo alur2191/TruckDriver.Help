@@ -10,7 +10,7 @@ function JobDetails({ job }) {
     return (
         <div className={classes.main}>
             <Head>
-                <title>{job.company.name} - TruckDriver.Help</title>
+                <title>{job.company.name} - TruckDriver.help</title>
             </Head>
             <div className="bg-primary">
                 <div className="listing">
