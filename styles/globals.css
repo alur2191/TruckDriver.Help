@@ -194,6 +194,7 @@ footer {
   position: absolute;
   left: 0px;
   top:50px;
+  min-height: 50px;
   width: 100%;
   z-index: 99;
   background-color: white;
@@ -205,7 +206,8 @@ footer {
 .mobile-nav > ul {
   display: flex;
   flex-direction: column;
-  gap: 10px;;
+  gap: 10px;
+  margin: 0px;
 }
 
 .mobile-nav > ul > li {
@@ -418,6 +420,7 @@ footer {
 
   .mobile-nav {
     display:block;
+    padding: 20px 0px;
   }
 
   .filter-advanced {
