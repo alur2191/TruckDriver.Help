@@ -20,3 +20,16 @@
 .footer > ul > li > a > i {   
     margin-right: 5px;
 }
+
+@media only screen and (max-width: 768px) {
+    .footer {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-around;
+        height: 120px;
+    }
+    
+    .footer > ul {   
+        margin: 0;
+    }
+}

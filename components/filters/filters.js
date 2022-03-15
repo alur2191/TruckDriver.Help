@@ -196,7 +196,7 @@ const Filters = () => {
                     </div>
                 </div>
                 <div>
-                    <i onClick={setAdvanced} className="bu-advanced bi bi-three-dots-vertical"></i>
+                    {/* <i onClick={setAdvanced} className="bu-advanced bi bi-three-dots-vertical"></i> */}
                     <div
                         onClick={submitData}
 
