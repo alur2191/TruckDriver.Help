@@ -4,4 +4,5 @@ module.exports = {
     locales: ["ru"],
     defaultLocale: "ru",
   },
+  outputFileTracing: false
 }
