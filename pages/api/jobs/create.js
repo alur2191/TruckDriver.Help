@@ -1,4 +1,6 @@
 import prisma from '../../../lib/prisma'
+import { Telegraf } from 'telegraf'
+const tg = new Telegraf(process.env.TG_BOT_TOKEN);
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async function (req, res) {
     try {
@@ -22,6 +24,17 @@ export default async function (req, res) {
                 }
             }
         })
+
+        const message = `Работа на <b>${req.body.type}</b>\n
+        ${pay ? `<b>Driver Pay:</b>$ ${pay.toFixed(2)}\n` : ""}
+        ${req.body.driverGross ? `<b>Driver Gross:</b> ${req.body.driverGross}% \n` : ''}
+        ${teamPay ? `<b>Team Pay:</b> $ ${teamPay.toFixed(2)} \n` : ''} 
+        ${req.body.teamDriverGross ? `<b>Team Gross:</b> ${req.body.teamDriverGross}% \n` : ''}
+        ${req.body.ownerGross ? `<b>Owner Gross:</b> ${req.body.ownerGross}% \n` : ''}
+        ${req.body.teamOwnerGross ? `<b>Owner Team Gross:</b> ${req.body.teamOwnerGross}% \n` : ''}
+        <a href="https://www.truckdriver.help/jobs/${job.id}">Узнать подробнее.</a>`
+
+        await tg.telegram.sendMessage("@truckdriverhelp", message, { parse_mode: 'HTML' })
 
         res.status(201)
         res.json({ job })
