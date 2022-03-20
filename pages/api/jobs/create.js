@@ -25,10 +25,11 @@ export default async function (req, res) {
             }
         })
 
+        // Sends a message to a Telegram Channel
         const message = `Работа на <b>${req.body.type}</b>\n
-        ${pay ? `<b>Driver Pay:</b>$ ${pay.toFixed(2)}\n` : ""}
+        ${pay ? `<b>Driver Pay:</b> $${pay.toFixed(2)}\n` : ""}
         ${req.body.driverGross ? `<b>Driver Gross:</b> ${req.body.driverGross}% \n` : ''}
-        ${teamPay ? `<b>Team Pay:</b> $ ${teamPay.toFixed(2)} \n` : ''} 
+        ${teamPay ? `<b>Team Pay:</b> $${teamPay.toFixed(2)} \n` : ''} 
         ${req.body.teamDriverGross ? `<b>Team Gross:</b> ${req.body.teamDriverGross}% \n` : ''}
         ${req.body.ownerGross ? `<b>Owner Gross:</b> ${req.body.ownerGross}% \n` : ''}
         ${req.body.teamOwnerGross ? `<b>Owner Team Gross:</b> ${req.body.teamOwnerGross}% \n` : ''}
