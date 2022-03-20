@@ -35,7 +35,7 @@ export default async function (req, res) {
         ${req.body.teamOwnerGross ? `<b>Owner Team Gross:</b> ${req.body.teamOwnerGross}% \n` : ''}
         <a href="https://www.truckdriver.help/jobs/${job.id}">Узнать подробнее.</a>`
 
-        await tg.telegram.sendMessage("@truckdriverhelp", message, { parse_mode: 'HTML' })
+        await tg.telegram.sendMessage("@truckdriverhelp", message, { parse_mode: 'HTML', disable_web_page_preview: true })
 
         res.status(201)
         res.json({ job })
