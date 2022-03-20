@@ -1,6 +1,7 @@
-import { Fragment, useContext } from 'react';
+import { useContext } from 'react';
 import JobContext from "../../store/job-context";
 import Router from "next/router";
+
 
 function JobListing({ path, companyId }) {
     const jobCtx = useContext(JobContext);
@@ -53,6 +54,8 @@ function JobListing({ path, companyId }) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body),
             });
+
+
             await Router.push(id ? `/jobs/${id}` : `/`);
         } catch (error) {
             console.error(error);
