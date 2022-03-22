@@ -1,196 +1,239 @@
 import { useState, useRef } from 'react';
-import { signIn } from 'next-auth/client'
+import { signIn } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import classes from './auth-form.module.css';
-import { useContext } from "react";
-import UserContext from '../../store/user-context'
-import Link from 'next/link'
+import { useContext } from 'react';
+import UserContext from '../../store/user-context';
+import Link from 'next/link';
 
 async function createUser(email, password) {
-    const response = await fetch('/api/auth/signup', {
-        method: 'POST',
-        body: JSON.stringify({ email, password }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
+  const response = await fetch('/api/auth/signup', {
+    method: 'POST',
+    body: JSON.stringify({ email, password }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
-    const data = await response.json()
+  const data = await response.json();
 
-    if (!response.ok) {
-        throw new Error(data.message || 'Something went wrong!')
-    }
+  if (!response.ok) {
+    throw new Error(data.message || 'Something went wrong!');
+  }
 
-    return data;
+  return data;
 }
 
 function AuthForm({ token }) {
-    const userCtx = useContext(UserContext)
-    const emailInputRef = useRef()
-    const resetEmailInputRef = useRef()
-    const passwordInputRef = useRef()
-    const { error } = useRouter().query;
-    const [isLogin, setIsLogin] = useState(true);
-    const [forgot, setForgot] = useState(false);
-    const [confirmMessage, setConfirmMessage] = useState('')
-    const [errorMessage, setErrorMessage] = useState('')
-    const [message, setMessage] = useState('')
-    const [checkedAgreement, setCheckedAgreement] = useState(false);
-    const router = useRouter()
+  const userCtx = useContext(UserContext);
+  const emailInputRef = useRef();
+  const resetEmailInputRef = useRef();
+  const passwordInputRef = useRef();
+  const { error } = useRouter().query;
+  const [isLogin, setIsLogin] = useState(true);
+  const [forgot, setForgot] = useState(false);
+  const [confirmMessage, setConfirmMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [message, setMessage] = useState('');
+  const [checkedAgreement, setCheckedAgreement] = useState(false);
+  const router = useRouter();
 
-    { error && console.log(error) }
-    function switchAuthModeHandler() {
-        setIsLogin((prevState) => !prevState);
-    }
+  {
+    error && console.log(error);
+  }
+  function switchAuthModeHandler() {
+    setIsLogin((prevState) => !prevState);
+  }
 
-    function switchForgotModeHandler() {
-        setForgot((prevState) => !prevState);
-    }
+  function switchForgotModeHandler() {
+    setForgot((prevState) => !prevState);
+  }
 
-    async function submitHandler(event) {
-        event.preventDefault()
+  async function submitHandler(event) {
+    event.preventDefault();
 
-        const enteredEmail = emailInputRef.current.value
-        const enteredPassword = passwordInputRef.current.value
+    const enteredEmail = emailInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
 
-        // optional: Add validation
+    // optional: Add validation
 
-        if (isLogin) {
-            const res = await signIn('credentials', {
-                redirect: false,
-                email: enteredEmail,
-                password: enteredPassword,
-                token: token ? token : null
-            })
+    if (isLogin) {
+      const res = await signIn('credentials', {
+        redirect: false,
+        email: enteredEmail,
+        password: enteredPassword,
+        token: token ? token : null,
+      });
 
-            if (!res.error) {
-                const user = await fetch(`/api/user/${enteredEmail}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(enteredEmail),
-                })
+      if (!res.error) {
+        const user = await fetch(`/api/user/${enteredEmail}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(enteredEmail),
+        });
 
-                user.json().then(body => userCtx.setUser({
-                    ...body
-                }));
+        user.json().then((body) =>
+          userCtx.setUser({
+            ...body,
+          })
+        );
 
-                // const notification = await fetch(`/api/notification/add`, {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json' },
-                //     body: JSON.stringify({ message: "Спасибо за регистрацию!" }),
-                // })
-                router.replace('/')
-            } else {
-                setErrorMessage(res.error);
-                setTimeout(() => {
-                    setErrorMessage('')
-                }, 10000)
-            }
-        } else {
-            if (!checkedAgreement) {
-                setErrorMessage("Вы должны согласиться с условиями пользовательского соглашения.")
-                setTimeout(() => { setErrorMessage('') }, 10000)
-                return
-            }
-            try {
-
-                const res = await createUser(enteredEmail, enteredPassword)
-                console.log(res.error);
-                if (!res.error) {
-                    setConfirmMessage('Письмо с подтверждением отправлено на почту')
-                    setTimeout(() => {
-                        setConfirmMessage('')
-                    }, 10000);
-                }
-            } catch (e) {
-                console.log(e);
-            }
+        // const notification = await fetch(`/api/notification/add`, {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({ message: "Спасибо за регистрацию!" }),
+        // })
+        router.replace('/');
+      } else {
+        setErrorMessage(res.error);
+        setTimeout(() => {
+          setErrorMessage('');
+        }, 10000);
+      }
+    } else {
+      if (!checkedAgreement) {
+        setErrorMessage(
+          'Вы должны согласиться с условиями пользовательского соглашения.'
+        );
+        setTimeout(() => {
+          setErrorMessage('');
+        }, 10000);
+        return;
+      }
+      try {
+        const res = await createUser(enteredEmail, enteredPassword);
+        console.log(res.error);
+        if (!res.error) {
+          setConfirmMessage('Письмо с подтверждением отправлено на почту');
+          setTimeout(() => {
+            setConfirmMessage('');
+          }, 10000);
         }
+      } catch (e) {
+        console.log(e);
+      }
     }
+  }
 
-    const sendEmail = async (event) => {
-        event.preventDefault()
+  const sendEmail = async (event) => {
+    event.preventDefault();
 
-        const resetEmail = resetEmailInputRef.current.value
+    const resetEmail = resetEmailInputRef.current.value;
 
-        try {
-            let body = {
-                email: resetEmail
-            };
-            await fetch(`/api/auth/sendReset`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(body),
-            });
-            setMessage('Ссылка на востановление аккаунта отправлена на указанную почту.')
-            setTimeout(() => {
-                setMessage('')
-            }, 10000)
-        } catch (error) {
-            console.error(error);
-        }
-
+    try {
+      let body = {
+        email: resetEmail,
+      };
+      await fetch(`/api/auth/sendReset`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      setMessage(
+        'Ссылка на востановление аккаунта отправлена на указанную почту.'
+      );
+      setTimeout(() => {
+        setMessage('');
+      }, 10000);
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-    return (
-        <div className={classes.auth}>
-            {!forgot ? <>
-
-                <h3>{isLogin ? 'Авторизация' : 'Регистрация'}</h3>
-                {token && <p style={{ color: 'red' }}>Войдите в аккаунт для завершения подтверждения!</p>}
-                <form onSubmit={submitHandler}>
-                    <div className={classes.control}>
-                        <label htmlFor='email'>Email</label>
-                        <input type='email' id='email' required ref={emailInputRef} />
-                    </div>
-                    <div className={classes.control}>
-                        <label htmlFor='password'>Пароль</label>
-                        <input type='password' id='password' required ref={passwordInputRef} />
-                    </div>
-                    {errorMessage && <span style={{ color: 'red' }}>{errorMessage}</span>}
-                    {confirmMessage && <span style={{ color: 'green' }}>{confirmMessage}</span>}
-                    {!isLogin &&
-                        <div >
-                            <input type="checkbox" id="agreement" name="agreement" onChange={e => setCheckedAgreement(e.target.checked)}></input>
-                            <label htmlFor="agreement">Cогласен с условиями пользовательского <Link href={{ pathname: `/help/terms` }}><a style={{ color: '#3C3C77', textDecoration: 'underline' }} target="_blank">соглашения</a></Link>.</label>
-                        </div>}
-                    <div className={classes.actions}>
-                        <button>{isLogin ? 'Войти' : 'Регистрация'}</button>
-                        <button
-                            type='button'
-                            className={classes.buttonText}
-                            onClick={switchAuthModeHandler}
-                        >
-                            {isLogin ? 'Регистрация' : 'Войти'}
-                        </button>
-                    </div>
-
-                </form>
-
-            </> :
-                <div className={classes.auth}>
-                    <form onSubmit={sendEmail}>
-                        <h3>Востановить Пароль</h3>
-                        <div className={classes.control}>
-                            <label htmlFor='resetEmail'>Email</label>
-                            <input type='email' id='resetEmail' required ref={resetEmailInputRef} />
-                        </div>
-                        {message && <span style={{ color: 'green' }}>{message}</span>}
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <button>Отправить</button>
-
-                        </div>
-                    </form>
-                </div>}
-            <div>
-                <button
-                    className={classes.buttonText}
-                    onClick={switchForgotModeHandler}
-                    type='button'>{!forgot ? 'Забыли пароль?' : 'Войти в аккаунт'}</button>
-
+  return (
+    <div className={classes.auth}>
+      {!forgot ? (
+        <>
+          <h3>{isLogin ? 'Авторизация' : 'Регистрация'}</h3>
+          {token && (
+            <p style={{ color: 'red' }}>
+              Войдите в аккаунт для завершения подтверждения!
+            </p>
+          )}
+          <form onSubmit={submitHandler}>
+            <div className={classes.control}>
+              <label htmlFor='email'>Email</label>
+              <input type='email' id='email' required ref={emailInputRef} />
             </div>
+            <div className={classes.control}>
+              <label htmlFor='password'>Пароль</label>
+              <input
+                type='password'
+                id='password'
+                required
+                ref={passwordInputRef}
+              />
+            </div>
+            {errorMessage && (
+              <span style={{ color: 'red' }}>{errorMessage}</span>
+            )}
+            {confirmMessage && (
+              <span style={{ color: 'green' }}>{confirmMessage}</span>
+            )}
+            {!isLogin && (
+              <div>
+                <input
+                  type='checkbox'
+                  id='agreement'
+                  name='agreement'
+                  onChange={(e) => setCheckedAgreement(e.target.checked)}
+                ></input>
+                <label htmlFor='agreement'>
+                  Cогласен с условиями пользовательского{' '}
+                  <Link href={{ pathname: `/help/terms` }}>
+                    <a
+                      style={{ color: '#3C3C77', textDecoration: 'underline' }}
+                      target='_blank'
+                    >
+                      соглашения
+                    </a>
+                  </Link>
+                  .
+                </label>
+              </div>
+            )}
+            <button>{isLogin ? 'Войти' : 'Регистрация'}</button>
+
+            <button
+              type='button'
+              className={classes.buttonText}
+              onClick={switchAuthModeHandler}
+            >
+              {isLogin ? 'Регистрация' : 'Войти'}
+            </button>
+          </form>
+        </>
+      ) : (
+        <div className={classes.auth}>
+          <form onSubmit={sendEmail}>
+            <h3>Востановить Пароль</h3>
+            <div className={classes.control}>
+              <label htmlFor='resetEmail'>Email</label>
+              <input
+                type='email'
+                id='resetEmail'
+                required
+                ref={resetEmailInputRef}
+              />
+            </div>
+            {message && <span style={{ color: 'green' }}>{message}</span>}
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <button>Отправить</button>
+            </div>
+          </form>
         </div>
-    );
+      )}
+      <div>
+        <button
+          className={classes.buttonText}
+          onClick={switchForgotModeHandler}
+          type='button'
+        >
+          {!forgot ? 'Забыли пароль?' : 'Войти в аккаунт'}
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default AuthForm;
