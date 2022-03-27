@@ -251,7 +251,6 @@ function AuthForm({ token }) {
                             <button>Отправить</button>
 
                         </div>
-                    </form>
                 </div>}
             <div>
                 <button
