@@ -72,8 +72,7 @@ export async function getServerSideProps(context) {
                 permanent: false,
             },
         };
-    }
-    if (!session.companyId) {
+    } else if (!session.companyId) {
         return {
             redirect: {
                 destination: '/company/form',

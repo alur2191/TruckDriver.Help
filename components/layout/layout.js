@@ -21,7 +21,6 @@ function Layout(props) {
         user.json().then(body => userCtx.setUser({
             ...body
         }));
-        console.log("ses", session);
     }
 
     session && !activeUser && loadUser()
