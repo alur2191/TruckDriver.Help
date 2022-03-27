@@ -251,6 +251,7 @@ function AuthForm({ token }) {
                             <button>Отправить</button>
 
                         </div>
+                     </form>
                 </div>}
             <div>
                 <button
@@ -259,7 +260,6 @@ function AuthForm({ token }) {
                     type='button'>{!forgot ? 'Забыли пароль?' : 'Войти в аккаунт'}</button>
 
             </div>
-          </form>
         </div>
       )}
       <div>
