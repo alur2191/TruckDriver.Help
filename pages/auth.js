@@ -24,7 +24,9 @@ function AuthPage() {
 
     return (
         <div className={classes.main}>
-            <AuthForm />
+            <div>
+                <AuthForm />
+            </div>
         </div>
     )
 }

@@ -22,6 +22,12 @@
     text-align: center;
 }
 
+.main iframe {
+    display: flex;
+    width: 500px;
+    height: 280px;
+}
+
 .body {
     display: flex;
     flex-direction: column;
@@ -140,4 +146,20 @@
         margin: 0 10px;
     }
 
+}
+
+
+@media screen and (max-width: 768px) {
+    .main iframe {
+        display: flex;
+        width: 100%;
+        height: 220px;
+    }
+
+    .head {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
 }
