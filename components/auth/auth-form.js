@@ -152,7 +152,7 @@ function AuthForm({ token }) {
                     {!isLogin &&
                         <div >
                             <input type="checkbox" id="agreement" name="agreement" onChange={e => setCheckedAgreement(e.target.checked)}></input>
-                            <label htmlFor="agreement">Cогласен с условиями пользовательского <Link href={{ pathname: `/help/terms` }}><a style={{ color: '#3C3C77', textDecoration: 'underline' }} target="_blank">соглашения</a></Link>.</label>
+                            <label htmlFor="agreement">Cогласен с условиями пользовательского <Link href={{ pathname: `/help/terms` }}><a style={{ color: '#3C3C77', textDecoration: 'underline' }} target="_blank" rel="noreferrer">соглашения</a></Link>.</label>
                         </div>}
                     <div className={classes.actions}>
                         <button>{isLogin ? 'Войти' : 'Регистрация'}</button>
