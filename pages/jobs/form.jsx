@@ -68,12 +68,19 @@ export async function getServerSideProps(context) {
     if (!session) {
         return {
             redirect: {
-                destination: '/',
+                destination: '/auth',
                 permanent: false,
             },
         };
     }
-
+    if (!session.companyId) {
+        return {
+            redirect: {
+                destination: '/company/form',
+                permanent: false,
+            },
+        };
+    }
     return {
         props: { session },
     };

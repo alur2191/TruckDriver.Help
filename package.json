@@ -9,12 +9,14 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.74",
     "@prisma/client": "^3.5.0",
     "@sendgrid/mail": "^7.6.1",
     "babel-plugin-superjson-next": "^0.4.2",
     "bcryptjs": "^2.4.3",
     "bootstrap-icons": "^1.7.2",
     "jsonwebtoken": "^8.5.1",
+    "minimist": "^1.2.6",
     "next": "^12.1.0",
     "next-auth": "^3.29.0",
     "react": "17.0.2",

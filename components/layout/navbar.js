@@ -91,12 +91,19 @@ function Navbar() {
 
     return (
         <nav className={classes.navbar} >
+
             <Link href="/" passHref>
                 <a>
                     <Image src="/images/logo.png" alt="" width={109} height={40} />
                 </a>
             </Link>
             <ul>
+
+                <li>
+                    <Link href="https://academy.truckdriver.help" passHref={true}>
+                        <a><i className="bi bi-file-text"></i>CDL Тесты</a>
+                    </Link>
+                </li>
                 {!activeUser && <Link href={{ pathname: "/auth" }} passHref><li className={classes.register}><a style={{ cursor: 'pointer' }}><i className="bi bi-person-fill"></i>Войти</a></li></Link>}
                 {activeUser && activeUser.user && activeUser.user.company &&
                     <li>
@@ -129,19 +136,28 @@ function Navbar() {
             <i onClick={() => setMobile(!mobile)} className="bi bi-list bu-m-menu"></i>
             {mobile && <dir className="mobile-nav">
                 <ul>
+                    <li>
+                        <Link href="https://academy.truckdriver.help" passHref={true}>
+
+                            <a><i className="bi bi-file-text"></i>CDL Тесты</a>
+
+                        </Link>
+                    </li>
                     {!activeUser && <Link href={{ pathname: "/auth" }} passHref><li><a style={{ cursor: 'pointer' }}><i className="bi bi-person-plus-fill"></i>Регистрация</a></li></Link>}
                     {activeUser && activeUser.user.company &&
-                        <Link href={{ pathname: "/jobs/form" }} passHref>
-                            <li>
+
+                        <li style={{ cursor: 'pointer' }}>
+                            <Link href={{ pathname: "/jobs/form" }} passHref>
                                 <a><i className="bi bi-plus-circle-fill"></i>Добавить Объявление</a>
-                            </li>
-                        </Link>}
-                    {activeUser && !activeUser.user.company && !activeUser.user.activated &&
-                        <Link href={{ pathname: "/company/form" }} passHref>
-                            <li>
+                            </Link>
+                        </li>
+                    }
+                    {activeUser && activeUser.user && !activeUser.user.company && activeUser.user.activated &&
+                        <li>
+                            <Link href={{ pathname: "/company/form" }} passHref>
                                 <a><i className="bi bi-briefcase-fill"></i>Зарегистрировать Компанию</a>
-                            </li>
-                        </Link>}
+                            </Link>
+                        </li>}
                     {activeUser && (
                         <li style={{ position: 'relative' }}>
                             <a style={{ cursor: 'pointer' }} onClick={() => toggleUserDropdown()}><i className="bi bi-person-fill"></i>{activeUser.user.email}</a>

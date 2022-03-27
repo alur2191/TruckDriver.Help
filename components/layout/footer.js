@@ -7,9 +7,9 @@ function Navbar() {
         <footer className={classes.footer}>
             <span>© {new Date().getFullYear()} TruckDriver.help</span>
             <ul>
-                <li>
-                    <Link href="https://academy.truckdriver.help" passHref={true}>
-                        <a><i className="bi bi-file-text"></i>CDL Тесты</a>
+                <li style={{ cursor: 'pointer' }}>
+                    <Link href="https://t.me/truckdriverhelp">
+                        <a><i className="bi bi-telegram"></i>Телеграм</a>
                     </Link>
                 </li>
                 <li>
@@ -18,7 +18,7 @@ function Navbar() {
                     </Link>
                 </li>
             </ul>
-        </footer>
+        </footer >
     )
 }
 
