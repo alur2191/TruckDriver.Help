@@ -4,11 +4,11 @@ import Navbar from './navbar'
 import Footer from './footer'
 import { useContext } from "react";
 import UserContext from '../../store/user-context'
-import { useSession, signOut } from 'next-auth/client'
+import { useSession } from 'next-auth/client'
 import classes from './layout.module.css'
 
 function Layout(props) {
-    const [session, loading] = useSession()
+    const [session] = useSession()
     const userCtx = useContext(UserContext)
 
     const activeUser = userCtx.user;
@@ -21,6 +21,7 @@ function Layout(props) {
         user.json().then(body => userCtx.setUser({
             ...body
         }));
+        console.log("ses", session);
     }
 
     session && !activeUser && loadUser()

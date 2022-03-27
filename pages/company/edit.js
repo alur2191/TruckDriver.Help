@@ -37,7 +37,13 @@ function Edit({ company }) {
         e.preventDefault();
         try {
             const id = session.user.companyId
-            const body = { about, parking, additional, id };
+            let uppercaseName = about.name
+            const filteredName = uppercaseName.replace(
+                /(\w)(\w*)/g,
+                (_, firstChar, rest) => firstChar + rest.toLowerCase()
+            );
+            const body = { about, parking, additional, id, filteredName };
+
             await fetch("/api/company/edit", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

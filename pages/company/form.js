@@ -52,7 +52,13 @@ const Form = () => {
             filterList(truckList)
             filterList(trailerList)
 
-            const body = { name, mcnumber, usdot, phone, website, city, state, zip, dispatch24, insurance, deposit, email, filteredTruckList, filteredTrailerList, parkingList }
+            let uppercaseName = name
+            const filteredName = uppercaseName.replace(
+                /(\w)(\w*)/g,
+                (_, firstChar, rest) => firstChar + rest.toLowerCase()
+            );
+
+            const body = { filteredName, mcnumber, usdot, phone, website, city, state, zip, dispatch24, insurance, deposit, email, filteredTruckList, filteredTrailerList, parkingList }
             const newCompany = await fetch("/api/company/create", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

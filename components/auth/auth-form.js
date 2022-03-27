@@ -205,20 +205,60 @@ function AuthForm({ token }) {
         </>
       ) : (
         <div className={classes.auth}>
-          <form onSubmit={sendEmail}>
-            <h3>Востановить Пароль</h3>
-            <div className={classes.control}>
-              <label htmlFor='resetEmail'>Email</label>
-              <input
-                type='email'
-                id='resetEmail'
-                required
-                ref={resetEmailInputRef}
-              />
-            </div>
-            {message && <span style={{ color: 'green' }}>{message}</span>}
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <button>Отправить</button>
+            {!forgot ? <>
+
+                <h3>{isLogin ? 'Авторизация' : 'Регистрация'}</h3>
+                {token && <p style={{ color: 'red' }}>Войдите в аккаунт для завершения подтверждения!</p>}
+                <form onSubmit={submitHandler}>
+                    <div className={classes.control}>
+                        <label htmlFor='email'>Email</label>
+                        <input type='email' id='email' required ref={emailInputRef} />
+                    </div>
+                    <div className={classes.control}>
+                        <label htmlFor='password'>Пароль</label>
+                        <input type='password' id='password' required ref={passwordInputRef} />
+                    </div>
+                    {errorMessage && <span style={{ color: 'red' }}>{errorMessage}</span>}
+                    {confirmMessage && <span style={{ color: 'green' }}>{confirmMessage}</span>}
+                    {!isLogin &&
+                        <div >
+                            <input type="checkbox" id="agreement" name="agreement" onChange={e => setCheckedAgreement(e.target.checked)}></input>
+                            <label htmlFor="agreement">Cогласен с условиями пользовательского <Link href={{ pathname: `/help/terms` }}><a style={{ color: '#3C3C77', textDecoration: 'underline' }} target="_blank" rel="noreferrer">соглашения</a></Link>.</label>
+                        </div>}
+                    <div className={classes.actions}>
+                        <button>{isLogin ? 'Войти' : 'Регистрация'}</button>
+                        <button
+                            type='button'
+                            className={classes.buttonText}
+                            onClick={switchAuthModeHandler}
+                        >
+                            {isLogin ? 'Регистрация' : 'Войти'}
+                        </button>
+                    </div>
+
+                </form>
+
+            </> :
+                <div className={classes.auth}>
+                    <form onSubmit={sendEmail}>
+                        <h3>Востановить Пароль</h3>
+                        <div className={classes.control}>
+                            <label htmlFor='resetEmail'>Email</label>
+                            <input type='email' id='resetEmail' required ref={resetEmailInputRef} />
+                        </div>
+                        {message && <span style={{ color: 'green' }}>{message}</span>}
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            <button>Отправить</button>
+
+                        </div>
+                    </form>
+                </div>}
+            <div>
+                <button
+                    className={classes.buttonText}
+                    onClick={switchForgotModeHandler}
+                    type='button'>{!forgot ? 'Забыли пароль?' : 'Войти в аккаунт'}</button>
+
             </div>
           </form>
         </div>

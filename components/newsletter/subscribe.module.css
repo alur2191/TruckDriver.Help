@@ -1,0 +1,43 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+.main :nth-child(2){
+    display: flex;
+}
+.main input{
+    height: 40px;
+    border: 0;
+    background-color: rgb(236, 236, 236);
+    padding: 0 10px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.main button {
+    width: 150px;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+
+@media screen and (max-width: 768px) {
+    .main :nth-child(2) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px
+    }
+    .main input,.main button{
+        border-radius: 5px;
+    }
+
+    
+    
+    
+}
