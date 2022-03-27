@@ -15,7 +15,7 @@ function Home() {
       <div className={classes.body}>
         <div className={classes.head}>
           <h1>Портал Логистической Индустрии США</h1>
-          <Link href="/jobs">
+          <Link href={{ pathname: "/jobs" }}>
             <div>
               <i className="bi bi-truck-flatbed"></i>
               <h2>Искать Работу</h2>
@@ -23,7 +23,7 @@ function Home() {
                 помощью расширенных фильтров</p>
             </div>
           </Link>
-          <Link href="/jobs/form">
+          <Link href={{ pathname: "/jobs/form" }}>
             <div>
               <i className="bi bi-card-list"></i>
               <h2>Подать Объявление</h2>

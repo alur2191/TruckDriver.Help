@@ -6,7 +6,7 @@ import Submit from "../../components/jobs/submit"
 import UserContext from "../../store/user-context";
 import { getSession } from "next-auth/client"
 import Head from 'next/head'
-
+import Router from 'next/router';
 
 function JobForm() {
     const jobCtx = useContext(JobContext);
@@ -24,7 +24,9 @@ function JobForm() {
     } = jobCtx;
 
     const activeUser = userCtx.user;
-
+    if (!activeUser) {
+        Router.push("/company/form")
+    }
     useEffect(() => {
         // Reset the job state
         driver && setDriver(false)
@@ -72,15 +74,9 @@ export async function getServerSideProps(context) {
                 permanent: false,
             },
         };
-    } else if (!session.companyId) {
-        return {
-            redirect: {
-                destination: '/company/form',
-                permanent: false,
-            },
-        };
     }
     return {
         props: { session },
     };
+
 }
