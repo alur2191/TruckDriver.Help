@@ -24,9 +24,7 @@ function JobForm() {
     } = jobCtx;
 
     const activeUser = userCtx.user;
-    if (!activeUser) {
-        Router.push("/company/form")
-    }
+
     useEffect(() => {
         // Reset the job state
         driver && setDriver(false)
@@ -43,21 +41,23 @@ function JobForm() {
             teamOwnerGross: null
         })
     }, []);
-
-
-
-    return (
-        <div className='container form'>
-            <Head>
-                <title>Разместить Объявление - TruckDriver.help</title>
-            </Head>
-            <form className={classes.main}>
-                <h3>Разместить Объявление</h3>
-                <Form />
-                <Submit path='create' companyId={activeUser ? activeUser.user.company.id : null} />
-            </form>
-        </div>
-    );
+    if (!activeUser.user.company) {
+        Router.push(`/company/form?redirect=job`)
+        return null
+    } else {
+        return (
+            <div className='container form'>
+                <Head>
+                    <title>Разместить Объявление - TruckDriver.help</title>
+                </Head>
+                <form className={classes.main}>
+                    <h3>Разместить Объявление</h3>
+                    <Form />
+                    <Submit path='create' companyId={activeUser ? activeUser.user.company.id : null} />
+                </form>
+            </div>
+        );
+    }
 }
 
 export default JobForm;

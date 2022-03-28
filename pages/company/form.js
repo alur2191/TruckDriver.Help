@@ -9,16 +9,16 @@ import Trucks from '../../components/forms/company/trucksForm'
 import Trailers from '../../components/forms/company/trailersForm'
 import Parking from '../../components/forms/company/parking'
 import Additional from '../../components/forms/company/additional'
+import { useRouter } from "next/router";
 
 const Form = () => {
     const [session] = useSession()
-
+    const { query } = useRouter();
     const companyCtx = useContext(CompanyContext)
     const userCtx = useContext(UserContext)
     const { page, setPage, about, additional, setValidation } = companyCtx
     // Section titles
     const titles = ["О Компании", "Данные о Траках", "Данные о Трейлерах", "Парковочные Места", "Дополнительная Информация"]
-
     const submitData = async (e) => {
 
         e.preventDefault();
@@ -75,7 +75,9 @@ const Form = () => {
                     method: "GET",
                     credentials: "include"
                 })
-                if (sessionUpdate.ok) { Router.push('/') }
+                if (sessionUpdate.ok) {
+                    query.redirect ? Router.push('/jobs/form') : Router.push('/')
+                }
             }
 
         } catch (error) {

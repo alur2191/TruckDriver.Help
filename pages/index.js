@@ -23,7 +23,7 @@ function Home() {
                 помощью расширенных фильтров</p>
             </div>
           </Link>
-          <Link href={{ pathname: "/jobs/form" }}>
+          <Link href={{ pathname: `/jobs/form` }}>
             <div>
               <i className="bi bi-card-list"></i>
               <h2>Подать Объявление</h2>
