@@ -6,6 +6,7 @@ import { useContext } from "react";
 import UserContext from '../../store/user-context'
 import { useSession } from 'next-auth/client'
 import classes from './layout.module.css'
+import ReactPixel from 'react-facebook-pixel';
 
 function Layout(props) {
     const [session] = useSession()
