@@ -25,6 +25,7 @@ function Layout(props) {
 
     session && !activeUser && loadUser()
 
+    ReactPixel.pageView(); // For tracking page vie
     return (
         <Fragment>
             <Head>

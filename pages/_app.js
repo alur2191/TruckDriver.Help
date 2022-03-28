@@ -1,9 +1,9 @@
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { Provider as AuthProvider } from 'next-auth/client'
 import '../styles/globals.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import Layout from '../components/layout/layout'
-import { useEffect } from "react";
-import { useRouter } from "next/router";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { SearchContextProvider } from '../store/search-context';
 import { UserContextProvider } from '../store/user-context';
@@ -24,7 +24,16 @@ function MyApp({ Component, pageProps }) {
         cookieFlags: 'SameSite=None; Secure'
       })
     }
-    router.events.on('routeChangeComplete', handleRouteChange)
+    import('react-facebook-pixel')
+      .then((x) => x.default)
+      .then((ReactPixel) => {
+        ReactPixel.init(`${process.env.NEXT_PUBLIC_FACEBOOK_ID}`) // facebookPixelId
+        ReactPixel.pageView()
+      })
+    router.events.on('routeChangeComplete', () => {
+      ReactPixel.pageView()
+      handleRouteChange
+    })
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
