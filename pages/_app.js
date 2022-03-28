@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
 import { Provider as AuthProvider } from 'next-auth/client'
 import '../styles/globals.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import Layout from '../components/layout/layout'
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { SearchContextProvider } from '../store/search-context';
 import { UserContextProvider } from '../store/user-context';
@@ -15,6 +15,7 @@ const queryClient = new QueryClient()
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
+
 
   useEffect(() => {
     // Google analytics related function that handles route changes
@@ -29,10 +30,14 @@ function MyApp({ Component, pageProps }) {
       .then((ReactPixel) => {
         ReactPixel.init(`${process.env.NEXT_PUBLIC_FACEBOOK_ID}`) // facebookPixelId
         ReactPixel.pageView()
+
+        router.events.on('routeChangeComplete', () => {
+
+        })
       })
     router.events.on('routeChangeComplete', () => {
-      ReactPixel.pageView()
       handleRouteChange
+      ReactPixel.pageView()
     })
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange)
