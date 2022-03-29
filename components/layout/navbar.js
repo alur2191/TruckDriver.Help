@@ -137,7 +137,7 @@ function Navbar() {
 
                         <li style={{ cursor: 'pointer' }}>
                             <Link href={{ pathname: "/jobs/form" }} passHref>
-                                <a><i className="bi bi-plus-circle-fill"></i>Добавить Объявление</a>
+                                <a><i className="bi bi-plus-circle-fill"></i>Подать Объявление</a>
                             </Link>
                         </li>
                     }

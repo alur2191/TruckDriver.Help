@@ -58,7 +58,7 @@ function Home() {
             <AuthForm />
           </div> :
           activeUser && activeUser.user.company ?
-            <Link href={{ pathname: "/jobs/form" }} passHref><button>Добавить Объявление</button></Link> :
+            <Link href={{ pathname: "/jobs/form" }} passHref><button>Подать Объявление</button></Link> :
             activeUser && activeUser.user && !activeUser.user.company && activeUser.user.activated &&
             <Link href={{ pathname: "/company/form" }} passHref><button>Зарегистрировать Компанию</button></Link>
         }
