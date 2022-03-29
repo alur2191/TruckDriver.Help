@@ -12,6 +12,7 @@
     border: 0;
     background-color: rgb(236, 236, 236);
     padding: 0 10px;
+    border-radius: 0px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }

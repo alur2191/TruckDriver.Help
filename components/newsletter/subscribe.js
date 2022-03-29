@@ -41,6 +41,7 @@ export default function Subscribe() {
                 <label style={{ marginLeft: 5 }} htmlFor="email-input">{'Email:'}</label>
                 <div>
                     <input
+
                         id="email-input"
                         name="email"
                         placeholder="ваш@email.com"
