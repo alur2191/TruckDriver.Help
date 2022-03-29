@@ -65,31 +65,31 @@
 
 
 .head {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.head > div {
     display: grid;
-    grid-template-areas: 
-    "title title"
-    "option1 option2";
-    gap: 25px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.head > div > a > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 250px;
     text-align: center;
 }
 
-.head > :first-child {
-    grid-area: title;
-}
-
-.head > :nth-child(2) {
-    grid-area: option1;
-}
-
-.head > :nth-child(3) {
-    grid-area: option2;
-}
 
 .head i {
     font-size: 60px;
 }
 
-.head > a > div {
+.head > div > a > div {
     background-color: #EEEEF5;
     padding: 25px;
     display: flex;
@@ -107,7 +107,7 @@
             user-select: none;
 }
 
-.head > a > div:hover {
+.head > div > a > div:hover {
     background-color: #cfcfda;
 }
 

@@ -20,25 +20,26 @@ function Home() {
       <div className={classes.body}>
         <div className={classes.head}>
           <h1>Портал Логистической Индустрии США</h1>
-          <Link href={{ pathname: "/jobs" }}>
-            <a>
-              <div>
-                <i className="bi bi-truck-flatbed"></i>
-                <h2>Искать Работу</h2>
-                <p>Поиск работы в траковых компаниях с
-                  помощью расширенных фильтров</p>
-              </div>
-            </a>
-          </Link>
-          <Link href={{ pathname: `/jobs/form` }}>
-            <a>
-              <div>
-                <i className="bi bi-card-list"></i>
-                <h2>Подать Объявление</h2>
-                <p>Траковые компании могут бесплатно размещать объявления на сайте.</p>
-              </div>
-            </a>
-          </Link>
+          <div>
+            <Link href={{ pathname: "/jobs" }}>
+              <a>
+                <div>
+                  <i className="bi bi-truck-flatbed"></i>
+                  <h2>Искать Работу</h2>
+                  <p>Поиск работы в траковых компаниях с помощью расширенных фильтров</p>
+                </div>
+              </a>
+            </Link>
+            <Link href={{ pathname: `/jobs/form` }}>
+              <a>
+                <div>
+                  <i className="bi bi-card-list"></i>
+                  <h2>Подать Объявление</h2>
+                  <p>Бесплатное размещение объявлений для траковых компаний</p>
+                </div>
+              </a>
+            </Link>
+          </div>
         </div>
         <div>
           <h1>О Проекте TruckDriver.help</h1>
