@@ -69,28 +69,31 @@ function Edit({ dbJob }) {
             <form className={classes.main} >
                 <h3>Редактировать Объявление</h3>
                 <Form />
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
+                    <Submit path="edit" />
 
-                <Submit path="edit" />
-
-                {confirm ? (
-                    <div>
-                        {/* Confirm that user wants to delete a job post */}
-                        <p>Вы уверены что хотите удалить объявление?</p>
-                        <input type='button' value='Да' onClick={deletePost} />{" "}
+                    {confirm ? (
+                        <div>
+                            {/* Confirm that user wants to delete a job post */}
+                            <p style={{ margin: 0, marginBottom: 10 }}>Вы уверены что хотите удалить объявление?</p>
+                            <div style={{ display: 'flex', justifyContent: 'center', gap: 10 }}>
+                                <input type='button' value='Да' onClick={deletePost} />{" "}
+                                <input
+                                    type='button'
+                                    value='Нет'
+                                    onClick={() => setConfirm(false)}
+                                />
+                            </div>
+                        </div>
+                    ) : (
                         <input
+                            className="btn-delete"
                             type='button'
-                            value='Нет'
-                            onClick={() => setConfirm(false)}
+                            value='Удалить'
+                            onClick={() => setConfirm(true)}
                         />
-                    </div>
-                ) : (
-                    <input
-                        className="btn-delete"
-                        type='button'
-                        value='Удалить'
-                        onClick={() => setConfirm(true)}
-                    />
-                )}
+                    )}
+                </div>
             </form>
         </div>
     );

@@ -1,14 +1,19 @@
 
+import { useContext } from "react";
 import classes from "./index.module.css";
 import AuthForm from "../components/auth/auth-form";
 import { useSession } from 'next-auth/client'
 // import AdvancedSearch from "../components/filters/advancedSearch"
 import Support from "../components/ui/support"
 import Link from 'next/link'
+import UserContext from '../store/user-context'
+
 
 function Home() {
   const [session] = useSession()
 
+  const userCtx = useContext(UserContext)
+  const activeUser = userCtx.user;
   return (
     <div className={classes.main}>
       {/*Display list of all available jobs*/}
@@ -16,19 +21,23 @@ function Home() {
         <div className={classes.head}>
           <h1>Портал Логистической Индустрии США</h1>
           <Link href={{ pathname: "/jobs" }}>
-            <div>
-              <i className="bi bi-truck-flatbed"></i>
-              <h2>Искать Работу</h2>
-              <p>Поиск работы в траковых компаниях с
-                помощью расширенных фильтров</p>
-            </div>
+            <a>
+              <div>
+                <i className="bi bi-truck-flatbed"></i>
+                <h2>Искать Работу</h2>
+                <p>Поиск работы в траковых компаниях с
+                  помощью расширенных фильтров</p>
+              </div>
+            </a>
           </Link>
           <Link href={{ pathname: `/jobs/form` }}>
-            <div>
-              <i className="bi bi-card-list"></i>
-              <h2>Подать Объявление</h2>
-              <p>Траковые компании могут бесплатно размещать объявления на сайте.</p>
-            </div>
+            <a>
+              <div>
+                <i className="bi bi-card-list"></i>
+                <h2>Подать Объявление</h2>
+                <p>Траковые компании могут бесплатно размещать объявления на сайте.</p>
+              </div>
+            </a>
           </Link>
         </div>
         <div>
@@ -44,9 +53,15 @@ function Home() {
         {/* <AdvancedSearch /> */}
 
         {/* Auth Form */}
-        {!session && <div>
-          <AuthForm />
-        </div>}
+        {!session ?
+          <div>
+            <AuthForm />
+          </div> :
+          activeUser && activeUser.user.company ?
+            <Link href={{ pathname: "/jobs/form" }} passHref><button>Добавить Объявление</button></Link> :
+            activeUser && activeUser.user && !activeUser.user.company && activeUser.user.activated &&
+            <Link href={{ pathname: "/company/form" }} passHref><button>Зарегистрировать Компанию</button></Link>
+        }
         {/* Beta Announcement */}
         <div className={classes.beta}>
           <h3>Бета-Тест</h3>
@@ -54,7 +69,7 @@ function Home() {
           <p><em>contact{'<'}собака{'>'}truckdriver.help</em></p>
         </div>
       </aside>
-    </div>
+    </div >
   );
 }
 

@@ -89,7 +89,7 @@
     font-size: 60px;
 }
 
-.head > div {
+.head > a > div {
     background-color: #EEEEF5;
     padding: 25px;
     display: flex;
@@ -107,7 +107,7 @@
             user-select: none;
 }
 
-.head > div:hover {
+.head > a > div:hover {
     background-color: #cfcfda;
 }
 
@@ -164,7 +164,7 @@
         text-align: center;
     }
 
-    .head > div {
+    .head > a > div {
         max-width: 330px;
     }
 }

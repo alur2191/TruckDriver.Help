@@ -1,4 +1,4 @@
-
+import Link from "next/link"
 import classes from "./jobs.module.css";
 import JobListing from "../components/jobs/jobListing";
 import Filters from "../components/filters/filters";
@@ -6,11 +6,16 @@ import AuthForm from "../components/auth/auth-form";
 import { useSession } from 'next-auth/client'
 // import AdvancedSearch from "../components/filters/advancedSearch"
 import { PrismaClient } from "@prisma/client";
+import { useContext } from "react";
+import UserContext from '../store/user-context'
+
 
 
 function Jobs({ jobs }) {
   const [session] = useSession()
 
+  const userCtx = useContext(UserContext)
+  const activeUser = userCtx.user;
   return (
     <div className={classes.main}>
       {/* Display list of all available jobs */}
@@ -28,9 +33,15 @@ function Jobs({ jobs }) {
         {/* <AdvancedSearch /> */}
 
         {/* Auth Form */}
-        {!session && <div>
-          <AuthForm />
-        </div>}
+        {!session ?
+          <div>
+            <AuthForm />
+          </div> :
+          activeUser && activeUser.user.company ?
+            <Link href={{ pathname: "/jobs/form" }} passHref><button>Добавить Объявление</button></Link> :
+            activeUser && activeUser.user && !activeUser.user.company && activeUser.user.activated &&
+            <Link href={{ pathname: "/company/form" }} passHref><button>Зарегистрировать Компанию</button></Link>
+        }
         {/* Beta Announcement */}
         <div className={classes.beta}>
           <h3>Бета-Тест</h3>

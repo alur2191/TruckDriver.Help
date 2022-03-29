@@ -105,18 +105,7 @@ function Navbar() {
                     </Link>
                 </li>
                 {!activeUser && <Link href={{ pathname: "/auth" }} passHref><li className={classes.register}><a style={{ cursor: 'pointer' }}><i className="bi bi-person-fill"></i>Войти</a></li></Link>}
-                {activeUser && activeUser.user && activeUser.user.company &&
-                    <li>
-                        <Link href={{ pathname: "/jobs/form" }} passHref>
-                            <a><i className="bi bi-plus-circle-fill"></i>Добавить Объявление</a>
-                        </Link>
-                    </li>}
-                {activeUser && activeUser.user && !activeUser.user.company && activeUser.user.activated &&
-                    <li>
-                        <Link href={{ pathname: "/company/form" }} passHref>
-                            <a><i className="bi bi-briefcase-fill"></i>Зарегистрировать Компанию</a>
-                        </Link>
-                    </li>}
+
                 {activeUser && (
                     <li style={{ position: 'relative' }}>
                         <a style={{ cursor: 'pointer' }} onClick={() => toggleUserDropdown()}><i className="bi bi-person-fill"></i>{activeUser.user.email}</a>
