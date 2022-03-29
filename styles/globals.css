@@ -156,6 +156,11 @@ footer {
   text-decoration: underline;
 }
 
+.btn-delete {
+  background-color: #D34541 !important;
+  width: 170px;
+}
+
 .btn-remove{
   display: flex;
   flex-direction: column;

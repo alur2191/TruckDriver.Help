@@ -85,6 +85,7 @@ function Edit({ dbJob }) {
                     </div>
                 ) : (
                     <input
+                        className="btn-delete"
                         type='button'
                         value='Удалить'
                         onClick={() => setConfirm(true)}

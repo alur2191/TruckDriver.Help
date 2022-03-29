@@ -30,15 +30,11 @@ function MyApp({ Component, pageProps }) {
       .then((ReactPixel) => {
         ReactPixel.init(`${process.env.NEXT_PUBLIC_FACEBOOK_ID}`) // facebookPixelId
         ReactPixel.pageView()
-
         router.events.on('routeChangeComplete', () => {
-
+          ReactPixel.pageView()
+          handleRouteChange
         })
       })
-    router.events.on('routeChangeComplete', () => {
-      handleRouteChange
-      ReactPixel.pageView()
-    })
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
