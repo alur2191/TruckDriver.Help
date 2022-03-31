@@ -1,6 +1,5 @@
 
 import * as fs from "fs";
-import General from '../components/quiz/questions/general.json'
 const Sitemap = () => {
   return null;
 };
@@ -26,13 +25,14 @@ export const getServerSideProps = async ({ res }) => {
 
 
 
-  const dynamicPaths = General.quiz.map((question, i) => {
+  // const dynamicPaths = General.quiz.map((question, i) => {
 
-    return `${process.env.NEXT_PUBLIC_BASE_URL}/quiz/general/${i}`
+  //   return `${process.env.NEXT_PUBLIC_BASE_URL}/quiz/general/${i}`
 
-  })
+  // })
+  const allPaths = [...staticPaths];
 
-  const allPaths = [...staticPaths, ...dynamicPaths];
+  // const allPaths = [...staticPaths, ...dynamicPaths];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
