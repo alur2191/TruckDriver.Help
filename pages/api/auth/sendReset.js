@@ -28,14 +28,22 @@ export default async function (req, res) {
                 // to: email,
                 to: email,
                 from: "noreply@truckdriver.help",
-                subject: `Востановить пароль.`,
+                subject: `Password reset.`,
                 html: `<div>
                 <p>Для востановления доступа на сайт пройдите по ссылке.</p>
                 <p><a href="https://www.truckdriver.help/user/reset-password/${token}">https://www.truckdriver.help/user/reset-password/${token}</a></p>
                 <p>Ссылка активна на 24 часа.</p>
 
                 <p>Если Вы получили это письмо по ошибке, просто удалите его. Вы не будете подписаны на нашу рассылку если кликните по указанной ссылке.</p>
-                
+                <hr></hr>
+                <p>To restore access to the site, follow the link.</p>
+                <p><a href="https://www.truckdriver.help/user/reset-password/${token}">https://www.truckdriver.help/user/reset-password/${token} </a></p>
+                <p>Link is active for 24 hours.</p>
+
+                <p>If you received this email in error, just delete it. You will not be subscribed to our newsletter if you click on the link provided.</p>
+            
+                </div>
+
                 </div>`,
             });
         } catch (error) {

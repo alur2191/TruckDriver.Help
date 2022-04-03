@@ -49,16 +49,24 @@ export default async function (req, res) {
             // to: email,
             to: email,
             from: "noreply@truckdriver.help",
-            subject: `Письмо с подтверждением.`,
+            subject: `Confirmation Email.`,
             html: `<div>
-            <p>Здравствуйте, </p>
-            <p>Некий пользователь сайта www.TruckDriver.help указал Вашу электронную почту при регистрации.</p>
-            <p>Для того чтобы активировать аккаунт необходимо подтвердить электронную почту нажав на ссылку.</p>
-            <p><a href="https://www.truckdriver.help/user/verify/${token}">https://www.truckdriver.help/user/verify/${token}</a></p>
-            <p>Ссылка активна на 24 часа.</p>
-            
-            <p>Если Вы получили это письмо по ошибке, просто удалите его. Вы не будете подписаны на нашу рассылку если кликните по указанной ссылке.</p>
-            
+                <p>Здравствуйте, </p>
+                <p>Некий пользователь сайта www.TruckDriver.help указал Вашу электронную почту при регистрации.</p>
+                <p>Для того чтобы активировать аккаунт необходимо подтвердить электронную почту нажав на ссылку.</p>
+                <p><a href="https://www.truckdriver.help/user/verify/${token}">https://www.truckdriver.help/user/verify/${token}</a></p>
+                <p>Ссылка активна на 24 часа.</p>
+                
+                <p>Если Вы получили это письмо по ошибке, просто удалите его. Вы не будете подписаны на нашу рассылку если кликните по указанной ссылке.</p>
+                
+                <hr></hr>
+                <p>Hello,</p>
+                <p>Someone on www.TruckDriver.help provided your email during registration process.</p>
+                <p>In order to activate your account, you need to confirm your email by clicking on the link.</p>
+                <p><a href="https://www.truckdriver.help/user/verify/${token}">https://www.truckdriver.help/user/verify/${token}</a> </p>
+                <p>Link is active for 24 hours.</p>
+                
+                <p>If you received this email in error, just delete it. You will not be subscribed to our newsletter if you click on the link provided.</p>
             </div>`,
         });
     } catch (error) {

@@ -130,7 +130,7 @@ function AuthForm({ token }) {
         body: JSON.stringify(body),
       });
       setMessage(
-        'Ссылка на востановление аккаунта отправлена на указанную почту.'
+        'Ссылка для востановление аккаунта отправлена на указанную почту.'
       );
       setTimeout(() => {
         setMessage('');
