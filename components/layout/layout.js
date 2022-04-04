@@ -15,13 +15,11 @@ function Layout(props) {
 
     useEffect(() => {
 
-        console.log(">>>>>>>>>>2>>>>>running");
         getSession().then((session) => {
             if (session) {
                 console.log('loaded sesion');
                 const loadUser = async () => {
 
-                    console.log(">>>>>>asdfas>>>>>>>>>running");
                     const user = await fetch(`/api/user/${session.user.email}`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
