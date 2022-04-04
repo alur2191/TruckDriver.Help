@@ -38,7 +38,7 @@ function Layout(props) {
     }, []);
 
     if (isLoading) {
-        return <p>Загрузка...</p>;
+        return <div className="loader"></div>;
     }
 
     return (

@@ -15,7 +15,7 @@ function JobDetails({ jobs }) {
                     <JobListing job={job} />
 
                 </div>)
-                : "loading"}
+                : <div className="loader"></div>}
         </div>
     )
 }

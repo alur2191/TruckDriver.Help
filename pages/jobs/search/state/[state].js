@@ -9,7 +9,7 @@ function JobsByState({ jobs }) {
         <div className={classes.main}>
             {jobs
                 ? jobs.map((job) => <div key={job.id} className="listing"><JobListing job={job} /></div>)
-                : "loading"}
+                : <div className="loader"></div>}
         </div>
     )
 }

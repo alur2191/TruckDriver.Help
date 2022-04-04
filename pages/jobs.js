@@ -26,7 +26,7 @@ function Jobs({ jobs }) {
             <JobListing job={job} />
 
           </div>)
-          : "loading"}
+          : <div className="loader"></div>}
       </div>
       <aside className={classes.sidebar}>
         {/* Temporarily disabled */}
