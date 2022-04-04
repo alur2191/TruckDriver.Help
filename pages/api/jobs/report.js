@@ -10,7 +10,7 @@ export default async function (req, res) {
 
         await sendgrid.send({
             // to: email,
-            to: "akmalu21@gmail.com",
+            to: "contact@truckdriver.help",
             from: "noreply@truckdriver.help",
             subject: `Жалоба: ${company}`,
             html: `<div>

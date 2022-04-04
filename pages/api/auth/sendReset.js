@@ -28,7 +28,7 @@ export default async function (req, res) {
                 // to: email,
                 to: email,
                 from: "noreply@truckdriver.help",
-                subject: `Password reset.`,
+                subject: `Ссылка на восстановление доступа в аккаунт`,
                 html: `<div>
                 <p>Для востановления доступа на сайт пройдите по ссылке.</p>
                 <p><a href="https://www.truckdriver.help/user/reset-password/${token}">https://www.truckdriver.help/user/reset-password/${token}</a></p>

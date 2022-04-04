@@ -46,10 +46,9 @@ export default async function (req, res) {
 
     try {
         await sendgrid.send({
-            // to: email,
             to: email,
             from: "noreply@truckdriver.help",
-            subject: `Confirmation Email.`,
+            subject: `Подтвердите свою почту пройдя по ссылке...`,
             html: `<div>
                 <p>Здравствуйте, </p>
                 <p>Некий пользователь сайта www.TruckDriver.help указал Вашу электронную почту при регистрации.</p>
@@ -57,7 +56,7 @@ export default async function (req, res) {
                 <p><a href="https://www.truckdriver.help/user/verify/${token}">https://www.truckdriver.help/user/verify/${token}</a></p>
                 <p>Ссылка активна на 24 часа.</p>
                 
-                <p>Если Вы получили это письмо по ошибке, просто удалите его. Вы не будете подписаны на нашу рассылку если кликните по указанной ссылке.</p>
+                <p>Если Вы получили это письмо по ошибке, можете удалить его. Вы не будете подписаны на нашу рассылку если кликните по указанной ссылке.</p>
                 
                 <hr></hr>
                 <p>Hello,</p>

@@ -132,7 +132,7 @@ function Navbar() {
 
                         </Link>
                     </li>
-                    {!activeUser && <Link href={{ pathname: "/auth" }} passHref><li><a style={{ cursor: 'pointer' }}><i className="bi bi-person-plus-fill"></i>Регистрация</a></li></Link>}
+                    {!activeUser && <Link href={{ pathname: "/auth" }} passHref><li><a style={{ cursor: 'pointer' }}><i className="bi bi-person-fill"></i>Войти</a></li></Link>}
                     {activeUser && activeUser.user.company &&
 
                         <li style={{ cursor: 'pointer' }}>

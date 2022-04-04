@@ -171,7 +171,7 @@ function AuthForm({ token }) {
               <span style={{ color: 'green' }}>{confirmMessage}</span>
             )}
             {!isLogin && (
-              <div>
+              <div style={{ width: 200 }}>
                 <input
                   type='checkbox'
                   id='agreement'
