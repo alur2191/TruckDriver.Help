@@ -97,7 +97,7 @@ const Form = () => {
             setValidation({ phone: { message: "Введите номер телефона!" } })
             return null
         } else if (!Number.isInteger(about.phone)) {
-            setValidation({ phone: { message: "USDOT состоит из цифр!" } })
+            setValidation({ phone: { message: "Номер должен состоять из цифр!" } })
             return null
         } else if (String(about.phone).length !== 10) {
             setValidation({ phone: { message: "Введите десятизначный, Американский номер телефона!" } })

@@ -12,7 +12,9 @@ function Navbar() {
     const [mobile, setMobile] = useState(false)
     // const [notificationDropdown, setNotificationDropdown] = useState(false)
     const userRef = useRef()
+    const userButtonRef = useRef()
     const mobileRef = useRef()
+    const mobileButtonRef = useRef()
     // const notificationRef = useRef()
     const userCtx = useContext(UserContext)
     const activeUser = userCtx.user;
@@ -21,10 +23,19 @@ function Navbar() {
         const checkIfClickedOutside = e => {
             // If the menu is open and the clicked target is not within the menu,
             // then close the menu
-            if (userDropdown && userRef.current && !userRef.current.contains(e.target)) {
+            if (userDropdown &&
+                userRef.current &&
+                !userRef.current.contains(e.target) &&
+                userButtonRef.current &&
+                !userButtonRef.current.contains(e.target)) {
                 setUserDropdown(false)
             }
-            if (mobile && mobileRef.current && !mobileRef.current.contains(e.target)) {
+            if (
+                mobile &&
+                mobileRef.current &&
+                !mobileRef.current.contains(e.target) &&
+                mobileButtonRef.current &&
+                !mobileButtonRef.current.contains(e.target)) {
                 setMobile(false)
             }
         }
@@ -112,7 +123,7 @@ function Navbar() {
 
                 {activeUser && (
                     <li style={{ position: 'relative' }}>
-                        <a style={{ cursor: 'pointer' }} onClick={() => toggleUserDropdown()}><i className="bi bi-person-fill"></i>{activeUser.user.email}</a>
+                        <a ref={userButtonRef} style={{ cursor: 'pointer' }} onClick={() => toggleUserDropdown()}><i className="bi bi-person-fill"></i>{activeUser.user.email}</a>
                         {userDropdown &&
                             <div ref={userRef} className={classes.account}>
                                 <ul>
@@ -126,7 +137,7 @@ function Navbar() {
                             </div>}
                     </li>)}
             </ul>
-            <i onClick={() => setMobile(!mobile)} className="bi bi-list bu-m-menu"></i>
+            <i ref={mobileButtonRef} onClick={() => setMobile(!mobile)} className="bi bi-list bu-m-menu"></i>
             {mobile && <dir ref={mobileRef} className="mobile-nav">
                 <ul>
                     <li>
@@ -153,7 +164,7 @@ function Navbar() {
                         </li>}
                     {activeUser && (
                         <li style={{ position: 'relative' }}>
-                            <a style={{ cursor: 'pointer' }} onClick={() => toggleUserDropdown()}><i className="bi bi-person-fill"></i>{activeUser.user.email}</a>
+                            <a ref={userButtonRef} style={{ cursor: 'pointer' }} onClick={() => toggleUserDropdown()}><i className="bi bi-person-fill"></i>{activeUser.user.email}</a>
                             {userDropdown &&
                                 <div ref={userRef} className={classes.account}>
                                     <ul>
