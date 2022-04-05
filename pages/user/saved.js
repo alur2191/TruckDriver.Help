@@ -7,7 +7,7 @@ import { PrismaClient } from "@prisma/client";
 function Saved({ jobs }) {
     return (
         <div className={classes.main}>
-            <div className={classes.listings} >
+            <div className="listings" >
                 <Filters />
                 {jobs
                     ? jobs.length === 0 ?

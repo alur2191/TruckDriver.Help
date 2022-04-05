@@ -19,7 +19,7 @@ function Home() {
     const activeSearch = searchCtx.jobs;
     return (
         <div className={classes.main}>
-            <div className={classes.listings} >
+            <div className="listings" >
                 <Filters />
                 {/* Display list of search results */}
                 {activeSearch && activeSearch.jobs && activeSearch.jobs.map(job => <div key={job.id} className="listing"><JobListing job={job} /></div>)}

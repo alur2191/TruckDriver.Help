@@ -221,6 +221,11 @@ footer {
   }
 }
 
+.link {
+  color: #3c3b74;
+  text-decoration: underline;
+}
+
 .hidden {
   display: none;
 }
@@ -468,6 +473,12 @@ footer {
 .form-additional-info {
   width: 100%;
   height: 100px;
+}
+
+.listings {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .listing {

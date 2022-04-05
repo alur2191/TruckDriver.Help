@@ -3,13 +3,14 @@ import { useContext } from "react";
 import classes from "./index.module.css";
 import AuthForm from "../components/auth/auth-form";
 import { useSession } from 'next-auth/client'
+import JobListing from "../components/jobs/jobListing";
 // import AdvancedSearch from "../components/filters/advancedSearch"
 import Support from "../components/ui/support"
+import { PrismaClient } from "@prisma/client";
 import Link from 'next/link'
 import UserContext from '../store/user-context'
 
-
-function Home() {
+function Home({ jobs }) {
   const [session] = useSession()
 
   const userCtx = useContext(UserContext)
@@ -20,6 +21,7 @@ function Home() {
       <div className={classes.body}>
         <div className={classes.head}>
           <h1>Портал Логистической Индустрии США</h1>
+          <p>TruckDriver.help это уникальный онлайн проект нацеленный помочь иммигрантам работающим в траковой индустрии.</p>
           <div>
             <Link href={{ pathname: "/jobs" }}>
               <a>
@@ -42,9 +44,21 @@ function Home() {
           </div>
         </div>
         <div>
+          <h1>Последние Объявления</h1>
+          <div className="listings" >
+            {jobs
+              ? jobs.map((job) => <div key={job.id} className="listing">
+                <JobListing job={job} />
+
+              </div>)
+              : <div className="loader"></div>}
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center' }}><Link href="/jobs/"><a className="link">Продолжить поиск...</a></Link></div>
+        </div>
+        <div>
           <h1>О Проекте TruckDriver.help</h1>
           <iframe src="https://www.youtube.com/embed/2TeHq1JdmK4" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-          <p>TruckDriver.help это уникальный онлайн проект нацеленный помочь иммигрантам работающим в траковой индустрии. На данный момент основная платформа состоит из объявлений логистических компаний. Желающие найти работу в индустрии, смогут воспользоваться расширенными фильтрами предоставленные на сайте, для поиска работы по указанным критериям.</p>
+          <p>На данный момент основная платформа состоит из объявлений логистических компаний. Желающие найти работу в индустрии, смогут воспользоваться расширенными фильтрами предоставленные на сайте, для поиска работы по указанным критериям.</p>
           <p>Мы также намерены предоставлять учебные материалы для людей в различной стадии карьеры - без CDL, с опытом, Owner-operator, а также компаниям и их диспетчерам. Учебные материалы вы можете найти по адресу <a href="http://academy.truckdriver.help">academy.truckdriver.help</a></p>
           <Support />
         </div>
@@ -73,5 +87,33 @@ function Home() {
     </div >
   );
 }
+
+export async function getServerSideProps() {
+  const prisma = new PrismaClient();
+  // Fetch all posted jobs and include related items from Company table
+  const jobs = await prisma.job.findMany({
+    orderBy: [
+      {
+        createdAt: 'desc',
+      },
+    ],
+    include: {
+      company: {
+        include: {
+          trucks: true,
+          trailers: true
+        }
+      }
+    },
+    take: 3,
+  })
+  return {
+    props: {
+      jobs
+    }
+  }
+}
+
+
 
 export default Home;

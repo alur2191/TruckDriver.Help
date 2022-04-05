@@ -19,7 +19,7 @@ function Jobs({ jobs }) {
   return (
     <div className={classes.main}>
       {/* Display list of all available jobs */}
-      <div className={classes.listings} >
+      <div className="listings" >
         <Filters />
         {jobs
           ? jobs.map((job) => <div key={job.id} className="listing">
