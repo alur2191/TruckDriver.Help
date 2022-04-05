@@ -99,6 +99,9 @@ const Form = () => {
         } else if (!Number.isInteger(about.phone)) {
             setValidation({ phone: { message: "USDOT состоит из цифр!" } })
             return null
+        } else if (String(about.phone).length !== 10) {
+            setValidation({ phone: { message: "Введите десятизначный, Американский номер телефона!" } })
+            return null
         }
         if (about.website) {
             const regex = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/

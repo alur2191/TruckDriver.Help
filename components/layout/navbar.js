@@ -12,6 +12,7 @@ function Navbar() {
     const [mobile, setMobile] = useState(false)
     // const [notificationDropdown, setNotificationDropdown] = useState(false)
     const userRef = useRef()
+    const mobileRef = useRef()
     // const notificationRef = useRef()
     const userCtx = useContext(UserContext)
     const activeUser = userCtx.user;
@@ -23,6 +24,9 @@ function Navbar() {
             if (userDropdown && userRef.current && !userRef.current.contains(e.target)) {
                 setUserDropdown(false)
             }
+            if (mobile && mobileRef.current && !mobileRef.current.contains(e.target)) {
+                setMobile(false)
+            }
         }
 
         document.addEventListener("mousedown", checkIfClickedOutside)
@@ -31,7 +35,7 @@ function Navbar() {
             // Cleanup the event listener
             document.removeEventListener("mousedown", checkIfClickedOutside)
         }
-    }, [userDropdown])
+    }, [userDropdown, mobile])
 
     function logoutHandler() {
         signOut()
@@ -123,7 +127,7 @@ function Navbar() {
                     </li>)}
             </ul>
             <i onClick={() => setMobile(!mobile)} className="bi bi-list bu-m-menu"></i>
-            {mobile && <dir className="mobile-nav">
+            {mobile && <dir ref={mobileRef} className="mobile-nav">
                 <ul>
                     <li>
                         <Link href="https://academy.truckdriver.help" passHref={true}>

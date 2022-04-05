@@ -1,55 +1,59 @@
-.main  {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
-.main  > div {
-    width: 100%;
+.main > div {
+  width: 100%;
 }
 
 .trailerRow {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .trailerRow > div {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding: 5px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 0;
 }
 
-.trailerRow >div> div {
-    display: flex;
-    flex-direction: column;
-    gap:var(--small-gap);
+.trailerRow > div > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--small-gap);
 }
 
-.trailerRow >div> :nth-child(2)>div{
-    display: flex;
-    gap: 20px;
+.trailerRow > div > :nth-child(2) > div {
+  display: flex;
+  gap: 20px;
 }
-.trailerRow >div> :nth-child(2)>div>div{
-    display: flex;
-    align-items: center;
+.trailerRow > div > :nth-child(2) > div > div {
+  display: flex;
+  align-items: center;
 }
 
 #trailer-amount {
-    width: 30px;
+  width: 30px;
 }
 
 .trailerRow > button {
-    width: 200px;
-    margin-top: 10px;
+  width: 200px;
+  margin-top: 10px;
 }
 
 @media screen and (max-width: 768px) {
-    .trailerRow > div {
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-        align-items: center;
-    }
+  .trailerRow > div {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .main input,
+  .main select {
+    max-width: 250px;
+  }
 }

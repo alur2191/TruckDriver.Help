@@ -1,66 +1,66 @@
-.main  {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
-.main  > div {
-    width: 100%;
+.main > div {
+  width: 100%;
 }
 
 .truckRow {
-    display: flex;
-    flex-direction: column;
-    align-items:  center;
-    
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .truckRow > div {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
 }
 
 .truckRow > div > div {
-    display: flex;
-    flex-direction: column;
-    gap:0px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
 }
 
 .truckRow > div > :last-child,
 .truckRow > div > :nth-child(2) {
-    gap: 5px;
+  gap: 5px;
 }
 
 .truckRow > button {
-    width: 200px;
-    
-    margin-top: 10px;
+  width: 200px;
+
+  margin-top: 10px;
 }
 
 #truckAmount {
-    width: 30px;
+  width: 30px;
 }
 
 .transmission {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 
 .transmission > div {
-    display: flex;
-    align-items: center;
-    
+  display: flex;
+  align-items: center;
 }
 
-
 @media screen and (max-width: 768px) {
-    .truckRow > div {
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-        align-items: center;
-    }
+  .truckRow > div {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  .main input,
+  .main select {
+    max-width: 250px;
+  }
 }

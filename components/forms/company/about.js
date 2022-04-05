@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, setState } from "react";
 import CompanyContext from "../../../store/company-context";
 import classes from "./about.module.css";
 import Tooltip from "../../ui/tooltip"
+import { blockInvalidChar } from "../../../utils/blockInvalidChar";
 function About() {
-
-
     const companyCtx = useContext(CompanyContext);
 
     const { about, setAbout, validation, setValidation } = companyCtx;
@@ -84,7 +83,7 @@ function About() {
                     {validation.name && showError("name")}
                 </div>
                 <div>
-                    <div style={{ display: 'flex', alignItems: 'center', position: 'relative', width: '100%', gap: 3 }}>
+                    <div className="tooltip-container">
                         <Tooltip content="Номер MC (Motor Carrier number) является уникальным идентификатором выдающимся компаниям гос. органом FMCSA." direction="top">
                             <i className="bi bi-question-circle-fill tooltip-icon"></i>
                         </Tooltip>
@@ -102,7 +101,7 @@ function About() {
                     {validation.mcnumber && showError("mcnumber")}
                 </div>
                 <div>
-                    <div style={{ display: 'flex', alignItems: 'center', position: 'relative', width: '100%', gap: 3 }}>
+                    <div className="tooltip-container">
                         <Tooltip content="Номер USDOT служит уникальным идентификатором при сборе и мониторинге информации о безопасности компании, полученной в ходе аудитов, проверок соответствия, и расследований аварий." direction="top">
                             <i className="bi bi-question-circle-fill tooltip-icon"></i>
                         </Tooltip>
@@ -122,15 +121,22 @@ function About() {
             </div>
             <div className='form-row'>
                 <div>
-                    <label htmlFor='phone'>
-                        <span className='required'>*</span>Телефон
-                    </label>
+                    <div className="tooltip-container">
+                        <Tooltip content="Десятизначный, Американский номер телефона. Введите номер без пробелов и знаков. Номер должен быть введен  без международного кода +1." direction="top">
+                            <i className="bi bi-question-circle-fill tooltip-icon"></i>
+                        </Tooltip>
+
+                        <label htmlFor='phone'>
+                            <span className='required'>*</span>Телефон
+                        </label>
+                    </div>
                     <input
                         type='number'
-                        placeholder='Телефон'
+                        placeholder='8001234567'
                         name='phone'
                         id='phone'
                         value={about.phone || ""}
+                        onKeyDown={blockInvalidChar}
                         onChange={(e) => handleInputChange(e)}
                         required
                     />

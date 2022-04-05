@@ -1,28 +1,31 @@
 .progressbar {
-    display: flex;
-    width: 400px;
-    height: 10px;
-    background-color: #EEEEF5;
+  display: flex;
+  width: 400px;
+  height: 10px;
+  background-color: #eeeef5;
 }
 
 .progressbar div {
-    width: 33.3%;
-    height: 100%;
-    background-color: var(--brand-color);
-    transition-property: width;
-    transition-duration: 0.5s;
+  width: 33.3%;
+  height: 100%;
+  background-color: var(--brand-color);
+  transition-property: width;
+  transition-duration: 0.5s;
 }
 
-
 .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
 
 .form > div {
-    width: 100%;
+  width: 100%;
 }
 
-
+@media screen and (max-width: 768px) {
+  .form > h3 {
+    text-align: center;
+  }
+}

@@ -40,7 +40,7 @@ function TrucksForm() {
                 return (
                     <div key={i} className={classes.truckRow} >
                         <div style={{ backgroundColor: i % 2 !== 0 ? "#f7f7fc" : null }}>
-                            <div>
+                            <div className='form-row'>
                                 <label htmlFor={"manufacturer" + i}>Производитель</label>
                                 <select name="manufacturer" id={"manufacturer" + i} value={x.manufacturer || ''} onChange={e => handleInputChange(e, i)} >
                                     <option value="">
