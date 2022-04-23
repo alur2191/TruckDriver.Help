@@ -109,7 +109,7 @@ function Navbar() {
 
             <Link href="/" passHref>
                 <a>
-                    <Image src="/images/logo.png" alt="" width={109} height={40} />
+                    <Image src="/images/logo.png" alt="" width={128} height={51} />
                 </a>
             </Link>
             <ul>

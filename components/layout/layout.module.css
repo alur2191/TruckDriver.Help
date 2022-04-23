@@ -1,9 +1,9 @@
 .main {
-    padding-bottom: 100px;
+  padding-bottom: 100px;
 }
 
 @media only screen and (max-width: 768px) {
-    .main {
-        padding-bottom: 140px;
-    }
+  .main {
+    padding-bottom: 170px;
+  }
 }

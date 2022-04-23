@@ -17,6 +17,11 @@ function Navbar() {
                         <a><i className="bi bi-question-circle-fill"></i>Помощь</a>
                     </Link>
                 </li>
+                <li>
+                    <Link href="/contact" passHref={true}>
+                        <a><i className="bi bi-envelope-fill"></i>Обратная Связь</a>
+                    </Link>
+                </li>
             </ul>
         </footer >
     )

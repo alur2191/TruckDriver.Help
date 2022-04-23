@@ -29,6 +29,7 @@ function AuthForm({ token }) {
   const emailInputRef = useRef();
   const resetEmailInputRef = useRef();
   const passwordInputRef = useRef();
+  const passwordConfirmInputRef = useRef();
   const { error } = useRouter().query;
   const [isLogin, setIsLogin] = useState(true);
   const [forgot, setForgot] = useState(false);
@@ -54,6 +55,7 @@ function AuthForm({ token }) {
 
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
+    const enteredPasswordConfirm = passwordConfirmInputRef.current && passwordConfirmInputRef.current.value;
 
     // optional: Add validation
 
@@ -99,7 +101,16 @@ function AuthForm({ token }) {
           setErrorMessage('');
         }, 10000);
         return;
+      } else if (enteredPasswordConfirm !== enteredPassword) {
+        setErrorMessage(
+          'Нужно ввести совпадающие пароли.'
+        );
+        setTimeout(() => {
+          setErrorMessage('');
+        }, 10000);
+        return;
       }
+
       try {
         const res = await createUser(enteredEmail, enteredPassword);
         console.log(res.error);
@@ -164,6 +175,15 @@ function AuthForm({ token }) {
                 ref={passwordInputRef}
               />
             </div>
+            {!isLogin && <div className={classes.control}>
+              <label htmlFor='password'>Повторите Пароль</label>
+              <input
+                type='password'
+                id='password'
+                required
+                ref={passwordConfirmInputRef}
+              />
+            </div>}
             {errorMessage && (
               <span style={{ color: 'red' }}>{errorMessage}</span>
             )}

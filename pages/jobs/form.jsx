@@ -41,22 +41,26 @@ function JobForm() {
             teamOwnerGross: null
         })
     }, []);
-    if (!activeUser.user.company) {
-        Router.push(`/company/form?redirect=job`)
-        return null
+    if (!activeUser) {
+        return <span>loading</span>
     } else {
-        return (
-            <div className='container form'>
-                <Head>
-                    <title>Разместить Объявление - TruckDriver.help</title>
-                </Head>
-                <form className={classes.main}>
-                    <h3>Разместить Объявление</h3>
-                    <Form />
-                    <Submit path='create' companyId={activeUser ? activeUser.user.company.id : null} />
-                </form>
-            </div>
-        );
+        if (!activeUser.user.company) {
+            Router.push(`/company/form?redirect=job`)
+            return null
+        } else {
+            return (
+                <div className='container form'>
+                    <Head>
+                        <title>Разместить Объявление - TruckDriver.help</title>
+                    </Head>
+                    <form className={classes.main}>
+                        <h3>Разместить Объявление</h3>
+                        <Form />
+                        <Submit path='create' companyId={activeUser ? activeUser.user.company.id : null} />
+                    </form>
+                </div>
+            );
+        }
     }
 }
 

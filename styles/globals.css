@@ -21,7 +21,9 @@ body {
   margin: 0;
   padding: 0;
   background-color: #eeeef5;
+  font-family: "Arial";
   font-family: "Inter", sans-serif;
+  font-display: swap;
 }
 
 ul {

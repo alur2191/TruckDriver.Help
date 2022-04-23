@@ -1,5 +1,6 @@
 import prisma from '../../../lib/prisma'
 import { Telegraf } from 'telegraf'
+import FB from 'fb'
 const tg = new Telegraf(process.env.TG_BOT_TOKEN);
 // eslint-disable-next-line import/no-anonymous-default-export
 
@@ -41,7 +42,15 @@ export default async function (req, res) {
         <a href="https://www.truckdriver.help/jobs/${job.id}">Узнать подробнее на сайте...</a>`
 
         await tg.telegram.sendMessage("@truckdriverhelp", message, { parse_mode: 'HTML', disable_web_page_preview: true })
-
+        FB.setAccessToken(process.env.FB_ACCESS_TOKEN);
+        await FB.api(
+        '/TruckDirverHelp/feed',
+        'POST',
+        {message: 'Testing with api'},
+        function (response) {
+            console.log(response);
+        }
+        );
         res.status(201)
         res.json({ job })
     } catch (e) {
