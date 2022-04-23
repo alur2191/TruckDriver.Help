@@ -1,4 +1,5 @@
 import Image from 'next/image'
+
 import { useContext, useState, useEffect, useRef } from "react";
 import Link from 'next/link'
 import classes from './navbar.module.css'
@@ -127,7 +128,7 @@ function Navbar() {
                         {userDropdown &&
                             <div ref={userRef} className={classes.account}>
                                 <ul>
-                                    {activeUser.user.company && <Link href={{ pathname: `/company/${activeUser.user.company.id}` }}><li><a onClick={toggleUserDropdown}><i className="bi bi-stickies"></i>Объявления</a></li></Link>}
+                                    {activeUser.user.company && <Link href={{ pathname: `/company/${activeUser.user.company.id}` }} passHref><li><a onClick={toggleUserDropdown}><i className="bi bi-stickies"></i>Объявления</a></li></Link>}
                                     <Link href={{ pathname: `/user/saved` }} passHref><li><a onClick={toggleUserDropdown}><i className="bi bi-card-checklist"></i>Сохраненные</a></li></Link>
                                     <Link href={{ pathname: `/user/account` }} passHref><li><a onClick={toggleUserDropdown}><i className="bi bi-gear"></i>Аккаунт</a></li></Link>
                                     <li onClick={logoutHandler}>
@@ -168,7 +169,7 @@ function Navbar() {
                             {userDropdown &&
                                 <div ref={userRef} className={classes.account}>
                                     <ul>
-                                        {activeUser.user.company && <Link href={{ pathname: `/company/${activeUser.user.company.id}` }}><li><a onClick={toggleUserDropdown}><i className="bi bi-stickies"></i>Объявления</a></li></Link>}
+                                        {activeUser.user.company && <Link href={{ pathname: `/company/${activeUser.user.company.id}` }} passHref><li><a onClick={toggleUserDropdown}><i className="bi bi-stickies"></i>Объявления</a></li></Link>}
                                         <Link href={{ pathname: `/user/saved` }} passHref><li><a onClick={toggleUserDropdown}><i className="bi bi-card-checklist"></i>Сохраненные</a></li></Link>
                                         <Link href={{ pathname: `/user/account` }} passHref><li><a onClick={toggleUserDropdown}><i className="bi bi-gear"></i>Аккаунт</a></li></Link>
                                         <li onClick={logoutHandler}>
