@@ -109,7 +109,11 @@ function Navbar() {
 
             <Link href="/" passHref>
                 <a>
+<<<<<<< main
                     <Image src="/images/logo.png" alt="" width={109} height={40} />
+=======
+                    <Image src="/images/logo.png" alt="" width={100} height={39} />
+>>>>>>> local
                 </a>
             </Link>
             <ul>

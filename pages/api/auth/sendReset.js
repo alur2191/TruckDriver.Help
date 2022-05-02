@@ -50,12 +50,11 @@ export default async function (req, res) {
             return res.status(error.statusCode || 500).json({ error: error.message });
         }
 
-        res.status(201);
-        res.json({ updateUser });
+        res.status(201).json({ message: "Ссылка послана" })
     } catch (e) {
         res.status(500);
-        res.json({ error: 'Ошибка при создании компании.' })
-        console.log(e)
+        res.json({ message: 'Ошибка при создании компании.' })
+        console.error(e)
     } finally {
         await prisma.$disconnect();
     }

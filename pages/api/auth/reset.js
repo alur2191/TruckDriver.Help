@@ -26,8 +26,7 @@ export default async function (req, res) {
                     token: null
                 }
             })
-            res.status(201);
-            res.json({ updateUser });
+            res.status(201).json({ message: "Пароль изменён." })
         } catch (e) {
             res.status(500);
             res.json({ error: 'Ошибка при изменении пароля.' })
