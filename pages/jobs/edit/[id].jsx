@@ -5,7 +5,7 @@ import { PrismaClient } from "@prisma/client";
 import JobContext from "../../../store/job-context";
 import Form from "../../../components/jobs/form";
 import Submit from "../../../components/jobs/submit";
-import { getSession } from "next-auth/client"
+import { getSession } from "next-auth/react"
 import Head from 'next/head'
 
 function Edit({ dbJob }) {

@@ -1,4 +1,4 @@
-import { getSession } from 'next-auth/client';
+import { getSession } from 'next-auth/react';
 import classes from "./account.module.css";
 import ProfilePassword from '../../components/profile/profile';
 import Sidebar from '../../components/profile/sidebar';

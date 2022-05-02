@@ -1,7 +1,7 @@
 import classes from "./saved.module.css";
 import JobListing from "../../components/jobs/jobListing";
 import Filters from "../../components/filters/filters";
-import { getSession } from 'next-auth/client';
+import { getSession } from 'next-auth/react';
 import { PrismaClient } from "@prisma/client";
 
 function Saved({ jobs }) {

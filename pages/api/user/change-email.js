@@ -1,4 +1,4 @@
-import { getSession } from 'next-auth/client';
+import { getSession } from 'next-auth/react';
 import prisma from '../../../lib/prisma'
 import { verifyPassword } from '../../../lib/auth';
 
@@ -17,10 +17,10 @@ async function handler(req, res) {
 
     const userEmail = session.user.email;
     const userPassword = req.body.password;
-    
+
 
     const user = await prisma.user.findUnique({
-        where:{
+        where: {
             email: userEmail
         }
     })
@@ -43,7 +43,7 @@ async function handler(req, res) {
             email: userEmail
         },
         data: {
-            email:req.body.email
+            email: req.body.email
         }
     })
 

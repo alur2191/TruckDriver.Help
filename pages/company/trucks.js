@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import CompanyContext from '../../store/company-context'
 import Router from 'next/router';
-import { getSession } from 'next-auth/client';
+import { getSession } from 'next-auth/react';
 import classes from "./edit.module.css";
 import { PrismaClient } from "@prisma/client";
 import TrucksForm from '../../components/forms/company/trucksForm';

@@ -4,7 +4,7 @@ import JobContext from "../../store/job-context";
 import Form from "../../components/jobs/form"
 import Submit from "../../components/jobs/submit"
 import UserContext from "../../store/user-context";
-import { getSession } from "next-auth/client"
+import { getSession } from "next-auth/react"
 import Head from 'next/head'
 import Router from 'next/router';
 

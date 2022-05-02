@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import JobListing from "../../components/jobs/jobListing";
-import { getSession } from 'next-auth/client'
+import { getSession } from 'next-auth/react'
 import classes from "./id.module.css"
 import Filters from "../../components/filters/filters";
 import Head from 'next/head'
