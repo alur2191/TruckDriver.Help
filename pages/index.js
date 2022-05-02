@@ -44,7 +44,7 @@ function Home() {
         </div>
         <div>
           <h1>О Проекте TruckDriver.help</h1>
-          <iframe src="https://www.youtube.com/embed/2TeHq1JdmK4" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <iframe src="https://www.youtube.com/embed/YqWBkSoaaAs" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           <p>TruckDriver.help это уникальный онлайн проект нацеленный помочь иммигрантам работающим в траковой индустрии. На данный момент основная платформа состоит из объявлений логистических компаний. Желающие найти работу в индустрии, смогут воспользоваться расширенными фильтрами предоставленные на сайте, для поиска работы по указанным критериям.</p>
           <p>Мы также намерены предоставлять учебные материалы для людей в различной стадии карьеры - без CDL, с опытом, Owner-operator, а также компаниям и их диспетчерам. Учебные материалы вы можете найти по адресу <a href="http://academy.truckdriver.help">academy.truckdriver.help</a></p>
           <Support />
