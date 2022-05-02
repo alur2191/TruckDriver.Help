@@ -1,7 +1,7 @@
 import prisma from '../../../lib/prisma'
 import NextAuth from 'next-auth'
-import Providers from 'next-auth/providers'
 import { verifyPassword } from '../../../lib/auth';
+import CredentialsProvider from "next-auth/providers/credentials";
 import jwt from 'jsonwebtoken';
 
 const createOptions = (req) => ({
@@ -10,7 +10,7 @@ const createOptions = (req) => ({
         signingKey: process.env.JWT_SECRET
     },
     providers: [
-        Providers.Credentials({
+        CredentialsProvider({
             async authorize(credentials) {
                 const user = await prisma.user.findUnique({
                     where: {

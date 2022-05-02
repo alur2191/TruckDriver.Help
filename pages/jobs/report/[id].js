@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { useRef, useState } from "react";
-import { useSession } from 'next-auth/client';
+import { useSession } from "next-auth/react";
 import classes from './id.module.css'
 import Head from 'next/head'
 
@@ -8,7 +8,8 @@ function JobDetails({ job }) {
     const reasonRef = useRef()
     const descriptionRef = useRef()
     const [message, setMessage] = useState({ status: '', message: '' })
-    const [session] = useSession()
+    const { data: session, status } = useSession()
+
 
     const sendReport = async (e) => {
         e.preventDefault()

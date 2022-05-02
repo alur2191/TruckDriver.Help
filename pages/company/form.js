@@ -12,7 +12,8 @@ import Additional from '../../components/forms/company/additional'
 import { useRouter } from "next/router";
 
 const Form = () => {
-    const [session] = useSession()
+    const { data: session, status } = useSession()
+
     const { query } = useRouter();
     const companyCtx = useContext(CompanyContext)
     const userCtx = useContext(UserContext)

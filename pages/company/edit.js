@@ -28,7 +28,8 @@ function Edit({ company }) {
             setParking(company.parking)
         }
     }, [])
-    const [session] = useSession()
+    const { data: session, status } = useSession()
+
 
     const companyCtx = useContext(CompanyContext)
     const { setParking, parking, setAbout, about, setAdditional, additional } = companyCtx

@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { useContext, useState, useEffect, useRef } from "react";
 import Link from 'next/link'
 import classes from './navbar.module.css'
-import { signOut } from 'next-auth/client'
+import { signOut } from 'next-auth/react'
 import UserContext from '../../store/user-context'
 // import { parseISO, formatDistanceToNowStrict } from "date-fns";
 // import locale from 'date-fns/locale/en-US'

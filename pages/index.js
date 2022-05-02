@@ -2,7 +2,7 @@
 import { useContext } from "react";
 import classes from "./index.module.css";
 import AuthForm from "../components/auth/auth-form";
-import { useSession } from 'next-auth/client'
+import { useSession } from "next-auth/react"
 // import AdvancedSearch from "../components/filters/advancedSearch"
 import Support from "../components/ui/support"
 import Link from 'next/link'
@@ -10,7 +10,8 @@ import UserContext from '../store/user-context'
 
 
 function Home() {
-  const [session] = useSession()
+  const { data: session, status } = useSession()
+
 
   const userCtx = useContext(UserContext)
   const activeUser = userCtx.user;

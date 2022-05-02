@@ -1,4 +1,4 @@
-import { Provider as AuthProvider } from 'next-auth/client'
+import { SessionProvider as AuthProvider } from 'next-auth/react'
 import '../styles/globals.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import Layout from '../components/layout/layout'

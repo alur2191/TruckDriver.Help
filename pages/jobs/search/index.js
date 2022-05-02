@@ -5,7 +5,7 @@ import JobListing from "../../../components/jobs/jobListing";
 import Filters from "../../../components/filters/filters";
 import AuthForm from "../../../components/auth/auth-form";
 import SearchContext from '../../../store/search-context'
-import { useSession } from 'next-auth/client'
+import { useSession } from "next-auth/react"
 import UserContext from '../../../store/user-context'
 
 

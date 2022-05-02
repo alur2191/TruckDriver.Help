@@ -4,7 +4,7 @@ import Navbar from './navbar'
 import Footer from './footer'
 import { useContext, useState, useEffect } from "react";
 import UserContext from '../../store/user-context'
-import { getSession } from 'next-auth/client'
+import { getSession } from 'next-auth/react'
 import classes from './layout.module.css'
 
 function Layout(props) {

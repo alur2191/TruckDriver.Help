@@ -5,7 +5,8 @@ import classes from './profile.module.css';
 
 
 function ProfilePassword() {
-    const [session, loading] = useSession()
+    const { data: session, status } = useSession()
+    const loading = status === "loading"
 
     async function changePasswordHandler(passwordData) {
         const response = await fetch('/api/user/change-password', {
