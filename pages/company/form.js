@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import classes from "./form.module.css"
 import Router from 'next/router';
-import { useSession, getSession } from 'next-auth/client'
+import { useSession, getSession } from 'next-auth/react'
 import CompanyContext from '../../store/company-context'
 import UserContext from '../../store/user-context'
 import About from '../../components/forms/company/about'
