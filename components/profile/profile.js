@@ -1,5 +1,4 @@
-import { signOut } from "next-auth/client"
-import { useSession } from 'next-auth/client'
+import { signOut, useSession } from "next-auth/react"
 import PasswordForm from './password-form';
 import EmailForm from './email-form';
 import classes from './profile.module.css';
