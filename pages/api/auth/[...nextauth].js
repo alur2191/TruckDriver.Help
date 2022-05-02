@@ -5,6 +5,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import jwt from 'jsonwebtoken';
 
 const createOptions = (req) => ({
+    secret: process.env.NEXTAUTH_SECRET,
     session: {
         jwt: true,
         signingKey: process.env.JWT_SECRET
