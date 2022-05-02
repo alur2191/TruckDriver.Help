@@ -18,10 +18,10 @@ async function handler(req, res) {
     const userEmail = session.user.email;
     const oldPassword = req.body.oldPassword;
     const newPassword = req.body.newPassword;
-    
+
 
     const user = await prisma.user.findUnique({
-        where:{
+        where: {
             email: userEmail
         }
     })
@@ -46,7 +46,7 @@ async function handler(req, res) {
             email: userEmail
         },
         data: {
-            password:hashedPassword
+            password: hashedPassword
         }
     })
 
