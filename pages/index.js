@@ -8,6 +8,7 @@ import Filters from "../components/filters/filters";
 import Link from 'next/link'
 import UserContext from '../store/user-context'
 import { PrismaClient } from "@prisma/client";
+import Sidebar from "../components/layout/sidebar";
 
 
 function Home({ jobs }) {
@@ -73,28 +74,7 @@ function Home({ jobs }) {
             activeUser && activeUser.user && !activeUser.user.company && activeUser.user.activated &&
             <Link href={{ pathname: "/company/form" }} passHref><button>Зарегистрировать Компанию</button></Link>
         }
-        {/* Resources */}
-        <div className={classes.resources}>
-          <h3>Ресурсы</h3>
-          <ul>
-            <li><a href="https://academy.truckdriver.help/course/dispatch/0"><i className="bi bi-play-circle"></i>
-              Видео курсы</a></li>
-            <li><a href="https://academy.truckdriver.help/quiz"><i className="bi bi-file-earmark-text"></i>
-              CDL тесты с переводом</a></li>
-            <li>
-              <Link href="/resources">
-                <a><i className="bi bi-folder-symlink"></i>
-                  Полезные ресурсы</a>
-              </Link>
-            </li>
-          </ul>
-        </div>
-        {/* Collaboration Announcement */}
-        <div className={classes.collab}>
-          <h3>Сотрудничество</h3>
-          <p>Призываем школы, сообщества, ремонтные мастерские, и прочие организации, связанные с логистической индустрией присоедениться в базу полезных ресурсов нашего сайта.</p>
-          <p><i className="bi bi-file-earmark-check"></i><a style={{ paddingLeft: '5px' }} href="#">Заполните форму для подачи заявки.</a></p>
-        </div>
+        <Sidebar />
       </aside>
     </div >
   );

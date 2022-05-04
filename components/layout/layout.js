@@ -43,9 +43,9 @@ function Layout(props) {
         const checkIfClickedOutside = e => {
             // If the menu is open and the clicked area is not within the menu,
             // then close the menu
+
             if (auth &&
-                authRef.current &&
-                !authRef.current.contains(e.target)) {
+                !authRef.current?.contains(e.target)) {
                 setAuth()
             }
 
@@ -57,7 +57,7 @@ function Layout(props) {
             // Cleanup the event listener
             document.removeEventListener("mousedown", checkIfClickedOutside)
         }
-    }, []);
+    }, [auth]);
 
     if (isLoading) {
         return <div className="loader"></div>;
