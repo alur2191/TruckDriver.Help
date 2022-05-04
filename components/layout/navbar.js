@@ -66,9 +66,7 @@ function Navbar() {
 
             <Link href="/" passHref>
                 <a>
-
                     <Image src="/images/logo.png" alt="" width={100} height={39} />
-
                 </a>
             </Link>
             <ul>
@@ -77,6 +75,20 @@ function Navbar() {
                         <a onClick={setAuth} style={{ cursor: 'pointer' }}><i className="bi bi-person-circle"></i>Мой Профиль</a>
                     </li>}
 
+                <Link href={{ pathname: `/resources` }}>
+                    <li className={classes.tablet}>
+                        <a style={{ cursor: 'pointer' }}>
+                            <i className="bi bi-info-lg"></i>Ресурсы
+                        </a>
+                    </li>
+                </Link>
+                <Link href={{ pathname: `/resources` }}>
+                    <li className={classes.tablet}>
+                        <a style={{ cursor: 'pointer' }}>
+                            <i className="bi bi-file-earmark-text"></i>Учеба
+                        </a>
+                    </li>
+                </Link>
                 {activeUser && (
                     <li style={{ position: 'relative' }}>
                         <a ref={userButtonRef} style={{ cursor: 'pointer' }} onClick={() => toggleUserDropdown()}><i className="bi bi-person-fill"></i>{activeUser.user.email}</a>
@@ -98,14 +110,25 @@ function Navbar() {
                 <ul>
                     <li>
                         <Link href="https://academy.truckdriver.help" passHref={true}>
-
                             <a><i className="bi bi-file-text"></i>CDL Тесты</a>
-
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href={{ pathname: `/resources` }}>
+                            <a style={{ cursor: 'pointer' }}>
+                                <i className="bi bi-info-lg"></i>Ресурсы
+                            </a>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href={{ pathname: `/resources` }}>
+                            <a style={{ cursor: 'pointer' }}>
+                                <i className="bi bi-file-earmark-text"></i>Учеба
+                            </a>
                         </Link>
                     </li>
                     {!activeUser && <Link href={{ pathname: "/auth" }} passHref><li><a style={{ cursor: 'pointer' }}><i className="bi bi-person-fill"></i>Войти</a></li></Link>}
                     {activeUser && activeUser.user.company &&
-
                         <li style={{ cursor: 'pointer' }}>
                             <Link href={{ pathname: "/jobs/form" }} passHref>
                                 <a><i className="bi bi-plus-circle-fill"></i>Подать Объявление</a>

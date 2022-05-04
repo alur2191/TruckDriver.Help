@@ -43,7 +43,7 @@ function Sidebar() {
       <div className={classes.collab}>
         <h3>Сотрудничество</h3>
         <p>Призываем школы, сообщества, ремонтные мастерские, и прочие организации, связанные с логистической индустрией присоедениться в базу полезных ресурсов нашего сайта.</p>
-        <p><i className="bi bi-file-earmark-check"></i><a style={{ paddingLeft: '5px' }} href="#">Заполните форму для подачи заявки.</a></p>
+        <p><i className="bi bi-file-earmark-check"></i><a style={{ paddingLeft: '5px' }} href="https://forms.gle/zZHdQDVtT3JCQqWM8">Заполните форму для подачи заявки.</a></p>
       </div>
     </>
   )

@@ -20,6 +20,10 @@
 	gap: 40px;
 }
 
+.tablet {
+	display: none;
+}
+
 .account {
 	position: absolute;
 	top: 30px;
@@ -75,6 +79,12 @@
 .notification > div {
 	display: flex;
 	flex-direction: column;
+}
+
+@media screen and (max-width: 1024px) {
+	.tablet {
+		display: inline;
+	}
 }
 
 @media only screen and (max-width: 768px) {
