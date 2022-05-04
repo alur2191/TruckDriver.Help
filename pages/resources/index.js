@@ -74,55 +74,55 @@ function Resources() {
               </div>
               <p><strong>Fuelbook</strong> — это альтернативное приложение которое позволяет найти низкие цены на топливо.</p>
               <div className={classes.download}>
-                <a href="https">
+                <a href="https://apps.apple.com/us/app/fuelbook/id427247688">
                   <img src='./images/mobile/ios.svg' height={30} />
                 </a>
-                <a href="https">
+                <a href="https://play.google.com/store/apps/details?id=com.formasystems.fuelbook&hl=ru&gl=US">
                   <img src='./images/mobile/android.svg' height={30} />
                 </a>
               </div>
               <p><strong>iExit</strong> — это хорошое приложение для тех, кто много ездит по скоростной дороге. Это приложение сообщает вам, какие ближайшие выезды и что вы найдете на каждом выезде в отношении отелей, топлива, ресторанов и т. д. Оно отображает предстоящие выезды в режиме реального времени.</p>
               <div className={classes.download}>
-                <a href="https">
+                <a href="https://apps.apple.com/us/app/iexit-app/id1499560699">
                   <img src='./images/mobile/ios.svg' height={30} />
                 </a>
-                <a href="https">
+                <a href="https://play.google.com/store/apps/details?id=com.metrocket.iexitapp&hl=en_US&gl=US">
                   <img src='./images/mobile/android.svg' height={30} />
                 </a>
               </div>
               <p><strong>Dark Sky</strong> — это самый точный источник гиперлокальной информации о погоде: с поминутными прогнозами для вашего точного местоположения.</p>
               <div className={classes.download}>
-                <a href="https">
+                <a href="https://darksky.net/app">
                   <img src='./images/mobile/ios.svg' height={30} />
                 </a>
-                <a href="https">
+                <a href="https://play.google.com/store/apps/details?id=net.darksky.darksky&hl=ru&gl=ID">
                   <img src='./images/mobile/android.svg' height={30} />
                 </a>
               </div>
               <p><strong>Weather Channel</strong> — является надежным источником обновлений погоды и всех новостей, связанных с погодой.</p>
               <div className={classes.download}>
-                <a href="https">
+                <a href="https://apps.apple.com/us/app/weather-the-weather-channel/id295646461">
                   <img src='./images/mobile/ios.svg' height={30} />
                 </a>
-                <a href="https">
+                <a href="https://play.google.com/store/apps/details?id=com.weather.Weather&hl=ru&gl=RU">
                   <img src='./images/mobile/android.svg' height={30} />
                 </a>
               </div>
               <p><strong>TRANSFLO Mobile+</strong> — c помощью этого приложения вы можете сканировать и отправлять документы, отслеживать часы работы, получать электронные подписи, получать доступ к отчетам о расчетах, общаться с диспетчерами и многое другое.</p>
               <div className={classes.download}>
-                <a href="https">
+                <a href="https://apps.apple.com/us/app/transflo-mobile/id888852656">
                   <img src='./images/mobile/ios.svg' height={30} />
                 </a>
-                <a href="https">
+                <a href="https://play.google.com/store/apps/details?id=com.pegasustranstech.transflonowplus&hl=en_US&gl=US">
                   <img src='./images/mobile/android.svg' height={30} />
                 </a>
               </div>
               <p><strong>Trucker{`'`}s Slide Calc</strong> — Введите вес вашей оси, и приложение рассчитает, насколько каждая ось выше или ниже.</p>
               <div className={classes.download}>
-                <a href="https">
+                <a href="https://apps.apple.com/us/app/truckers-slide-calc/id1456058952">
                   <img src='./images/mobile/ios.svg' height={30} />
                 </a>
-                <a href="https">
+                <a href="https://play.google.com/store/apps/details?id=com.solutions4semis.truckersSlideCalc&hl=en_US&gl=US">
                   <img src='./images/mobile/android.svg' height={30} />
                 </a>
               </div>
