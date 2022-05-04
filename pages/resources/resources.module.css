@@ -82,13 +82,3 @@
 	flex-direction: column;
 	gap: 10px;
 }
-
-.collab > h3 {
-	text-align: center;
-}
-
-.resources > ul {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
