@@ -2,26 +2,28 @@ import { createContext, useState } from 'react'
 
 const UserContext = createContext({
     user: null,
-    setUser: function(){},
-    setCompany: function(){},
-    removeUser: function(){}
+    setUser: function () { },
+    setCompany: function () { },
+    removeUser: function () { }
 })
 
 
-export function UserContextProvider(props){
+export function UserContextProvider(props) {
     const [activeUser, setActiveUser] = useState()
 
-    function setUserHandler(userData){
-        setActiveUser(userData)
+    function setUserHandler(data) {
+        setActiveUser(data)
     }
-    function setCompanyHandler(userData){
-        setActiveUser({user:{
-            ...activeUser.user,
-            company:userData
-        }})
+    function setCompanyHandler(data) {
+        setActiveUser({
+            user: {
+                ...activeUser.user,
+                company: data
+            }
+        })
     }
-    function removeUserHandler(userData){
-        setActiveUser(userData)
+    function removeUserHandler(data) {
+        setActiveUser(data)
     }
 
     const context = {

@@ -1,0 +1,94 @@
+.main {
+	display: grid;
+	grid-template-columns: 1fr 300px;
+	gap: 20px;
+	margin: 0 auto;
+	max-width: 1150px;
+}
+
+.main > :first-child {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+}
+
+.main > :first-child > div {
+	border-radius: 5px;
+}
+
+.main > :first-child h1 {
+	text-align: center;
+}
+
+.main iframe {
+	display: flex;
+	width: 500px;
+	height: 280px;
+}
+
+.body {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.body i {
+	font-size: 30px;
+}
+
+.body > :last-child {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	background-color: white;
+
+	padding: 40px;
+}
+
+.body > :last-child a {
+	color: #3c3c77;
+}
+
+.download {
+	display: flex;
+	gap: 15px;
+}
+
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.sidebar a {
+	text-decoration: underline;
+}
+
+.sidebar > div {
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+	padding: 15px 25px;
+	background-color: white;
+	border-radius: 5px;
+}
+
+.collab > h3 {
+	text-align: center;
+}
+
+.resources > ul {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.collab > h3 {
+	text-align: center;
+}
+
+.resources > ul {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}

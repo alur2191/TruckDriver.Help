@@ -3,26 +3,26 @@ import { createContext, useState } from 'react'
 const SearchContext = createContext({
     jobs: null,
     advanced: null,
-    showJobs: function(){},
-    hideJobs: function(){},
-    setAdvanced: function(){},
+    showJobs: function () { },
+    hideJobs: function () { },
+    setAdvanced: function () { },
 })
 
 
-export function SearchContextProvider(props){
+export function SearchContextProvider(props) {
     const [activeJobs, setActiveJobs] = useState()
     const [activeAdvanced, setActiveAdvanced] = useState(false)
 
-    
-    function showJobsHandler(jobsData){
-        setActiveJobs(jobsData)
-    }
-    
-    function hideJobsHandler(jobsData){
-        setActiveJobs(jobsData)
+
+    function showJobsHandler(data) {
+        setActiveJobs(data)
     }
 
-    function setAdvancedHandler(){
+    function hideJobsHandler(data) {
+        setActiveJobs(data)
+    }
+
+    function setAdvancedHandler() {
         setActiveAdvanced(!activeAdvanced)
     }
 

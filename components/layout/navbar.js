@@ -4,6 +4,8 @@ import Link from 'next/link'
 import classes from './navbar.module.css'
 import { signOut } from 'next-auth/react'
 import UserContext from '../../store/user-context'
+import AuthContext from '../../store/auth-context'
+
 // import { parseISO, formatDistanceToNowStrict } from "date-fns";
 // import locale from 'date-fns/locale/en-US'
 
@@ -18,10 +20,14 @@ function Navbar() {
     // const notificationRef = useRef()
     const userCtx = useContext(UserContext)
     const activeUser = userCtx.user;
+
+    const authCtx = useContext(AuthContext)
+    const { setAuth } = authCtx
+
     // const activeNotification = notificationCtx.notification;
     useEffect(() => {
         const checkIfClickedOutside = e => {
-            // If the menu is open and the clicked target is not within the menu,
+            // If the menu is open and the clicked area is not within the menu,
             // then close the menu
             if (userDropdown &&
                 userRef.current &&
@@ -38,6 +44,7 @@ function Navbar() {
                 !mobileButtonRef.current.contains(e.target)) {
                 setMobile(false)
             }
+
         }
 
         document.addEventListener("mousedown", checkIfClickedOutside)
@@ -53,56 +60,6 @@ function Navbar() {
         toggleUserDropdown()
     }
     const toggleUserDropdown = () => setUserDropdown(!userDropdown)
-    // const toggleNotificationDropdown = async () => {
-    //     if (!notificationDropdown) {
-    //         setNotificationDropdown(!notificationDropdown)
-    //         const notifications = await fetch("/api/notification/getNotifications", {
-    //             method: 'POST',
-    //             headers: { 'Content-Type': 'application/json' },
-    //             body: JSON.stringify({ id: activeUser.user.id }),
-    //         })
-    //         notifications.json().then(body => notificationCtx.setNotification({
-    //             ...body
-    //         }));
-    //     } else {
-    //         setNotificationDropdown(!notificationDropdown)
-    //     }
-    // }
-
-    // const formatDistanceLocale = {
-    //     lessThanXSeconds: '{{count}}с',
-    //     xSeconds: '{{count}}с',
-    //     halfAMinute: '30с',
-    //     lessThanXMinutes: '{{count}}м',
-    //     xMinutes: '{{count}}м',
-    //     aboutXHours: '{{count}}ч',
-    //     xHours: '{{count}}ч',
-    //     xDays: '{{count}}д',
-    //     aboutXWeeks: '{{count}}н',
-    //     xWeeks: '{{count}}н',
-    //     aboutXMonths: '{{count}}м',
-    //     xMonths: '{{count}}м',
-    //     aboutXYears: '{{count}}л',
-    //     xYears: '{{count}}л',
-    //     overXYears: '{{count}}л',
-    //     almostXYears: '{{count}}л',
-    // }
-
-    // function formatDistance(token, count, options) {
-    //     options = options || {}
-
-    //     const result = formatDistanceLocale[token].replace('{{count}}', count)
-
-    //     if (options.addSuffix) {
-    //         if (options.comparison > 0) {
-    //             return 'in ' + result
-    //         } else {
-    //             return result + ' ago'
-    //         }
-    //     }
-
-    //     return result
-    // }
 
     return (
         <nav className={classes.navbar} >
@@ -115,13 +72,10 @@ function Navbar() {
                 </a>
             </Link>
             <ul>
-
-                <li>
-                    <Link href="https://academy.truckdriver.help" passHref={true}>
-                        <a><i className="bi bi-file-text"></i>CDL Тесты</a>
-                    </Link>
-                </li>
-                {!activeUser && <Link href={{ pathname: "/auth" }} passHref><li className={classes.register}><a style={{ cursor: 'pointer' }}><i className="bi bi-person-fill"></i>Войти</a></li></Link>}
+                {!activeUser &&
+                    <li>
+                        <a onClick={setAuth} style={{ cursor: 'pointer' }}><i className="bi bi-person-circle"></i>Мой Профиль</a>
+                    </li>}
 
                 {activeUser && (
                     <li style={{ position: 'relative' }}>

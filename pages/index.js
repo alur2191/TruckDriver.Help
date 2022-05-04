@@ -1,15 +1,17 @@
 
 import { useContext } from "react";
 import classes from "./index.module.css";
-import AuthForm from "../components/auth/auth-form";
 import { useSession } from "next-auth/react"
 // import AdvancedSearch from "../components/filters/advancedSearch"
-import Support from "../components/ui/support"
+import JobListing from "../components/jobs/jobListing";
+import Filters from "../components/filters/filters";
 import Link from 'next/link'
 import UserContext from '../store/user-context'
+import { PrismaClient } from "@prisma/client";
 
 
-function Home() {
+function Home({ jobs }) {
+
   const { data: session, status } = useSession()
 
 
@@ -42,12 +44,22 @@ function Home() {
             </Link>
           </div>
         </div>
+        <div className={classes.listings} >
+          <Filters />
+          {jobs
+            ? jobs.map((job) => <div key={job.id} className="listing">
+              <JobListing job={job} />
+
+            </div>)
+            : <div className="loader"></div>}
+          <div style={{ display: 'flex', justifyContent: 'center', textDecoration: 'underline' }}>
+            <Link href="/jobs"><a>Показать ещё...</a></Link>
+          </div>
+        </div>
         <div>
           <h1>О Проекте TruckDriver.help</h1>
           <iframe src="https://www.youtube.com/embed/YqWBkSoaaAs" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           <p>TruckDriver.help это уникальный онлайн проект нацеленный помочь иммигрантам работающим в траковой индустрии. На данный момент основная платформа состоит из объявлений логистических компаний. Желающие найти работу в индустрии, смогут воспользоваться расширенными фильтрами предоставленные на сайте, для поиска работы по указанным критериям.</p>
-          <p>Мы также намерены предоставлять учебные материалы для людей в различной стадии карьеры - без CDL, с опытом, Owner-operator, а также компаниям и их диспетчерам. Учебные материалы вы можете найти по адресу <a href="http://academy.truckdriver.help">academy.truckdriver.help</a></p>
-          <Support />
         </div>
       </div>
       <aside className={classes.sidebar}>
@@ -55,24 +67,63 @@ function Home() {
         {/* <AdvancedSearch /> */}
 
         {/* Auth Form */}
-        {!session ?
-          <div>
-            <AuthForm />
-          </div> :
+        {
           activeUser && activeUser.user.company ?
             <Link href={{ pathname: "/jobs/form" }} passHref><button>Подать Объявление</button></Link> :
             activeUser && activeUser.user && !activeUser.user.company && activeUser.user.activated &&
             <Link href={{ pathname: "/company/form" }} passHref><button>Зарегистрировать Компанию</button></Link>
         }
-        {/* Beta Announcement */}
-        <div className={classes.beta}>
-          <h3>Бета-Тест</h3>
-          <p>Сайт находится в стадии бета-тестирования. Сообщения о неполадках, предложениях, а также по другим вопросам обращаться:  </p>
-          <p><em>contact{'<'}собака{'>'}truckdriver.help</em></p>
+        {/* Resources */}
+        <div className={classes.resources}>
+          <h3>Ресурсы</h3>
+          <ul>
+            <li><a href="https://academy.truckdriver.help/course/dispatch/0"><i className="bi bi-play-circle"></i>
+              Видео курсы</a></li>
+            <li><a href="https://academy.truckdriver.help/quiz"><i className="bi bi-file-earmark-text"></i>
+              CDL тесты с переводом</a></li>
+            <li>
+              <Link href="/resources">
+                <a><i className="bi bi-folder-symlink"></i>
+                  Полезные ресурсы</a>
+              </Link>
+            </li>
+          </ul>
+        </div>
+        {/* Collaboration Announcement */}
+        <div className={classes.collab}>
+          <h3>Сотрудничество</h3>
+          <p>Призываем школы, сообщества, ремонтные мастерские, и прочие организации, связанные с логистической индустрией присоедениться в базу полезных ресурсов нашего сайта.</p>
+          <p><i className="bi bi-file-earmark-check"></i><a style={{ paddingLeft: '5px' }} href="#">Заполните форму для подачи заявки.</a></p>
         </div>
       </aside>
     </div >
   );
+}
+
+export async function getServerSideProps() {
+  const prisma = new PrismaClient();
+  // Fetch all posted jobs and include related items from Company table
+  const jobs = await prisma.job.findMany({
+    take: 3,
+    orderBy: [
+      {
+        createdAt: 'desc',
+      },
+    ],
+    include: {
+      company: {
+        include: {
+          trucks: true,
+          trailers: true
+        }
+      }
+    }
+  })
+  return {
+    props: {
+      jobs
+    }
+  }
 }
 
 export default Home;

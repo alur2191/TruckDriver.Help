@@ -10,7 +10,7 @@ import UserContext from '../../../store/user-context'
 
 
 
-function Home() {
+function Search() {
     const searchCtx = useContext(SearchContext)
     const [session] = useSession()
 
@@ -39,4 +39,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default Search;

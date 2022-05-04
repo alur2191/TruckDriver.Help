@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import classes from './auth-form.module.css';
 import { useContext } from 'react';
 import UserContext from '../../store/user-context';
+import AuthContext from '../../store/auth-context'
 import Link from 'next/link';
 
 async function createUser(email, password) {
@@ -29,6 +30,7 @@ function AuthForm({ token }) {
   const emailInputRef = useRef();
   const resetEmailInputRef = useRef();
   const passwordInputRef = useRef();
+  const passwordVerifyInputRef = useRef();
   const { error } = useRouter().query;
   const [isLogin, setIsLogin] = useState(true);
   const [forgot, setForgot] = useState(false);
@@ -37,11 +39,17 @@ function AuthForm({ token }) {
   const [message, setMessage] = useState('');
   const [checkedAgreement, setCheckedAgreement] = useState(false);
   const router = useRouter();
+  const authCtx = useContext(AuthContext)
+  const { setAuth } = authCtx
 
   {
     error && console.log(error);
   }
+
   function switchAuthModeHandler() {
+    passwordInputRef.current.value = ''
+    passwordVerifyInputRef.current ? passwordVerifyInputRef.current.value = '' : null
+    console.log(passwordInputRef.current.value);
     setIsLogin((prevState) => !prevState);
   }
 
@@ -83,6 +91,7 @@ function AuthForm({ token }) {
         //     headers: { 'Content-Type': 'application/json' },
         //     body: JSON.stringify({ message: "Спасибо за регистрацию!" }),
         // })
+        setAuth()
         router.replace('/');
       } else {
         setErrorMessage(res.error);
@@ -91,9 +100,28 @@ function AuthForm({ token }) {
         }, 10000);
       }
     } else {
+      const enteredPasswordVerify = passwordVerifyInputRef.current.value;
       if (!checkedAgreement) {
         setErrorMessage(
           'Вы должны согласиться с условиями пользовательского соглашения.'
+        );
+        setTimeout(() => {
+          setErrorMessage('');
+        }, 10000);
+        return;
+      }
+      if (enteredPassword !== enteredPasswordVerify) {
+        setErrorMessage(
+          'Введенные пароли не совпадают!'
+        );
+        setTimeout(() => {
+          setErrorMessage('');
+        }, 10000);
+        return;
+      }
+      if (enteredPassword < 7) {
+        setErrorMessage(
+          'Необходимо ввести пароль минимум из 7 знаков.'
         );
         setTimeout(() => {
           setErrorMessage('');
@@ -164,6 +192,15 @@ function AuthForm({ token }) {
                 ref={passwordInputRef}
               />
             </div>
+            {isLogin ? null : <div className={classes.control}>
+              <label htmlFor='password'>Подтвердите Пароль</label>
+              <input
+                type='password'
+                id='password'
+                required
+                ref={passwordVerifyInputRef}
+              />
+            </div>}
             {errorMessage && (
               <span style={{ color: 'red' }}>{errorMessage}</span>
             )}
@@ -261,6 +298,7 @@ function AuthForm({ token }) {
           className={classes.buttonText}
           onClick={switchForgotModeHandler}
           type='button'
+          style={{ color: '#404040' }}
         >
           {!forgot ? 'Забыли пароль?' : 'Войти в аккаунт'}
         </button>

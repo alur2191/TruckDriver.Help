@@ -10,6 +10,7 @@ import { UserContextProvider } from '../store/user-context';
 import { CompanyContextProvider } from '../store/company-context';
 import { JobContextProvider } from '../store/job-context';
 import { FilterContextProvider } from '../store/filter-context';
+import { AuthContextProvider } from '../store/auth-context';
 
 const queryClient = new QueryClient()
 
@@ -41,22 +42,23 @@ function MyApp({ Component, pageProps }) {
   }, [router.events])
 
   return (
-    <UserContextProvider>
-      <SearchContextProvider>
-        <CompanyContextProvider>
-          <JobContextProvider>
-            <FilterContextProvider>
-              <AuthProvider session={pageProps.session}>
-                <QueryClientProvider client={queryClient}>
-                  <Layout>
-                    {/* Google analytics scripts */}
-                    <script
-                      async
-                      src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-                    />
-                    <script
-                      dangerouslySetInnerHTML={{
-                        __html: `
+    <AuthContextProvider>
+      <UserContextProvider>
+        <SearchContextProvider>
+          <CompanyContextProvider>
+            <JobContextProvider>
+              <FilterContextProvider>
+                <AuthProvider session={pageProps.session}>
+                  <QueryClientProvider client={queryClient}>
+                    <Layout>
+                      {/* Google analytics scripts */}
+                      <script
+                        async
+                        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+                      />
+                      <script
+                        dangerouslySetInnerHTML={{
+                          __html: `
                           window.dataLayer = window.dataLayer || [];
                           function gtag(){dataLayer.push(arguments);}
                           gtag('js', new Date());
@@ -64,17 +66,18 @@ function MyApp({ Component, pageProps }) {
                             page_path: window.location.pathname,
                           });
                         `,
-                      }}
-                    />
-                    <Component {...pageProps} />
-                  </Layout>
-                </QueryClientProvider>
-              </AuthProvider>
-            </FilterContextProvider>
-          </JobContextProvider>
-        </CompanyContextProvider>
-      </SearchContextProvider>
-    </UserContextProvider>
+                        }}
+                      />
+                      <Component {...pageProps} />
+                    </Layout>
+                  </QueryClientProvider>
+                </AuthProvider>
+              </FilterContextProvider>
+            </JobContextProvider>
+          </CompanyContextProvider>
+        </SearchContextProvider>
+      </UserContextProvider>
+    </AuthContextProvider>
   )
 }
 

@@ -1,9 +1,6 @@
 import { useRef, useState } from 'react';
 import classes from './password-reset.module.css';
-
 import { useRouter } from 'next/router';
-
-
 
 function PasswordForm({ token, email }) {
     const [message, setMessage] = useState({})

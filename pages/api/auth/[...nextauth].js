@@ -92,7 +92,8 @@ const createOptions = (req) => ({
             }
         })
     ], callbacks: {
-        jwt: async (token, user) => {
+        jwt: async ({ token, user }) => {
+            console.log(token);
             // If the URL path matches, update session object with company ID
             if (req.url === "/api/auth/session?update=") {
                 const userRes = await prisma.user.findUnique({
@@ -117,7 +118,9 @@ const createOptions = (req) => ({
 
             return token;
         },
-        session: async (session, user) => {
+        session: async ({ session, user }) => {
+            console.log("user: ", user);
+            console.log("session: ", session);
             if (user) {
                 session.user.companyId = user.companyId
                 session.user.id = user.id

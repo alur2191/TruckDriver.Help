@@ -1,117 +1,99 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--primary-bg);
-    border-bottom: var(--primary-border);
-    padding: 0 40px;
-    margin-bottom: 25px;
-    height: 70px;
-    position: sticky;
-    z-index: 10;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--primary-bg);
+	border-bottom: var(--primary-border);
+	padding: 0 40px;
+	margin-bottom: 25px;
+	height: 70px;
+	position: sticky;
+	z-index: 10;
 }
 
 .navbar > ul {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
-.navbar > ul {   
-    gap: 40px;
+.navbar > ul {
+	gap: 40px;
 }
 
 .account {
-    position:absolute;
-    top: 30px;
-    background-color: white;
-    width: 180px;
-    max-width: 180px;
-    padding: 15px;
-    border: var(--primary-border);
+	position: absolute;
+	top: 30px;
+	background-color: white;
+	width: 180px;
+	max-width: 180px;
+	padding: 15px;
+	border: var(--primary-border);
 }
 
-.account > ul{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.account > ul {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 .account > ul > li {
-    cursor: pointer;
+	cursor: pointer;
 }
 
-
 .account > ul > li:hover {
-    background-color: rgb(247, 247, 247);
+	background-color: rgb(247, 247, 247);
 }
 
 .notification {
-    position:absolute;
-    top: 30px;
-    left:-120px;
-    background-color: white;
-    height: 250px;
-    width: 280px;
-    min-width: 100%;
-    padding: 15px;
-    border: var(--primary-border);
-    z-index: 1;
-    user-select: none;
-    overflow-y: scroll;
+	position: absolute;
+	top: 30px;
+	left: -120px;
+	background-color: white;
+	height: 250px;
+	width: 280px;
+	min-width: 100%;
+	padding: 15px;
+	border: var(--primary-border);
+	z-index: 1;
+	user-select: none;
+	overflow-y: scroll;
 }
 
 .notification span {
-    font-size: 0.9rem;
+	font-size: 0.9rem;
 }
 
-
 .notification > div > div {
-    display: flex;
-    gap: 5px;
+	display: flex;
+	gap: 5px;
 }
 
 .notification > div > span {
-    hyphens: auto;
+	hyphens: auto;
 }
 
 .notification > div {
-    display: flex;
-    flex-direction: column;
-}
-
-
-.register {
-    display: none;
-}
-
-@media (min-width:769px) and (max-width: 1024px){
-        
-    .register {
-        display: block;
-    }
+	display: flex;
+	flex-direction: column;
 }
 
 @media only screen and (max-width: 768px) {
-    .navbar{
-        position: sticky;
-        top:0px;
-        padding: 0 15px;
-        z-index: 98;
-        height: 50px;
-    }
+	.navbar {
+		position: sticky;
+		top: 0px;
+		padding: 0 15px;
+		z-index: 98;
+		height: 50px;
+	}
 
-    .navbar > ul {
-        display: none;
-        
-    }
-    .register {
-        display: none;
-    }
-    .account {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        width: 170px;
-        min-width: 100px;
-    }
+	.navbar > ul {
+		display: none;
+	}
+	.account {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		width: 170px;
+		min-width: 100px;
+	}
 }

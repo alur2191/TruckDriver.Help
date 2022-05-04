@@ -27,30 +27,30 @@ export function CompanyContextProvider(props) {
     const [activeParking, setActiveParking] = useState([])
     const [activeAdditional, setActiveAdditional] = useState({ dispatch24: false, insurance: false, deposit: null })
 
-    function setPageHandler(pageData) {
-        setActivePage(pageData)
+    function setPageHandler(data) {
+        setActivePage(data)
     }
     function setValidationHandler(data) {
         setActiveValidation({ ...data })
     }
-    function setAboutHandler(aboutData) {
-        setActiveAbout(aboutData)
+    function setAboutHandler(data) {
+        setActiveAbout(data)
     }
 
-    function setTrailerHandler(trailerData) {
-        setActiveTrailer(trailerData)
+    function setTrailerHandler(data) {
+        setActiveTrailer(data)
     }
 
-    function setTruckHandler(truckData) {
-        setActiveTruck([...truckData])
+    function setTruckHandler(data) {
+        setActiveTruck([...data])
     }
 
-    function setParkingHandler(parkingData) {
-        setActiveParking([...parkingData])
+    function setParkingHandler(data) {
+        setActiveParking([...data])
     }
 
-    function setAdditionalHandler(trailerData) {
-        setActiveAdditional(trailerData)
+    function setAdditionalHandler(data) {
+        setActiveAdditional(data)
     }
 
     const context = {

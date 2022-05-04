@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-
 import classes from './email-form.module.css';
 
 function EmailForm(props) {

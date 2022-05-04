@@ -25,7 +25,7 @@ function JobListing({ job }) {
                 {job.pay || job.driverGross ?
                     <div>
                         <span><em>Driver</em></span>
-                        {job.pay && <span>Миля:<span>${job.pay.toFixed(2)}</span></span>}
+                        {job.pay && <span>{job.pay > 2 ? "Плата:" : "Миля:"}<span>${job.pay.toFixed(2)}</span></span>}
                         {job.driverGross && <span>Грос:<span>{job.driverGross}%</span></span>}
                     </div>
                     : null}

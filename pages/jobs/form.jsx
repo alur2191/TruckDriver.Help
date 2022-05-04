@@ -4,13 +4,15 @@ import JobContext from "../../store/job-context";
 import Form from "../../components/jobs/form"
 import Submit from "../../components/jobs/submit"
 import UserContext from "../../store/user-context";
-import { getSession } from "next-auth/react"
+import { getSession, useSession } from "next-auth/react"
 import Head from 'next/head'
 import Router from 'next/router';
 
 function JobForm() {
     const jobCtx = useContext(JobContext);
     const userCtx = useContext(UserContext);
+    const { data: session, status } = useSession()
+    const loading = status === "loading"
     const {
         setJob,
         driver,
@@ -41,6 +43,11 @@ function JobForm() {
             teamOwnerGross: null
         })
     }, []);
+
+    if (loading) {
+        return <div className="loader"></div>;
+    }
+
     if (!activeUser.user.company) {
         Router.push(`/company/form?redirect=job`)
         return null

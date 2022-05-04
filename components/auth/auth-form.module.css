@@ -1,58 +1,59 @@
 .auth {
-  text-align: center;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+	text-align: center;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
 }
 
 .auth h3 {
-  text-align: center;
+	text-align: center;
 }
 
 .auth > form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
 }
 
 .control label {
-  display: block;
-  font-weight: bold;
+	display: block;
+	font-weight: bold;
+	margin-bottom: 5px;
 }
 
 .control input {
-  font: inherit;
-  width: 100%;
-  text-align: left;
-  padding: 0.25rem;
+	font: inherit;
+	width: 100%;
+	text-align: left;
+	padding: 0.25rem;
 }
 
 .actions {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .buttonText {
-  background-color: transparent;
-  border: none;
-  color: black;
-  padding: 0;
-  text-decoration: underline;
+	background-color: transparent;
+	border: none;
+	color: black;
+	padding: 0;
+	text-decoration: underline;
 }
 
 .buttonText:hover {
-  background-color: transparent;
+	background-color: transparent;
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
-  .auth {
-    align-items: center;
-  }
+	.auth {
+		align-items: center;
+	}
 }
