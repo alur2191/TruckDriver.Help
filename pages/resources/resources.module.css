@@ -82,3 +82,19 @@
 	flex-direction: column;
 	gap: 10px;
 }
+@media screen and (max-width: 1024px) {
+	.main {
+		grid-template-columns: 1fr;
+	}
+
+	.sidebar {
+		display: none;
+	}
+
+	.body {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		margin: 0 10px;
+	}
+}
