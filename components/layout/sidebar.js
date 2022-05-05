@@ -37,6 +37,12 @@ function Sidebar() {
                 Сообщества, Школы, Мастерские, и прочие.</a>
             </Link>
           </li>
+          <li></li>
+          <li style={{ cursor: 'pointer' }}>
+            <Link href="https://t.me/truckdriverhelp">
+              <a><i className="bi bi-telegram"></i>Телеграм Канал TruckDriver.help</a>
+            </Link>
+          </li>
         </ul>
       </div>
       {/* Collaboration Announcement */}

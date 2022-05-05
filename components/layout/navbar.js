@@ -70,10 +70,6 @@ function Navbar() {
                 </a>
             </Link>
             <ul>
-                {!activeUser &&
-                    <li>
-                        <a onClick={setAuth} style={{ cursor: 'pointer' }}><i className="bi bi-person-circle"></i>Мой Профиль</a>
-                    </li>}
 
                 <Link href={{ pathname: `/resources` }}>
                     <li className={classes.tablet}>
@@ -82,13 +78,15 @@ function Navbar() {
                         </a>
                     </li>
                 </Link>
-                <Link href={{ pathname: `/resources` }}>
-                    <li className={classes.tablet}>
-                        <a style={{ cursor: 'pointer' }}>
-                            <i className="bi bi-file-earmark-text"></i>Учеба
-                        </a>
-                    </li>
-                </Link>
+                <li className={classes.tablet}>
+                    <a href="https://academy.truckdriver.help" style={{ cursor: 'pointer' }}>
+                        <i className="bi bi-file-earmark-text"></i>Учеба
+                    </a>
+                </li>
+                {!activeUser &&
+                    <li>
+                        <a onClick={setAuth} style={{ cursor: 'pointer' }}><i className="bi bi-person-circle"></i>Мой Профиль</a>
+                    </li>}
                 {activeUser && (
                     <li style={{ position: 'relative' }}>
                         <a ref={userButtonRef} style={{ cursor: 'pointer' }} onClick={() => toggleUserDropdown()}><i className="bi bi-person-fill"></i>{activeUser.user.email}</a>
@@ -109,11 +107,6 @@ function Navbar() {
             {mobile && <dir ref={mobileRef} className="mobile-nav">
                 <ul>
                     <li>
-                        <Link href="https://academy.truckdriver.help" passHref={true}>
-                            <a><i className="bi bi-file-text"></i>CDL Тесты</a>
-                        </Link>
-                    </li>
-                    <li>
                         <Link href={{ pathname: `/resources` }}>
                             <a style={{ cursor: 'pointer' }}>
                                 <i className="bi bi-info-lg"></i>Ресурсы
@@ -121,11 +114,9 @@ function Navbar() {
                         </Link>
                     </li>
                     <li>
-                        <Link href={{ pathname: `/resources` }}>
-                            <a style={{ cursor: 'pointer' }}>
-                                <i className="bi bi-file-earmark-text"></i>Учеба
-                            </a>
-                        </Link>
+                        <a href="https://academy.truckdriver.help" style={{ cursor: 'pointer' }}>
+                            <i className="bi bi-file-earmark-text"></i>Учеба
+                        </a>
                     </li>
                     {!activeUser && <Link href={{ pathname: "/auth" }} passHref><li><a style={{ cursor: 'pointer' }}><i className="bi bi-person-fill"></i>Войти</a></li></Link>}
                     {activeUser && activeUser.user.company &&

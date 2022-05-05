@@ -3,3 +3,8 @@
 	flex-direction: column;
 	gap: 10px;
 }
+
+.main > ul > :last-child {
+	margin-top: 20px;
+	text-align: center;
+}
