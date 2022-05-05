@@ -23,7 +23,7 @@ const createOptions = (req) => ({
                 })
                 // User doesn't exist
                 if (!user) {
-                    throw new Error('Email не существует')
+                    throw new Error('Ошибвка авторизации! Повторите еще раз...')
                 }
 
                 // Password verification
@@ -93,7 +93,6 @@ const createOptions = (req) => ({
         })
     ], callbacks: {
         jwt: async ({ token, user }) => {
-            console.log(token);
             // If the URL path matches, update session object with company ID
             if (req.url === "/api/auth/session?update=") {
                 const userRes = await prisma.user.findUnique({
@@ -115,20 +114,17 @@ const createOptions = (req) => ({
                     token.companyId = user.companyId
                 }
             }
-
             return token;
         },
-        session: async ({ session, user }) => {
-            console.log("user: ", user);
-            console.log("session: ", session);
-            if (user) {
-                session.user.companyId = user.companyId
-                session.user.id = user.id
+        session: async ({ session, user, token }) => {
+            if (token) {
+                session.user.companyId = token.companyId
+                session.user.id = token.id
                 if (session.user.activated) {
-                    session.user.activated = user.activated
+                    session.user.activated = token.activated
                 }
             }
-
+            console.log(session);
             return session;
         }
     },
