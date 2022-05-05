@@ -49,7 +49,6 @@ function AuthForm({ token }) {
   function switchAuthModeHandler() {
     passwordInputRef.current.value = ''
     passwordVerifyInputRef.current ? passwordVerifyInputRef.current.value = '' : null
-    console.log(passwordInputRef.current.value);
     setIsLogin((prevState) => !prevState);
   }
 

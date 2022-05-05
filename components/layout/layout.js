@@ -22,7 +22,6 @@ function Layout(props) {
 
         getSession().then((session) => {
             if (session) {
-                console.log(session);
                 const loadUser = async () => {
 
                     const user = await fetch(`/api/user/${session.user.email}`, {

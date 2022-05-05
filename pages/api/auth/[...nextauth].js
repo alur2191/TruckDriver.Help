@@ -124,7 +124,6 @@ const createOptions = (req) => ({
                     session.user.activated = token.activated
                 }
             }
-            console.log(session);
             return session;
         }
     },
