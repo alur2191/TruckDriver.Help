@@ -60,7 +60,15 @@ function Layout(props) {
     }, [auth]);
 
     if (isLoading) {
-        return <div className="loader"></div>;
+
+        return (
+            <>
+                <Head>
+                    <title>Работа в траковых компаниях для водителей с CDL.</title>
+                </Head>
+                <div className="loader"></div>
+            </>
+        )
     }
 
     return (
