@@ -108,7 +108,7 @@ function Navbar() {
                 <ul>
                     <li>
                         <Link href={{ pathname: `/resources` }}>
-                            <a style={{ cursor: 'pointer' }}>
+                            <a onClick={() => setMobile(false)} style={{ cursor: 'pointer' }}>
                                 <i className="bi bi-info-lg"></i>Ресурсы
                             </a>
                         </Link>
@@ -118,7 +118,14 @@ function Navbar() {
                             <i className="bi bi-file-earmark-text"></i>Учеба
                         </a>
                     </li>
-                    {!activeUser && <Link href={{ pathname: "/auth" }} passHref><li><a style={{ cursor: 'pointer' }}><i className="bi bi-person-fill"></i>Войти</a></li></Link>}
+                    {!activeUser &&
+                        <Link href={{ pathname: "/auth" }} passHref>
+                            <li>
+                                <a onClick={() => setMobile(false)} style={{ cursor: 'pointer' }}>
+                                    <i className="bi bi-person-fill"></i>Войти
+                                </a>
+                            </li>
+                        </Link>}
                     {activeUser && activeUser.user.company &&
                         <li style={{ cursor: 'pointer' }}>
                             <Link href={{ pathname: "/jobs/form" }} passHref>
