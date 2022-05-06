@@ -34,6 +34,7 @@ function AuthForm({ token }) {
   const { error } = useRouter().query;
   const [isLogin, setIsLogin] = useState(true);
   const [forgot, setForgot] = useState(false);
+  const [registered, setRegistered] = useState(false);
   const [confirmMessage, setConfirmMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [message, setMessage] = useState('');
@@ -132,6 +133,7 @@ function AuthForm({ token }) {
         console.log(res.error);
         if (!res.error) {
           setConfirmMessage('Письмо с подтверждением отправлено на почту');
+          setRegistered(true)
           setTimeout(() => {
             setConfirmMessage('');
           }, 10000);
@@ -173,9 +175,14 @@ function AuthForm({ token }) {
         <>
           <h3>{isLogin ? 'Авторизация' : 'Регистрация'}</h3>
           {token && (
-            <p style={{ color: 'red' }}>
+            <span style={{ color: 'red' }}>
               Войдите в аккаунт для завершения подтверждения!
-            </p>
+            </span>
+          )}
+          {registered && (
+            <span style={{ color: 'red' }}>
+              Если вы не получили письмо, проверьте папку {'"Спам"'}.
+            </span>
           )}
           <form onSubmit={submitHandler}>
             <div className={classes.control}>
@@ -195,7 +202,7 @@ function AuthForm({ token }) {
               <label htmlFor='password'>Подтвердите Пароль</label>
               <input
                 type='password'
-                id='password'
+                id='confirmPassword'
                 required
                 ref={passwordVerifyInputRef}
               />

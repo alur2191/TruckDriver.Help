@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Link from "next/link"
 import classes from "./index.module.css";
 import JobListing from "../../../components/jobs/jobListing";
@@ -12,11 +12,13 @@ import UserContext from '../../../store/user-context'
 
 function Search() {
     const searchCtx = useContext(SearchContext)
-    const [session] = useSession()
-
+    const { data: session, status } = useSession()
+    const loading = status === "loading"
     const userCtx = useContext(UserContext)
     const activeUser = userCtx.user;
     const activeSearch = searchCtx.jobs;
+    console.log(activeSearch);
+
     return (
         <div className={classes.main}>
             <div className={classes.listings} >
