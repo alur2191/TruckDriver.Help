@@ -17,7 +17,6 @@ function Search() {
     const userCtx = useContext(UserContext)
     const activeUser = userCtx.user;
     const activeSearch = searchCtx.jobs;
-    console.log(activeSearch);
 
     return (
         <div className={classes.main}>
