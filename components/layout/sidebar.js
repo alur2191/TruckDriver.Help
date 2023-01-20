@@ -42,7 +42,7 @@ function Sidebar() {
               <a href="https://t.me/truckdriverhelp"><i className="bi bi-telegram"></i>Телеграм Канал TruckDriver.help</a>
           </li>
 					<li style={{ cursor: 'pointer' }}>
-              <a href="https://t.me/NewYorkChat24"><i className="bi bi-telegram"></i>Телеграм New York - Chat</a>
+              <a href="https://t.me/NewYorkChat24"><i className="bi bi-telegram"></i>Телеграм группа - New York Chat</a>
           </li>
         </ul>
       </div>
