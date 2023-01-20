@@ -40,11 +40,9 @@ function Sidebar() {
 					<li style={{ cursor: 'pointer' }}>
               <a href="https://t.me/NewYorkChat24"><i className="bi bi-telegram"></i>Телеграм группа - New York Chat</a>
           </li>
-
           <li style={{ cursor: 'pointer' }}>
               <a href="https://t.me/truckdriverhelp"><i className="bi bi-telegram"></i>Телеграм Канал TruckDriver.help</a>
           </li>
-					
         </ul>
       </div>
       {/* Collaboration Announcement */}
