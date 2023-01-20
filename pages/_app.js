@@ -11,6 +11,7 @@ import { CompanyContextProvider } from '../store/company-context';
 import { JobContextProvider } from '../store/job-context';
 import { FilterContextProvider } from '../store/filter-context';
 import { AuthContextProvider } from '../store/auth-context';
+import Script from "next/script";
 
 const queryClient = new QueryClient()
 
@@ -52,11 +53,11 @@ function MyApp({ Component, pageProps }) {
                   <QueryClientProvider client={queryClient}>
                     <Layout>
                       {/* Google analytics scripts */}
-                      <script
-                        async
+                      <Script
+												strategy="lazyOnload"
                         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
                       />
-                      <script
+                      <Script id="google-analytics" strategy="lazyOnload"
                         dangerouslySetInnerHTML={{
                           __html: `
                           window.dataLayer = window.dataLayer || [];
