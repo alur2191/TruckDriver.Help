@@ -14,6 +14,11 @@ function Sidebar() {
             CDL тесты с переводом</a></li>
           <h4>Ресурсы</h4>
           <li>
+            
+              <a href="https://www.dmvhelp.app/"><i className="bi bi-phone"></i>
+                DMV Тесты</a>
+          </li>
+          <li>
             <Link href="/resources/#mobile">
               <a><i className="bi bi-phone"></i>
                 Мобильные Приложения</a>
